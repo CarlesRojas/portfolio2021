@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { isMobileOnly } from "react-device-detect";
 import classnames from "classnames";
 import SVG from "react-inlinesvg";
@@ -16,6 +16,10 @@ export default function Cursor() {
     const [play, setPlay] = useState(false);
     const [scrollDown, setScrollDown] = useState(false);
     const scrollDownInterval = useRef(null);
+
+    // #######################################
+    //      ACTIONS
+    // #######################################
 
     // When the mouse moves -> Update its position
     const onMouseMove = (event) => {
@@ -47,6 +51,10 @@ export default function Cursor() {
         if (scrollDownInterval.current) clearInterval(scrollDownInterval.current);
     };
 
+    // #######################################
+    //      INTERACTIVE ITEMS
+    // #######################################
+
     // Update all interactive items
     const updateInteractiveItems = () => {
         // When the cursor hovers over certain elems -> Hover animation
@@ -61,6 +69,10 @@ export default function Cursor() {
             elem.addEventListener("mouseout", () => setPlay(false));
         });
     };
+
+    // #######################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // #######################################
 
     // Subscribe and unsubscrive to events
     useEffect(() => {
@@ -81,7 +93,7 @@ export default function Cursor() {
         scrollDownInterval.current = setInterval(() => {
             setScrollDown(true);
             setTimeout(() => setScrollDown(false), 2000);
-        }, 5000);
+        }, 8000);
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
@@ -98,6 +110,10 @@ export default function Cursor() {
             if (scrollDownInterval.current) clearTimeout(scrollDownInterval.current);
         };
     }, []);
+
+    // #######################################
+    //      RENDER
+    // #######################################
 
     // When on mobile -> Do not use custom mouse
     if (isMobileOnly) return null;

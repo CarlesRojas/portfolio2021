@@ -1,7 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import gsap from "gsap";
 
+// Contexts
+import { Data } from "contexts/Data";
+
 export default function Landing() {
+    // Contexts
+    const { setLandingDone } = useContext(Data);
+
+    // Animation timeout
+    const animationTimeout = useRef(null);
+
     // #######################################
     //      ON COMPONENT MOUNT & UNMOUNT
     // #######################################
@@ -14,7 +23,15 @@ export default function Landing() {
         timeline.to(".slider", { y: "-100%", duration: 0.8, delay: 0.75 });
         timeline.to(".textContainer", { y: "-100%", duration: 0.4 }, "-=0.6");
 
-        return () => {};
+        // Inform about the landing state when all the animations finish
+        animationTimeout.current = setTimeout(() => {
+            setLandingDone(true);
+        }, 3000);
+
+        return () => {
+            // Clear the animation timeout
+            clearTimeout(animationTimeout.current);
+        };
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

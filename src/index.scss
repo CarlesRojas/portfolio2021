@@ -19,6 +19,8 @@ $cursor-color: rgb(255, 255, 255);
 $cursor-active-color: rgb(255, 153, 37);
 $cursor-icon-color: rgb(40, 40, 40);
 
+$navbarHeight: 5rem;
+
 // #######################################
 //      MIXINS
 // #######################################
@@ -180,14 +182,27 @@ body {
     -webkit-text-fill-color: white;
 }
 
+//Remove focus
+:focus {
+    outline: none;
+}
+::-moz-focus-inner {
+    border: 0;
+}
+
 // #######################################
 //      APP
 // #######################################
 
 .app {
     position: relative;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+
+    &.landingDone {
+        overflow-y: scroll;
+    }
 }
 
 // ##############################################################################
@@ -251,6 +266,16 @@ body {
         z-index: 21;
         background: linear-gradient(60deg, rgb(19, 30, 44) 0%, rgb(21, 31, 44) 100%);
     }
+}
+
+// #######################################
+//      PRODUCT DESIGN
+// #######################################
+
+.productDesign {
+    height: 500%;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.164);
 }
 
 // ##############################################################################
@@ -335,4 +360,100 @@ body {
             @include transition-delay(0.2s);
         }
     }
+}
+
+// #######################################
+//      NAVBAR
+// #######################################
+
+.navbar {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $navbarHeight;
+    width: 100%;
+    top: 0;
+    background-color: rgb(44, 44, 44);
+
+    .icon {
+        height: $navbarHeight;
+        max-height: $navbarHeight;
+        min-height: $navbarHeight;
+        padding: 1rem;
+    }
+
+    .name {
+        color: white;
+        margin-right: 4rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .buttonsContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        cursor: none;
+
+        .pageButton {
+            cursor: none;
+            background-color: transparent;
+            color: white;
+            margin: 0 2rem;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            @include transition(all 0.2s ease-in-out);
+            @include border-radius(5px);
+
+            &.design {
+                &:hover,
+                &:focus,
+                &.selected {
+                    color: rgb(90, 255, 200);
+                }
+
+                &:focus {
+                    @include box-shadow(0 0 0 5px rgb(90, 255, 200));
+                }
+            }
+
+            &.game {
+                &:hover,
+                &:focus,
+                &.selected {
+                    color: rgb(255, 194, 113);
+                }
+
+                &:focus {
+                    @include box-shadow(0 0 0 5px rgb(255, 194, 113));
+                }
+            }
+
+            &.web {
+                &:hover,
+                &:focus,
+                &.selected {
+                    color: rgb(113, 215, 255);
+                }
+
+                &:focus {
+                    @include box-shadow(0 0 0 5px rgb(113, 215, 255));
+                }
+            }
+        }
+    }
+}
+
+// #######################################
+//      SPLASH SCREEN
+// #######################################
+
+.splashScreen {
+    height: calc(50% - #{$navbarHeight / 2});
+    width: 100%;
+    background-color: green;
 }
