@@ -1,0 +1,338 @@
+// #######################################
+//      FONTS
+// #######################################
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap");
+
+// #######################################
+//      VARIABLES
+// #######################################
+
+$background: rgb(220, 220, 220);
+$text: rgba(0, 0, 0, 0.7);
+
+$font-size: 18px;
+$line-height: 22px;
+
+$cursor-color: rgb(255, 255, 255);
+$cursor-active-color: rgb(255, 153, 37);
+$cursor-icon-color: rgb(40, 40, 40);
+
+// #######################################
+//      MIXINS
+// #######################################
+
+@mixin transition($x...) {
+    -webkit-transition: $x;
+    -moz-transition: $x;
+    -ms-transition: $x;
+    -o-transition: $x;
+    transition: $x;
+}
+
+@mixin transition-delay($delay) {
+    -webkit-transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    -ms-transition-delay: $delay;
+    -o-transition-delay: $delay;
+    transition-delay: $delay;
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: -moz-calc(#{$expression});
+    #{$property}: -ms-calc(#{$expression});
+    #{$property}: -o-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin box-shadow($value) {
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+    -ms-box-shadow: $value;
+    -o-box-shadow: $value;
+    box-shadow: $value;
+}
+
+@mixin filter($value) {
+    -webkit-filter: $value;
+    -moz-filter: $value;
+    -ms-filter: $value;
+    -o-filter: $value;
+    filter: $value;
+}
+
+@mixin animation($animation) {
+    -webkit-animation: $animation;
+    -moz-animation: $animation;
+    -ms-animation: $animation;
+    -o-animation: $animation;
+    animation: $animation;
+}
+
+@mixin animation-delay($delay) {
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    -ms-animation-delay: $delay;
+    -o-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+@mixin touch-action($value) {
+    -webkit-touch-action: $value;
+    -moz-touch-action: $value;
+    -ms-touch-action: $value;
+    -o-touch-action: $value;
+    touch-action: $value;
+}
+
+@mixin inputPlaceholder() {
+    $selector: "";
+    $prefixes: (
+        moz: "::-moz",
+        webkit: "::-webkit",
+        ie: ":-ms",
+    );
+    @each $prop, $value in $prefixes {
+        @if $prop != "moz" {
+            $selector: #{$value}-input-placeholder;
+        } @else {
+            $selector: #{$value}-placeholder;
+        }
+        @if & {
+            &#{$selector} {
+                @content;
+            }
+        } @else {
+            #{$selector} {
+                @content;
+            }
+        }
+    }
+    &::placeholder {
+        @content;
+    }
+}
+
+// #######################################
+//      MAIN ELEMENTS
+// #######################################
+
+* {
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    overscroll-behavior: none;
+}
+
+html {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: $font-size;
+    @include touch-action(none);
+}
+
+body {
+    user-select: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    cursor: none;
+
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @include touch-action(none);
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    background-color: $background;
+    color: $text;
+}
+
+// Autofill color
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+    transition: background-color 10000s;
+    width: inherit;
+    box-sizing: border-box;
+    border: 0px solid rgba(255, 255, 255, 0);
+    border-radius: 1000px;
+    padding: 0 10px;
+    -webkit-text-fill-color: white;
+}
+
+// #######################################
+//      APP
+// #######################################
+
+.app {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+// ##############################################################################
+// ##############################################################################
+//      PAGES
+// ##############################################################################
+// ##############################################################################
+
+// #######################################
+//      LANDING
+// #######################################
+
+.landing {
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .textContainer {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+
+        z-index: 20;
+        background: linear-gradient(60deg, rgb(20, 43, 74) 0%, rgb(61, 90, 128) 100%);
+        color: rgb(233, 233, 233);
+
+        .hideMask {
+            overflow: hidden;
+
+            .loadingText {
+                display: inline-block;
+                transform: translateY(100%);
+                font-size: 2rem;
+                font-weight: 400;
+                line-height: 4rem;
+
+                @media only screen and (min-width: 768px) {
+                    font-size: 4rem;
+                    line-height: 6rem;
+                }
+            }
+        }
+    }
+
+    .slider {
+        position: fixed;
+        transform: translateY(100%);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 21;
+        background: linear-gradient(60deg, rgb(19, 30, 44) 0%, rgb(21, 31, 44) 100%);
+    }
+}
+
+// ##############################################################################
+// ##############################################################################
+//      COMPONENTS
+// ##############################################################################
+// ##############################################################################
+
+// #######################################
+//      CURSOR
+// #######################################
+
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    height: 34px;
+    width: 34px;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    @include border-radius(100%);
+    @include box-shadow(0 0 3px 0px $cursor-color);
+    @include transition(
+        background-color 0.2s ease-in-out,
+        opacity 0.2s ease-in-out,
+        transform 0.2s ease-in-out,
+        mix-blend-mode 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out,
+        width 0.2s ease-in-out,
+        height 0.2s ease-in-out
+    );
+
+    // HIDDEN
+    &.hidden {
+        opacity: 0;
+    }
+
+    // HOVERED
+    &.hovered {
+        transform: translate(-50%, -50%) scale(1.25);
+        background-color: $cursor-color;
+    }
+
+    // CLICKED
+    &.clicked {
+        transform: translate(-50%, -50%) scale(0.9);
+        background-color: $cursor-color;
+    }
+
+    // ICON
+    .icon {
+        transform: scale(0);
+        height: 30px;
+        width: 30px;
+        opacity: 0;
+        @include transition(transform 0.2s ease-in-out, opacity 0.2s ease-in-out);
+        @include transition-delay(0s);
+
+        &.playIcon {
+            padding: 2px 0 0 5px;
+        }
+
+        .cls-1 {
+            stroke: $cursor-icon-color !important;
+        }
+    }
+
+    // PLAY || SCROLL DOWN
+    &.iconActive {
+        height: 120px;
+        width: 120px;
+        mix-blend-mode: unset;
+        background-color: $cursor-active-color;
+        @include box-shadow(none);
+
+        .icon {
+            transform: scale(1);
+            opacity: 1;
+            @include transition-delay(0.2s);
+        }
+    }
+}
