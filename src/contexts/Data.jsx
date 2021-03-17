@@ -1,4 +1,4 @@
-import React, { createContext, useState, useRef } from "react";
+import React, { createContext, useState } from "react";
 
 // Data Context
 export const Data = createContext();
