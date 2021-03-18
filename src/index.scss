@@ -442,10 +442,19 @@ body {
         cursor: none;
         @include transition(all 0.2s ease-in-out);
 
+        &.bigScreen {
+            height: unset !important;
+        }
+
         @media only screen and (max-width: $collapseNavbarWidth) {
             flex-direction: column;
             justify-content: flex-start;
             height: 0;
+            width: 100%;
+        }
+
+        &.bigScreen {
+            height: unset !important;
         }
 
         .pageButton {
@@ -456,15 +465,21 @@ body {
             margin: 0.5rem 2rem;
             border: none;
             padding: 0.3rem 1rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             @include transition(all 0.2s ease-in-out);
             @include border-radius(5px);
 
             @media only screen and (max-width: $collapseNavbarWidth) {
-                margin: 0.2rem 0.5rem;
-                font-size: 0.8rem;
+                max-width: 250px;
+                min-width: 250px;
                 opacity: 0;
+                margin: 0.2rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            &.bigScreen {
+                opacity: 1 !important;
             }
 
             &.design {
