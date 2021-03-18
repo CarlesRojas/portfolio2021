@@ -9,7 +9,7 @@
 //      VARIABLES
 // #######################################
 
-$background: rgb(220, 220, 220);
+$background: rgb(245, 245, 245);
 $text: rgba(0, 0, 0, 0.7);
 
 $font-size: 18px;
@@ -20,6 +20,8 @@ $cursor-active-color: rgb(255, 153, 37);
 $cursor-icon-color: rgb(40, 40, 40);
 
 $navbarHeight: 5rem;
+$collapseNavbarWidth: 1100px;
+$navbarButtonHeight: 2.8rem;
 
 // #######################################
 //      MIXINS
@@ -275,7 +277,6 @@ body {
 .productDesign {
     height: 500%;
     width: 100%;
-    background-color: rgba(255, 0, 0, 0.164);
 }
 
 // ##############################################################################
@@ -372,43 +373,99 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: $navbarHeight;
     width: 100%;
     top: -1px;
     background-color: rgb(44, 44, 44);
 
-    .icon {
-        height: $navbarHeight;
-        max-height: $navbarHeight;
-        min-height: $navbarHeight;
-        padding: 1rem;
+    @media only screen and (max-width: $collapseNavbarWidth) {
+        flex-direction: column;
     }
 
-    .name {
-        color: white;
-        margin-right: 4rem;
-        font-size: 1.4rem;
-        font-weight: 700;
+    .nameContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $navbarHeight;
+
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            width: 100%;
+        }
+
+        .icon {
+            height: $navbarHeight;
+            max-height: $navbarHeight;
+            min-height: $navbarHeight;
+            width: $navbarHeight;
+            max-width: $navbarHeight;
+            min-width: $navbarHeight;
+            padding: 1.5rem;
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                padding-right: 1rem;
+            }
+        }
+
+        .name {
+            color: white;
+            margin-right: 4rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                flex-grow: 1;
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+        }
+
+        .menuIcon {
+            display: none;
+            height: $navbarHeight;
+            max-height: $navbarHeight;
+            min-height: $navbarHeight;
+            width: $navbarHeight;
+            max-width: $navbarHeight;
+            min-width: $navbarHeight;
+            color: rgba(255, 255, 255, 0.445);
+            padding: 1.9rem;
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                display: block;
+            }
+        }
     }
 
     .buttonsContainer {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%;
         cursor: none;
+        @include transition(all 0.2s ease-in-out);
+
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 0;
+        }
 
         .pageButton {
+            height: $navbarButtonHeight;
             cursor: none;
             background-color: transparent;
             color: white;
-            margin: 0 2rem;
+            margin: 0.5rem 2rem;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 1rem;
             font-size: 1.2rem;
             font-weight: 600;
             @include transition(all 0.2s ease-in-out);
             @include border-radius(5px);
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                margin: 0.2rem 0.5rem;
+                font-size: 0.8rem;
+                opacity: 0;
+            }
 
             &.design {
                 &:hover,
