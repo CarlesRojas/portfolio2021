@@ -32,7 +32,7 @@ export default function Navbar() {
     // #######################################
 
     // CUrrently selected button
-    const [selectedButton, setSelectedButton] = useState("design");
+    const [selectedButton, setSelectedButton] = useState("web");
 
     // Blur button timeout
     const blurTimeout = useRef(null);
@@ -44,6 +44,12 @@ export default function Navbar() {
 
         // Select the button
         setSelectedButton(buttonName);
+
+        // Change Background Color
+        window.PubSub.emit("onGradientChange", { gradientName: buttonName });
+
+        // Change Background Pattern
+        window.PubSub.emit("onPatternChange", { patternName: buttonName });
 
         // Unfocus the elemetn
         blurTimeout.current = setTimeout(() => {
@@ -120,14 +126,14 @@ export default function Navbar() {
             </div>
 
             <div className={classnames("buttonsContainer", { bigScreen })}>
-                <button className={classnames("pageButton", "design", { selected: selectedButton === "design" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "design")}>
-                    Product Design
+                <button className={classnames("pageButton", "web", { selected: selectedButton === "web" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "web")}>
+                    Web Dev
                 </button>
                 <button className={classnames("pageButton", "game", { selected: selectedButton === "game" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "game")}>
                     Game Dev
                 </button>
-                <button className={classnames("pageButton", "web", { selected: selectedButton === "web" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "web")}>
-                    Web Dev
+                <button className={classnames("pageButton", "design", { selected: selectedButton === "design" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "design")}>
+                    Product Design
                 </button>
             </div>
         </header>

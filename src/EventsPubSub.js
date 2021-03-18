@@ -33,4 +33,17 @@ export default class EventsPubSub {
         desciption:     Called when the cursor should update the interactive items
         parameters:     {}
     },
+    {
+        event:          onGradientChange
+        desciption:     Called when the background gradient should change
+        parameters:     { gradientName }
+        gradientName:   One of the names of the gradients like "purple"
+    },
+    {
+        event:          onPatternChange
+        desciption:     Called when the background pattern should change
+        parameters:     { patternName }
+        patternName:    One of the names of the patterns like "web"
+    },
+
 */

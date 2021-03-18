@@ -485,6 +485,7 @@ body {
             border: none;
             padding: 0.3rem 1rem;
             font-size: 1.1rem;
+            text-transform: uppercase;
             font-weight: 600;
             @include transition(all 0.2s ease-in-out);
             @include border-radius(5px);
@@ -550,7 +551,6 @@ body {
     height: calc(50% - #{$navbarHeight / 2});
     width: 100%;
     @include box-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
-    background-color: rgba(0, 128, 0, 0.596);
 
     @media only screen and (max-width: $collapseNavbarWidth) {
         top: calc(#{$navbarHeight * 0.7} - calc(calc(50% - #{$navbarHeight / 2 * 0.7}) - 20px));
@@ -568,5 +568,63 @@ body {
 
     &.black {
         background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 75%);
+    }
+}
+
+// #######################################
+//      BACKGROUND
+// #######################################
+
+.background {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: white;
+
+    .cell {
+        position: absolute;
+
+        &.web {
+            opacity: 0.2;
+            @include animation(fadeInWeb 1s linear);
+        }
+
+        &.game {
+            opacity: 0.25;
+            @include animation(fadeInGame 1s linear);
+        }
+
+        &.design {
+            opacity: 0.15;
+            @include animation(fadeInDesign 1s linear);
+        }
+
+        @keyframes fadeInWeb {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+        @keyframes fadeInGame {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.25;
+            }
+        }
+        @keyframes fadeInDesign {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.15;
+            }
+        }
     }
 }
