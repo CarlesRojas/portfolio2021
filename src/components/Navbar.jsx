@@ -112,7 +112,7 @@ export default function Navbar() {
     const bigScreen = window.innerWidth >= COLLAPSE_NAVBAR_WIDTH;
 
     return (
-        <header className="navbar">
+        <header className="navbar glass black">
             <div className="nameContainer">
                 <SVG className="icon" src={LogoIcon} />
                 <p className="name">Carles Rojas</p>

@@ -11,6 +11,7 @@
 
 $background: rgb(245, 245, 245);
 $text: rgba(0, 0, 0, 0.7);
+$text-white: rgba(255, 255, 255, 0.9);
 
 $font-size: 18px;
 $line-height: 22px;
@@ -277,6 +278,7 @@ body {
 .productDesign {
     height: 500%;
     width: 100%;
+    // background-color: rgba(255, 0, 0, 0.657);
 }
 
 // ##############################################################################
@@ -373,12 +375,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    top: -1px;
-    background-color: rgb(44, 44, 44);
+    width: calc(100% - 20px);
+    top: 10px;
+    margin: 10px;
+    margin-top: calc(#{-$navbarHeight} - 10px);
 
     @media only screen and (max-width: $collapseNavbarWidth) {
         flex-direction: column;
+        margin-top: calc(#{-$navbarHeight * 0.7} - 10px);
     }
 
     .nameContainer {
@@ -389,6 +393,7 @@ body {
 
         @media only screen and (max-width: $collapseNavbarWidth) {
             width: 100%;
+            height: $navbarHeight * 0.7;
         }
 
         .icon {
@@ -401,12 +406,19 @@ body {
             padding: 1.5rem;
 
             @media only screen and (max-width: $collapseNavbarWidth) {
+                height: $navbarHeight * 0.7;
+                max-height: $navbarHeight * 0.7;
+                min-height: $navbarHeight * 0.7;
+                width: $navbarHeight * 0.7;
+                max-width: $navbarHeight * 0.7;
+                min-width: $navbarHeight * 0.7;
+                padding: 1.1rem;
                 padding-right: 1rem;
             }
         }
 
         .name {
-            color: white;
+            color: $text-white;
             margin-right: 4rem;
             font-size: 1.4rem;
             font-weight: 600;
@@ -414,7 +426,7 @@ body {
             @media only screen and (max-width: $collapseNavbarWidth) {
                 flex-grow: 1;
                 margin-right: 0;
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
         }
 
@@ -431,6 +443,13 @@ body {
 
             @media only screen and (max-width: $collapseNavbarWidth) {
                 display: block;
+                height: $navbarHeight * 0.7;
+                max-height: $navbarHeight * 0.7;
+                min-height: $navbarHeight * 0.7;
+                width: $navbarHeight * 0.7;
+                max-width: $navbarHeight * 0.7;
+                min-width: $navbarHeight * 0.7;
+                padding: 1.3rem;
             }
         }
     }
@@ -461,7 +480,7 @@ body {
             height: $navbarButtonHeight;
             cursor: none;
             background-color: transparent;
-            color: white;
+            color: $text-white;
             margin: 0.5rem 2rem;
             border: none;
             padding: 0.3rem 1rem;
@@ -526,7 +545,28 @@ body {
 // #######################################
 
 .splashScreen {
+    position: sticky;
+    top: calc(#{$navbarHeight} - calc(calc(50% - #{$navbarHeight / 2}) - 20px));
     height: calc(50% - #{$navbarHeight / 2});
     width: 100%;
-    background-color: green;
+    @include box-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+    background-color: rgba(0, 128, 0, 0.596);
+
+    @media only screen and (max-width: $collapseNavbarWidth) {
+        top: calc(#{$navbarHeight * 0.7} - calc(calc(50% - #{$navbarHeight / 2 * 0.7}) - 20px));
+        height: calc(50% - #{$navbarHeight / 2 * 0.7});
+    }
+}
+
+.glass {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 75%);
+    background-position: 50px -150px;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    @include box-shadow(0 0 15px rgba(0, 0, 0, 0.2));
+    @include border-radius(20px);
+
+    &.black {
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 75%);
+    }
 }
