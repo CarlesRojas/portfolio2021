@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { Utils } from "contexts/Utils";
 
 // Icons
-import LogoIcon from "resources/logo.svg";
+import LogoGradientIcon from "resources/logoGradient.svg";
 import CloseIcon from "resources/icons/close.svg";
 import MenuIcon from "resources/icons/menu.svg";
 
@@ -45,11 +45,8 @@ export default function Navbar() {
         // Select the button
         setSelectedButton(buttonName);
 
-        // Change Background Color
-        window.PubSub.emit("onGradientChange", { gradientName: buttonName });
-
-        // Change Background Pattern
-        window.PubSub.emit("onPatternChange", { patternName: buttonName });
+        // Change Section
+        window.PubSub.emit("onSectionChange", { sectionName: buttonName });
 
         // Unfocus the elemetn
         blurTimeout.current = setTimeout(() => {
@@ -71,7 +68,7 @@ export default function Navbar() {
             // Animage buttons when closing the menu
             if (open) {
                 const timeline = gsap.timeline();
-                timeline.fromTo(".buttonsContainer", { height: "0rem" }, { height: "11rem", duration: 0.1 });
+                timeline.fromTo(".buttonsContainer", { height: "0rem" }, { height: "12rem", duration: 0.1 });
                 timeline.fromTo(".pageButton", { opacity: 0 }, { opacity: 1, duration: 0.1 }, "+=0.1");
             }
 
@@ -79,7 +76,7 @@ export default function Navbar() {
             else {
                 const timeline = gsap.timeline();
                 timeline.fromTo(".pageButton", { opacity: 1 }, { opacity: 0, duration: 0.1 });
-                timeline.fromTo(".buttonsContainer", { height: "11rem" }, { height: "0rem", duration: 0.1 }, "+=0.1");
+                timeline.fromTo(".buttonsContainer", { height: "12rem" }, { height: "0rem", duration: 0.1 }, "+=0.1");
             }
         }
 
@@ -120,7 +117,7 @@ export default function Navbar() {
     return (
         <header className="navbar glass black">
             <div className="nameContainer">
-                <SVG className="icon" src={LogoIcon} />
+                <SVG className={classnames("icon", selectedButton)} src={LogoGradientIcon} />
                 <p className="name">Carles Rojas</p>
                 <SVG className={classnames("menuIcon")} src={menuIcon} onClick={onMenuButtonClick} />
             </div>

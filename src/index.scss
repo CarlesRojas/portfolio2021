@@ -392,8 +392,8 @@ body {
         height: $navbarHeight;
 
         @media only screen and (max-width: $collapseNavbarWidth) {
-            width: 100%;
             height: $navbarHeight * 0.7;
+            width: 100%;
         }
 
         .icon {
@@ -414,6 +414,40 @@ body {
                 min-width: $navbarHeight * 0.7;
                 padding: 1.1rem;
                 padding-right: 1rem;
+            }
+
+            stop {
+                @include transition(all 0.3s ease-in-out);
+            }
+
+            &.web {
+                .stop1 {
+                    stop-color: #2192bf;
+                }
+
+                .stop2 {
+                    stop-color: #02f8ab;
+                }
+            }
+
+            &.game {
+                .stop1 {
+                    stop-color: #f46b6b;
+                }
+
+                .stop2 {
+                    stop-color: #f4a658;
+                }
+            }
+
+            &.design {
+                .stop1 {
+                    stop-color: #733fff;
+                }
+
+                .stop2 {
+                    stop-color: #fab4d6;
+                }
             }
         }
 
@@ -461,15 +495,14 @@ body {
         cursor: none;
         @include transition(all 0.2s ease-in-out);
 
-        &.bigScreen {
-            height: unset !important;
-        }
-
         @media only screen and (max-width: $collapseNavbarWidth) {
             flex-direction: column;
-            justify-content: flex-start;
             height: 0;
             width: 100%;
+        }
+
+        &.bigScreen {
+            height: unset !important;
         }
 
         &.bigScreen {
@@ -480,13 +513,13 @@ body {
             height: $navbarButtonHeight;
             cursor: none;
             background-color: transparent;
-            color: $text-white;
+            color: rgba(255, 255, 255, 0.4);
             margin: 0.5rem 2rem;
             border: none;
             padding: 0.3rem 1rem;
             font-size: 1.1rem;
-            text-transform: uppercase;
             font-weight: 600;
+            text-transform: uppercase;
             @include transition(all 0.2s ease-in-out);
             @include border-radius(5px);
 
@@ -502,15 +535,15 @@ body {
                 opacity: 1 !important;
             }
 
-            &.design {
+            &.web {
                 &:hover,
                 &:focus,
                 &.selected {
-                    color: rgb(90, 255, 200);
+                    color: #48f6d3;
                 }
 
                 &:focus {
-                    @include box-shadow(0 0 0 5px rgb(90, 255, 200));
+                    @include box-shadow(0 0 0 5px #48f6d3);
                 }
             }
 
@@ -518,23 +551,23 @@ body {
                 &:hover,
                 &:focus,
                 &.selected {
-                    color: rgb(255, 194, 113);
+                    color: #fbb189;
                 }
 
                 &:focus {
-                    @include box-shadow(0 0 0 5px rgb(255, 194, 113));
+                    @include box-shadow(0 0 0 5px #fbb189);
                 }
             }
 
-            &.web {
+            &.design {
                 &:hover,
                 &:focus,
                 &.selected {
-                    color: rgb(113, 215, 255);
+                    color: #e0a6fd;
                 }
 
                 &:focus {
-                    @include box-shadow(0 0 0 5px rgb(113, 215, 255));
+                    @include box-shadow(0 0 0 5px #e0a6fd);
                 }
             }
         }
@@ -547,16 +580,31 @@ body {
 
 .splashScreen {
     position: sticky;
-    top: calc(#{$navbarHeight} - calc(calc(50% - #{$navbarHeight / 2}) - 20px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: calc(50% - #{$navbarHeight / 2});
     width: 100%;
+    top: calc(#{$navbarHeight} - calc(calc(50% - #{$navbarHeight / 2}) - 20px));
     @include box-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
 
     @media only screen and (max-width: $collapseNavbarWidth) {
-        top: calc(#{$navbarHeight * 0.7} - calc(calc(50% - #{$navbarHeight / 2 * 0.7}) - 20px));
         height: calc(50% - #{$navbarHeight / 2 * 0.7});
+        top: calc(#{$navbarHeight * 0.7} - calc(calc(50% - #{$navbarHeight / 2 * 0.7}) - 20px));
+    }
+
+    .title {
+        z-index: 5;
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 }
+
+// #######################################
+//      GLASS
+// #######################################
 
 .glass {
     background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 75%);
@@ -587,21 +635,6 @@ body {
     .cell {
         position: absolute;
 
-        &.web {
-            opacity: 0.2;
-            @include animation(fadeInWeb 1s linear);
-        }
-
-        &.game {
-            opacity: 0.25;
-            @include animation(fadeInGame 1s linear);
-        }
-
-        &.design {
-            opacity: 0.15;
-            @include animation(fadeInDesign 1s linear);
-        }
-
         @keyframes fadeInWeb {
             0% {
                 opacity: 0;
@@ -625,6 +658,21 @@ body {
             100% {
                 opacity: 0.15;
             }
+        }
+
+        &.web {
+            opacity: 0.2;
+            @include animation(fadeInWeb 1s linear);
+        }
+
+        &.game {
+            opacity: 0.25;
+            @include animation(fadeInGame 1s linear);
+        }
+
+        &.design {
+            opacity: 0.15;
+            @include animation(fadeInDesign 1s linear);
         }
     }
 }

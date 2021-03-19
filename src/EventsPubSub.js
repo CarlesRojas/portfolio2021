@@ -34,16 +34,10 @@ export default class EventsPubSub {
         parameters:     {}
     },
     {
-        event:          onGradientChange
-        desciption:     Called when the background gradient should change
-        parameters:     { gradientName }
-        gradientName:   One of the names of the gradients like "purple"
-    },
-    {
-        event:          onPatternChange
-        desciption:     Called when the background pattern should change
-        parameters:     { patternName }
-        patternName:    One of the names of the patterns like "web"
+        event:          onSectionChange
+        desciption:     Called when the  section changes
+        parameters:     { sectionName }
+        sectionName:    One of the names of the sections: "web", "game" or "design"
     },
 
 */

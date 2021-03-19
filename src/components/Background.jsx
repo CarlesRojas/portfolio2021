@@ -11,16 +11,17 @@ import GamePattern from "resources/patterns/gamingPattern.svg";
 // Contexts
 import { Utils } from "contexts/Utils";
 import { Data } from "contexts/Data";
+import { isMobileOnly } from "react-device-detect";
 
 // Constants
 const COLLAPSE_NAVBAR_WIDTH = 1100;
 const MAX_FPS = 120;
-const FPS = 30;
+const FPS = 60;
 const DECELERATION = 10;
 const GRADIENTS = {
     web: ["#2192bf", "#02f8ab"],
-    design: ["#1f6a1f", "#f8ff61"],
-    game: ["#f4a658", "#f46b6b"],
+    game: ["#f46b6b", "#f4a658"],
+    design: ["#733FFF", "#FAB4D6"], //["#1f6a1f", "#f8ff61"],
 };
 const PATTERNS = {
     web: { svg: WebPattern, tileSize: 300, tileSizeMobile: 200 },
@@ -30,11 +31,17 @@ const PATTERNS = {
 
 const Background = memo(({ parent }) => {
     // Contexts
-    const { useForceUpdate } = useContext(Utils);
+    const { useForceUpdate, invlerp } = useContext(Utils);
     const { positionRef, speedRef, motion, prevMotion } = useContext(Data);
 
     // Force update
     const forceUpdate = useForceUpdate();
+
+    // Save parent in a ref
+    const parentRef = useRef(parent);
+    useEffect(() => {
+        parentRef.current = parent;
+    }, [parent]);
 
     // #################################################
     //   BACKGROUND LOGIC
@@ -51,20 +58,15 @@ const Background = memo(({ parent }) => {
     }));
 
     // Set te background gradient by one of its presets
-    const onGradientChange = ({ gradientName }) => {
-        if (!(gradientName in GRADIENTS)) return;
+    const onSectionChange = ({ sectionName }) => {
+        if (!(sectionName in GRADIENTS) || !(sectionName in PATTERNS)) return;
 
         // Set the background gradient
-        setGradient({ background: `linear-gradient(60deg, ${GRADIENTS[gradientName][0]} 0%, ${GRADIENTS[gradientName][1]} 100%)` });
-        currGradient.current = gradientName;
-    };
-
-    // Set te background pattern to one of its presets
-    const onPatternChange = ({ patternName }) => {
-        if (!(patternName in PATTERNS)) return;
+        setGradient({ background: `linear-gradient(60deg, ${GRADIENTS[sectionName][0]} 0%, ${GRADIENTS[sectionName][1]} 100%)` });
+        currGradient.current = sectionName;
 
         // Set the background pattern
-        setCurrPattern(patternName);
+        setCurrPattern(sectionName);
     };
 
     // #################################################
@@ -114,6 +116,32 @@ const Background = memo(({ parent }) => {
         }
 
         motion.current = newMotion;
+    };
+
+    // Handle mouse move change
+    const onMouseMove = (event) => {
+        // Return if the parent is not defined
+        if (!parentRef.current) return;
+
+        // Clamp to parent dimensions
+        const parentDimensions = parentRef.current.getBoundingClientRect();
+
+        // Get mouse position
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        // Return if mose is outside the splashscreen div
+        if (mouseX < 0 || mouseX > parentDimensions.width || mouseY < 0 || mouseY > parentDimensions.height) return;
+
+        // Normalize position [-1, 1]
+        const normX = invlerp(0, parentDimensions.width, mouseX) * 2 - 1;
+        const normY = invlerp(0, parentDimensions.height, mouseY) * 2 - 1;
+
+        // Set the motion
+        motion.current = {
+            alpha: normY * 100,
+            beta: normX * 100,
+        };
     };
 
     // #################################################
@@ -190,9 +218,9 @@ const Background = memo(({ parent }) => {
     useEffect(() => {
         // Subscribe to events
         window.addEventListener("resize", onResize);
-        window.addEventListener("devicemotion", onDeviceMotion, true);
-        window.PubSub.sub("onGradientChange", onGradientChange);
-        window.PubSub.sub("onPatternChange", onPatternChange);
+        if (isMobileOnly) window.addEventListener("devicemotion", onDeviceMotion, true);
+        else window.addEventListener("mousemove", onMouseMove, true);
+        window.PubSub.sub("onSectionChange", onSectionChange);
 
         // Start loop
         loop();
@@ -201,8 +229,8 @@ const Background = memo(({ parent }) => {
         return () => {
             window.removeEventListener("resize", onResize);
             window.removeEventListener("devicemotion", onDeviceMotion, true);
-            window.PubSub.unsub("onGradientChange", onGradientChange);
-            window.PubSub.unsub("onPatternChange", onPatternChange);
+            window.removeEventListener("mousemove", onMouseMove, true);
+            window.PubSub.unsub("onSectionChange", onSectionChange);
 
             // Cancel animation
             if (frameID.current) window.cancelAnimationFrame(frameID.current);
@@ -229,7 +257,7 @@ const Background = memo(({ parent }) => {
         const TILE_SIZE = PATTERNS[currPattern].tileSizeMobile; //SCREEN_WIDTH / PATTERNS[currPattern].tilesPhone;
         const NUM_TILES = { x: Math.ceil(SCREEN_WIDTH / TILE_SIZE) + 2, y: Math.ceil(SCREEN_HEIGHT / TILE_SIZE) + 2 };
         const TILE_SIZE_DESKTOP = PATTERNS[currPattern].tileSize; //SCREEN_WIDTH / PATTERNS[currPattern].tiles;
-        const NUM_TILES_DESKTOP = { x: Math.ceil(SCREEN_WIDTH / TILE_SIZE_DESKTOP), y: Math.ceil(SCREEN_HEIGHT / TILE_SIZE_DESKTOP) };
+        const NUM_TILES_DESKTOP = { x: Math.ceil(SCREEN_WIDTH / TILE_SIZE_DESKTOP) + 2, y: Math.ceil(SCREEN_HEIGHT / TILE_SIZE_DESKTOP) + 2 };
         const isMobile = window.innerWidth < COLLAPSE_NAVBAR_WIDTH;
 
         // Tile matrix
