@@ -630,49 +630,58 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    color: white;
 
-    .cell {
+    .patternContainer {
+        pointer-events: none;
         position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        color: white;
 
-        @keyframes fadeInWeb {
-            0% {
-                opacity: 0;
+        .cell {
+            position: absolute;
+
+            @keyframes fadeInWeb {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.2;
+                }
             }
-            100% {
+            @keyframes fadeInGame {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.25;
+                }
+            }
+            @keyframes fadeInDesign {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.15;
+                }
+            }
+
+            &.web {
                 opacity: 0.2;
+                @include animation(fadeInWeb 1s linear);
             }
-        }
-        @keyframes fadeInGame {
-            0% {
-                opacity: 0;
-            }
-            100% {
+
+            &.game {
                 opacity: 0.25;
+                @include animation(fadeInGame 1s linear);
             }
-        }
-        @keyframes fadeInDesign {
-            0% {
-                opacity: 0;
-            }
-            100% {
+
+            &.design {
                 opacity: 0.15;
+                @include animation(fadeInDesign 1s linear);
             }
-        }
-
-        &.web {
-            opacity: 0.2;
-            @include animation(fadeInWeb 1s linear);
-        }
-
-        &.game {
-            opacity: 0.25;
-            @include animation(fadeInGame 1s linear);
-        }
-
-        &.design {
-            opacity: 0.15;
-            @include animation(fadeInDesign 1s linear);
         }
     }
 }

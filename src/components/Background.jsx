@@ -25,7 +25,7 @@ const GRADIENTS = {
 };
 const PATTERNS = {
     web: { svg: WebPattern, tileSize: 300, tileSizeMobile: 200 },
-    game: { svg: GamePattern, tileSize: 200, tileSizeMobile: 150 },
+    game: { svg: GamePattern, tileSize: 300, tileSizeMobile: 200 },
     design: { svg: DesignPattern, tileSize: 300, tileSizeMobile: 200 },
 };
 
@@ -57,6 +57,13 @@ const Background = memo(({ parent }) => {
         config: { friction: 40 },
     }));
 
+    // Opacity springs
+    const [opacities, setOpacities] = useSpring(() => ({
+        opacityWeb: 1,
+        opacityGame: 0,
+        opacityDesign: 0,
+    }));
+
     // Set te background gradient by one of its presets
     const onSectionChange = ({ sectionName }) => {
         if (!(sectionName in GRADIENTS) || !(sectionName in PATTERNS)) return;
@@ -67,6 +74,13 @@ const Background = memo(({ parent }) => {
 
         // Set the background pattern
         setCurrPattern(sectionName);
+
+        // Change pattern opacities
+        setOpacities({
+            opacityWeb: sectionName === "web" ? 1 : 0,
+            opacityGame: sectionName === "game" ? 1 : 0,
+            opacityDesign: sectionName === "design" ? 1 : 0,
+        });
     };
 
     // #################################################
@@ -121,7 +135,7 @@ const Background = memo(({ parent }) => {
     // Handle mouse move change
     const onMouseMove = (event) => {
         // Return while not in production
-        if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
+        //if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
 
         // Return if the parent is not defined
         if (!parentRef.current) return;
@@ -250,7 +264,9 @@ const Background = memo(({ parent }) => {
 
     // No tiles if the parent is null
     if (!parent) {
-        var tiles = [];
+        var webTiles = [];
+        var gameTiles = [];
+        var designTiles = [];
     }
 
     // Tiles to cover only the parent
@@ -259,9 +275,9 @@ const Background = memo(({ parent }) => {
         const PARENT_DIMENSIONS = parent.getBoundingClientRect();
         const SCREEN_WIDTH = PARENT_DIMENSIONS.width;
         const SCREEN_HEIGHT = PARENT_DIMENSIONS.height;
-        const TILE_SIZE = PATTERNS[currPattern].tileSizeMobile; //SCREEN_WIDTH / PATTERNS[currPattern].tilesPhone;
+        const TILE_SIZE = PATTERNS[currPattern].tileSizeMobile;
         const NUM_TILES = { x: Math.ceil(SCREEN_WIDTH / TILE_SIZE) + 2, y: Math.ceil(SCREEN_HEIGHT / TILE_SIZE) + 2 };
-        const TILE_SIZE_DESKTOP = PATTERNS[currPattern].tileSize; //SCREEN_WIDTH / PATTERNS[currPattern].tiles;
+        const TILE_SIZE_DESKTOP = PATTERNS[currPattern].tileSize;
         const NUM_TILES_DESKTOP = { x: Math.ceil(SCREEN_WIDTH / TILE_SIZE_DESKTOP) + 2, y: Math.ceil(SCREEN_HEIGHT / TILE_SIZE_DESKTOP) + 2 };
         const isMobile = window.innerWidth < COLLAPSE_NAVBAR_WIDTH;
 
@@ -269,7 +285,9 @@ const Background = memo(({ parent }) => {
         var numTiles = isMobile ? NUM_TILES : NUM_TILES_DESKTOP;
         var tileSize = isMobile ? TILE_SIZE : TILE_SIZE_DESKTOP;
 
-        tiles = [];
+        webTiles = [];
+        gameTiles = [];
+        designTiles = [];
         var xSize = numTiles.x * tileSize;
         var ySize = numTiles.y * tileSize;
         for (let i = 0; i < numTiles.x; i++) {
@@ -284,13 +302,12 @@ const Background = memo(({ parent }) => {
                 if (displY > 0) var yPos = (displY % ySize) - tileSize;
                 else yPos = tileSize * (numTiles.y - 1) - (Math.abs(displY) % ySize);
 
-                tiles.push(
-                    <SVG
-                        key={`${i - 1}-${j - 1}`}
-                        className={classnames("cell", currPattern)}
-                        src={PATTERNS[currPattern].svg}
-                        style={{ width: tileSize, transform: `translate(${xPos}px, ${yPos}px)` }}
-                    />
+                webTiles.push(<SVG key={`${i - 1}-${j - 1}`} className="cell web" src={PATTERNS["web"].svg} style={{ width: tileSize, transform: `translate(${xPos}px, ${yPos}px)` }} />);
+
+                gameTiles.push(<SVG key={`${i - 1}-${j - 1}`} className="cell game" src={PATTERNS["game"].svg} style={{ width: tileSize, transform: `translate(${xPos}px, ${yPos}px)` }} />);
+
+                designTiles.push(
+                    <SVG key={`${i - 1}-${j - 1}`} className="cell design" src={PATTERNS["design"].svg} style={{ width: tileSize, transform: `translate(${xPos}px, ${yPos}px)` }} />
                 );
             }
         }
@@ -298,7 +315,15 @@ const Background = memo(({ parent }) => {
 
     return (
         <div className="background" style={{ backgroundImage: background.get() }}>
-            {tiles}
+            <div className="patternContainer" style={{ display: currGradient.current === "web" ? "block" : "none", opacity: opacities.opacityWeb.get() }}>
+                {webTiles}
+            </div>
+            <div className="patternContainer" style={{ display: currGradient.current === "game" ? "block" : "none", opacity: opacities.opacityGame.get() }}>
+                {gameTiles}
+            </div>
+            <div className="patternContainer" style={{ display: currGradient.current === "design" ? "block" : "none", opacity: opacities.opacityDesign.get() }}>
+                {designTiles}
+            </div>
         </div>
     );
 });
