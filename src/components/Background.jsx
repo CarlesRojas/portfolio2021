@@ -120,22 +120,27 @@ const Background = memo(({ parent }) => {
 
     // Handle mouse move change
     const onMouseMove = (event) => {
+        // Return while not in production
+        if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
+
         // Return if the parent is not defined
         if (!parentRef.current) return;
 
         // Clamp to parent dimensions
         const parentDimensions = parentRef.current.getBoundingClientRect();
+        const parentWidth = parentDimensions.width + parentDimensions.x;
+        const parentHeight = parentDimensions.height + parentDimensions.y;
 
         // Get mouse position
         const mouseX = event.clientX;
         const mouseY = event.clientY;
 
         // Return if mose is outside the splashscreen div
-        if (mouseX < 0 || mouseX > parentDimensions.width || mouseY < 0 || mouseY > parentDimensions.height) return;
+        if (mouseX < 0 || mouseX > parentWidth || mouseY < 0 || mouseY > parentHeight) return;
 
         // Normalize position [-1, 1]
-        const normX = invlerp(0, parentDimensions.width, mouseX) * 2 - 1;
-        const normY = invlerp(0, parentDimensions.height, mouseY) * 2 - 1;
+        const normX = invlerp(0, parentWidth, mouseX) * 2 - 1;
+        const normY = invlerp(0, parentHeight, mouseY) * 2 - 1;
 
         // Set the motion
         motion.current = {
