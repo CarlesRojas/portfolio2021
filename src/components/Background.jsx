@@ -1,9 +1,5 @@
 import React, { useRef, useEffect, useContext, memo } from "react";
 import { useSpring, animated } from "react-spring";
-// Icons
-import DesignPattern from "resources/patterns/designPattern.svg";
-import WebPattern from "resources/patterns/electronicPattern.svg";
-import GamePattern from "resources/patterns/gamingPattern.svg";
 
 // Contexts
 import { Utils } from "contexts/Utils";
@@ -14,11 +10,6 @@ const GRADIENTS = {
     web: ["#2192bf", "#02f8ab"],
     game: ["#f46b6b", "#f4a658"],
     design: ["#733FFF", "#FAB4D6"], //["#1f6a1f", "#f8ff61"],
-};
-const PATTERNS = {
-    web: { svg: WebPattern, tileSize: 300, tileSizeMobile: 200 },
-    game: { svg: GamePattern, tileSize: 200, tileSizeMobile: 150 },
-    design: { svg: DesignPattern, tileSize: 300, tileSizeMobile: 200 },
 };
 const OPACITIES = {
     web: 0.2,
@@ -63,7 +54,7 @@ const Background = memo(({ parent }) => {
 
     // Set te background gradient by one of its presets
     const onSectionChange = ({ sectionName }) => {
-        if (!(sectionName in GRADIENTS) || !(sectionName in PATTERNS)) return;
+        if (!(sectionName in GRADIENTS)) return;
 
         // Set the background gradient
         setGradient({ backgroundImage: `linear-gradient(60deg, ${GRADIENTS[sectionName][0]} 0%, ${GRADIENTS[sectionName][1]} 100%)` });
@@ -81,6 +72,9 @@ const Background = memo(({ parent }) => {
     //   ACCELEROMETER TILT
     // #################################################
 
+    // Previous motion parameters
+    const prevRotationRate = useRef({ alpha: 0, beta: 0 });
+
     // Handle device orientation change
     const onDeviceMotion = ({ rotationRate }) => {
         const { alpha, beta } = rotationRate;
@@ -88,9 +82,13 @@ const Background = memo(({ parent }) => {
         // Return if alpha or beta are undefined
         if (!alpha || !beta) return;
 
+        // Return if none of tha rotation has changed enough
+        if (Math.abs(alpha - prevRotationRate.current.alpha) < 20 && Math.abs(beta - prevRotationRate.current.beta) < 20) return;
+        prevRotationRate.current = { alpha, beta };
+
         // Normalize tilt [-1, 1]
-        const normX = invlerp(0, 100, alpha) * 2 - 1;
-        const normY = invlerp(0, 100, beta) * 2 - 1;
+        const normX = invlerp(0, 300, alpha) * 2 - 1;
+        const normY = invlerp(0, 300, beta) * 2 - 1;
 
         // Current background position
         const backgroundPos = backgroundPosition.get().replace(" ", "").split("px");
