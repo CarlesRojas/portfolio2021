@@ -73,7 +73,7 @@ const Background = memo(({ parent }) => {
     // #################################################
 
     // Previous motion parameters
-    const prevRotationRate = useRef({ alpha: 0, beta: 0 });
+    const motion = useRef({ alpha: 0, beta: 0 });
 
     // Handle device orientation change
     const onDeviceMotion = ({ rotationRate }) => {
@@ -82,21 +82,33 @@ const Background = memo(({ parent }) => {
         // Return if alpha or beta are undefined
         if (!alpha || !beta) return;
 
-        // Return if none of tha rotation has changed enough
-        if (Math.abs(alpha - prevRotationRate.current.alpha) < 20 && Math.abs(beta - prevRotationRate.current.beta) < 20) return;
-        prevRotationRate.current = { alpha, beta };
+        // New motion
+        var newMotion = motion.current;
+
+        // Update alpha
+        if (Math.abs(alpha) > 20) {
+            newMotion.alpha =
+                (Math.sign(motion.current.alpha) === Math.sign(alpha) || motion.current.alpha === 0) && Math.abs(motion.current.alpha) > Math.abs(alpha) ? motion.current.alpha : alpha;
+        }
+
+        if (Math.abs(beta) > 20) {
+            newMotion.beta = (Math.sign(motion.current.beta) === Math.sign(beta) || motion.current.beta === 0) && Math.abs(motion.current.beta) > Math.abs(beta) ? motion.current.beta : beta;
+        }
+
+        // Return if none of tha rotation has changed
+        if (newMotion.alpha === motion.current.alpha && newMotion.beta === motion.current.beta) return;
+        motion.current = newMotion;
 
         // Normalize tilt [-1, 1]
-        const normX = invlerp(0, 300, alpha) * 2 - 1;
-        const normY = invlerp(0, 300, beta) * 2 - 1;
+        const normX = invlerp(-300, 300, newMotion.alpha) * 2 - 1;
+        const normY = invlerp(-300, 300, newMotion.beta) * 2 - 1;
 
         // Current background position
         const backgroundPos = backgroundPosition.get().replace(" ", "").split("px");
         const backgroundCoords = { x: parseInt(backgroundPos[0]), y: parseInt(backgroundPos[1]) };
 
-        console.log(rotationRate);
-        console.log(`Motion ${backgroundCoords.x - normX * 1000}px ${backgroundCoords.y - normY * 1000}px`);
-        setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 1000}px ${backgroundCoords.y - normY * 1000}px` });
+        console.log(motion.current);
+        setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 100}px ${backgroundCoords.y - normY * 100}px` });
     };
 
     // Handle mouse move change
@@ -119,7 +131,7 @@ const Background = memo(({ parent }) => {
         // Return if mose is outside the splashscreen div
         if (mouseX < 0 || mouseX > parentWidth || mouseY < 0 || mouseY > parentHeight) return;
 
-        // Normalize position [0, 1]
+        // Normalize position [-1, 1]
         const normX = invlerp(0, parentWidth, mouseX) * 2 - 1;
         const normY = invlerp(0, parentHeight, mouseY) * 2 - 1;
 
