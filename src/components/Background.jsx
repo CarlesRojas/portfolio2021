@@ -83,7 +83,10 @@ const Background = memo(({ parent }) => {
         if (!alpha || !beta) return;
 
         // New motion
-        var newMotion = motion.current;
+        var newMotion = {
+            alpha: motion.current.alpha,
+            beta: motion.current.beta,
+        };
 
         // Update alpha
         if (Math.abs(alpha) > 20) {
@@ -95,20 +98,19 @@ const Background = memo(({ parent }) => {
             newMotion.beta = (Math.sign(motion.current.beta) === Math.sign(beta) || motion.current.beta === 0) && Math.abs(motion.current.beta) > Math.abs(beta) ? motion.current.beta : beta;
         }
 
-        // Return if none of tha rotation has changed
+        // Return if none of the rotation has changed
         if (newMotion.alpha === motion.current.alpha && newMotion.beta === motion.current.beta) return;
-        motion.current = newMotion;
+        //motion.current = newMotion;
 
         // Normalize tilt [-1, 1]
-        const normX = invlerp(-300, 300, newMotion.alpha) * 2 - 1;
-        const normY = invlerp(-300, 300, newMotion.beta) * 2 - 1;
+        const normX = invlerp(-100, 100, newMotion.alpha) * 2 - 1;
+        const normY = invlerp(-100, 100, newMotion.beta) * 2 - 1;
 
         // Current background position
         const backgroundPos = backgroundPosition.get().replace(" ", "").split("px");
         const backgroundCoords = { x: parseInt(backgroundPos[0]), y: parseInt(backgroundPos[1]) };
 
-        console.log(motion.current);
-        setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 100}px ${backgroundCoords.y - normY * 100}px` });
+        setPosition({ backgroundPosition: `${backgroundCoords.x + normY * 1000}px ${backgroundCoords.y + normX * 1000}px` });
     };
 
     // Handle mouse move change
