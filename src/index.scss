@@ -630,49 +630,49 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    color: white;
 
-    .cell {
+    .webPattern {
         position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: url("resources/patterns/electronicPattern.svg");
+        background-size: 300px 300px;
+        opacity: 0.2;
 
-        @keyframes fadeInWeb {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 0.2;
-            }
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            background-size: 200px 200px;
         }
-        @keyframes fadeInGame {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 0.25;
-            }
-        }
-        @keyframes fadeInDesign {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 0.15;
-            }
-        }
+    }
 
-        &.web {
-            opacity: 0.2;
-            @include animation(fadeInWeb 1s linear);
-        }
+    .gamePattern {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: url("resources/patterns/gamingPattern.svg");
+        background-size: 200px 200px;
+        opacity: 0.25;
 
-        &.game {
-            opacity: 0.25;
-            @include animation(fadeInGame 1s linear);
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            background-size: 150px 150px;
         }
+    }
 
-        &.design {
-            opacity: 0.15;
-            @include animation(fadeInDesign 1s linear);
+    .designPattern {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: url("resources/patterns/designPattern.svg");
+        background-size: 300px 300px;
+        opacity: 0.15;
+
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            background-size: 200px 200px;
         }
     }
 }
