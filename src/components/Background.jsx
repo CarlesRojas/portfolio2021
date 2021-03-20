@@ -47,14 +47,14 @@ const Background = memo(({ parent }) => {
 
     // Background opacity spring
     const [opacities, setOpacities] = useSpring(() => ({
-        opacityWeb: OPACITIES.web,
-        opacityGame: 0,
-        opacityDesign: 0,
+        web: OPACITIES.web,
+        game: 0,
+        design: 0,
     }));
 
     // Set te background gradient by one of its presets
     const onSectionChange = ({ sectionName }) => {
-        if (!(sectionName in GRADIENTS)) return;
+        if (!(sectionName in GRADIENTS) || sectionName === section.current) return;
 
         // Set the background gradient
         setGradient({ backgroundImage: `linear-gradient(60deg, ${GRADIENTS[sectionName][0]} 0%, ${GRADIENTS[sectionName][1]} 100%)` });
@@ -62,9 +62,9 @@ const Background = memo(({ parent }) => {
 
         // Change pattern opacities
         setOpacities({
-            opacityWeb: sectionName === "web" ? OPACITIES.web : 0,
-            opacityGame: sectionName === "game" ? OPACITIES.game : 0,
-            opacityDesign: sectionName === "design" ? OPACITIES.design : 0,
+            web: sectionName === "web" ? OPACITIES.web : 0,
+            game: sectionName === "game" ? OPACITIES.game : 0,
+            design: sectionName === "design" ? OPACITIES.design : 0,
         });
     };
 
@@ -146,7 +146,7 @@ const Background = memo(({ parent }) => {
     //      ON COMPONENT MOUNT & UNMOUNT
     // #######################################
 
-    // On componente mount
+    // On component mount
     useEffect(() => {
         // Subscribe to events
         if (isMobileOnly) window.addEventListener("devicemotion", onDeviceMotion, true);
@@ -169,9 +169,9 @@ const Background = memo(({ parent }) => {
 
     return (
         <animated.div className="background" style={{ backgroundImage }}>
-            <animated.div className="webPattern" style={{ backgroundPosition, opacity: opacities.opacityWeb }}></animated.div>
-            <animated.div className="gamePattern" style={{ backgroundPosition, opacity: opacities.opacityGame }}></animated.div>
-            <animated.div className="designPattern" style={{ backgroundPosition, opacity: opacities.opacityDesign }}></animated.div>
+            <animated.div className="webPattern" style={{ backgroundPosition, opacity: opacities.web }}></animated.div>
+            <animated.div className="gamePattern" style={{ backgroundPosition, opacity: opacities.game }}></animated.div>
+            <animated.div className="designPattern" style={{ backgroundPosition, opacity: opacities.design }}></animated.div>
         </animated.div>
     );
 });

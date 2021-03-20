@@ -580,9 +580,7 @@ body {
 
 .splashScreen {
     position: sticky;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     height: calc(50% - #{$navbarHeight / 2});
     width: 100%;
     top: calc(#{$navbarHeight} - calc(calc(50% - #{$navbarHeight / 2}) - 20px));
@@ -593,12 +591,22 @@ body {
         top: calc(#{$navbarHeight * 0.7} - calc(calc(50% - #{$navbarHeight / 2 * 0.7}) - 20px));
     }
 
-    .title {
-        z-index: 5;
-        color: white;
-        font-size: 2rem;
-        font-weight: 700;
-        text-transform: uppercase;
+    .titleContainer {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+
+        .title {
+            z-index: 5;
+            width: 90%;
+            max-width: 700px;
+            margin-bottom: 5%;
+        }
     }
 }
 
