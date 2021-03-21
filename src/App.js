@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { isMobileOnly } from "react-device-detect";
 import classnames from "classnames";
 
 // Pages
@@ -32,7 +33,8 @@ export default function App() {
                 console.log(error);
             }
         };
-        lockOrientation();
+
+        if (isMobileOnly) lockOrientation();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
