@@ -42,6 +42,8 @@ export default function App() {
 
     // On orientation change -> Show no landscape alowed
     const onOrientationChange = () => {
+        if (!isMobileOnly) return;
+
         if (window.orientation === 0) setOrientation("portrait");
         else setOrientation("landscape");
     };
@@ -60,13 +62,15 @@ export default function App() {
                 console.log(error);
             }
         };
-        if (isMobileOnly) lockOrientation();
+        if (isMobileOnly) {
+            lockOrientation();
 
-        // Check orientation
-        onOrientationChange();
+            // Check orientation
+            onOrientationChange();
 
-        // Subscribe to events
-        window.addEventListener("orientationchange", onOrientationChange);
+            // Subscribe to events
+            window.addEventListener("orientationchange", onOrientationChange);
+        }
 
         // Unsubscribe from events and stop loop
         return () => {
