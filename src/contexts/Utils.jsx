@@ -4,9 +4,9 @@ import React, { useState, createContext, useRef, useEffect } from "react";
 export const Utils = createContext();
 
 const UtilsProvider = (props) => {
-    // #######################################
+    // ###################################################
     //      COOKIES
-    // #######################################
+    // ###################################################
 
     // Set a cookie
     const setCookie = (name, value, expirationDays = 10) => {
@@ -59,9 +59,9 @@ const UtilsProvider = (props) => {
         }
     };
 
-    // #######################################
+    // ###################################################
     //      INTERPOLATIONS
-    // #######################################
+    // ###################################################
 
     // Clamp a value between a min and max
     const clamp = (a, min = 0, max = 1) => Math.min(max, Math.max(min, a));
@@ -72,9 +72,9 @@ const UtilsProvider = (props) => {
     // Inverse linear interpolation (x <= a <= y) -> Returns value between 0 and 1
     const invlerp = (x, y, a) => clamp((a - x) / (y - x));
 
-    // #######################################
+    // ###################################################
     //      DATE AND TIME
-    // #######################################
+    // ###################################################
 
     // Convert UTF Unix Time to Date object
     const unixTimeToDate = (unixTime) => {
@@ -132,9 +132,9 @@ const UtilsProvider = (props) => {
         return getFormattedDate(date);
     };
 
-    // #######################################
+    // ###################################################
     //      NUMBER FORMAT
-    // #######################################
+    // ###################################################
 
     const fifteen_power = Math.pow(10, 15);
     const twelve_power = Math.pow(10, 12);
@@ -174,9 +174,9 @@ const UtilsProvider = (props) => {
         return (+parseFloat(num) * (negative ? -1 : 1)).toString() + letter;
     };
 
-    // #######################################
+    // ###################################################
     //      HOOKS
-    // #######################################
+    // ###################################################
 
     //create your forceUpdate hook
     const useForceUpdate = () => {
@@ -200,9 +200,9 @@ const UtilsProvider = (props) => {
         return [{ ref }, bounds];
     }
 
-    // #######################################
+    // ###################################################
     //      RANDOWM IDS
-    // #######################################
+    // ###################################################
 
     function createUniqueID(length) {
         var id = "";
@@ -249,9 +249,9 @@ const UtilsProvider = (props) => {
         sel.removeAllRanges();
     };
 
-    // #######################################
+    // ###################################################
     //      VIBRATE
-    // #######################################
+    // ###################################################
 
     const vibrate = (miliseconds) => {
         // Check for support
@@ -260,9 +260,9 @@ const UtilsProvider = (props) => {
         if (navigator.vibrate) navigator.vibrate(miliseconds);
     };
 
-    // #######################################
+    // ###################################################
     //      IMAGE
-    // #######################################
+    // ###################################################
 
     // Crop the image to a desired aspect ratio
     const cropAndResizeImage = (url, aspectRatio, resizedWidth = null) => {

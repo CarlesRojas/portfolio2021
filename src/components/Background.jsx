@@ -26,9 +26,9 @@ const Background = memo(({ parent }) => {
         parentRef.current = parent;
     }, [parent]);
 
-    // #################################################
+    // ###################################################
     //   BACKGROUND LOGIC
-    // #################################################
+    // ###################################################
 
     // Current section
     const section = useRef("web");
@@ -68,9 +68,9 @@ const Background = memo(({ parent }) => {
         });
     };
 
-    // #################################################
+    // ###################################################
     //   ACCELEROMETER TILT
-    // #################################################
+    // ###################################################
 
     // Previous motion parameters
     const motion = useRef({ alpha: 0, beta: 0 });
@@ -113,7 +113,7 @@ const Background = memo(({ parent }) => {
     // Handle mouse move change
     const onMouseMove = (event) => {
         // Return while not in production
-        //if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
+        if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
 
         // Return if the parent is not defined
         if (!parentRef.current) return;
@@ -141,9 +141,9 @@ const Background = memo(({ parent }) => {
         setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 500}px ${backgroundCoords.y - normY * 500}px` });
     };
 
-    // #######################################
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
-    // #######################################
+    // ###################################################
 
     // On component mount
     useEffect(() => {
@@ -162,9 +162,9 @@ const Background = memo(({ parent }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // #################################################
+    // ###################################################
     //   RENDER
-    // #################################################
+    // ###################################################
 
     return (
         <animated.div className="background" style={{ backgroundImage }}>

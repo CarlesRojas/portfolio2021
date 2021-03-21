@@ -14,9 +14,9 @@ export default function SplashScreen() {
     const splashScreenRef = useRef(null);
     const [splashScreenDiv, setSplashScreenDiv] = useState(null);
 
-    // #################################################
+    // ###################################################
     //   TITLE LOGIC
-    // #################################################
+    // ###################################################
 
     // Current section
     const section = useRef("web");
@@ -60,9 +60,9 @@ export default function SplashScreen() {
         setSplashScreenDiv(splashScreenRef.current);
     }, [splashScreenRef]);
 
-    // #######################################
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
-    // #######################################
+    // ###################################################
 
     // On component mount
     useEffect(() => {
@@ -77,9 +77,9 @@ export default function SplashScreen() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // #################################################
+    // ###################################################
     //   RENDER
-    // #################################################
+    // ###################################################
 
     return (
         <div className="splashScreen" ref={splashScreenRef}>

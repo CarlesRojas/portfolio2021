@@ -21,15 +21,15 @@ export default function Navbar() {
     // Force update
     const forceUpdate = useForceUpdate();
 
-    // #######################################
+    // ###################################################
     //      MENU
-    // #######################################
+    // ###################################################
 
     const [menuOpen, setMenuOpen] = useState(false);
 
-    // #######################################
+    // ###################################################
     //      ACTIONS
-    // #######################################
+    // ###################################################
 
     // CUrrently selected button
     const [selectedButton, setSelectedButton] = useState("web");
@@ -89,9 +89,9 @@ export default function Navbar() {
         forceUpdate();
     };
 
-    // #######################################
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
-    // #######################################
+    // ###################################################
 
     // Subscribe and unsubscrive to events
     useEffect(() => {
@@ -107,9 +107,9 @@ export default function Navbar() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // #######################################
+    // ###################################################
     //      RENDER
-    // #######################################
+    // ###################################################
 
     const menuIcon = menuOpen ? CloseIcon : MenuIcon;
     const bigScreen = window.innerWidth >= COLLAPSE_NAVBAR_WIDTH;

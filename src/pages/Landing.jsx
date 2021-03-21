@@ -11,9 +11,9 @@ export default function Landing() {
     // Animation timeout
     const animationTimeout = useRef(null);
 
-    // #######################################
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
-    // #######################################
+    // ###################################################
 
     // Subscribe and unsubscrive to events and animate
     useEffect(() => {
@@ -36,9 +36,9 @@ export default function Landing() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // #######################################
+    // ###################################################
     //      RENDER
-    // #######################################
+    // ###################################################
 
     return (
         <div className="landing">

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import classnames from "classnames";
 
@@ -17,6 +17,29 @@ import { Data } from "contexts/Data";
 export default function App() {
     // Contexts
     const { landingDone } = useContext(Data);
+
+    // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // On component mount
+    useEffect(() => {
+        // Lock to portrait
+        const lockOrientation = async () => {
+            try {
+                await window.screen.orientation.lock("portrait");
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        lockOrientation();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // ###################################################
+    //   RENDER
+    // ###################################################
 
     // If landing not done, show the landing
     var landing = landingDone ? null : <Landing />;

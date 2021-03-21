@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { isMobileOnly } from "react-device-detect";
 import classnames from "classnames";
 import SVG from "react-inlinesvg";
 
 // Icons
 import PlayIcon from "resources/icons/play.svg";
-import ScrollDownIcon from "resources/icons/scrollDown.svg";
 
 export default function Cursor() {
     // Mouse state
@@ -14,12 +13,10 @@ export default function Cursor() {
     const [hovered, setHovered] = useState(false);
     const [hidden, setHidden] = useState(false);
     const [play, setPlay] = useState(false);
-    const [scrollDown, setScrollDown] = useState(false);
-    const scrollDownInterval = useRef(null);
 
-    // #######################################
+    // ###################################################
     //      ACTIONS
-    // #######################################
+    // ###################################################
 
     // When the mouse moves -> Update its position
     const onMouseMove = (event) => {
@@ -46,14 +43,9 @@ export default function Cursor() {
         setHidden(false);
     };
 
-    // On scroll -> Cancel the scroll icon
-    const onWheel = () => {
-        if (scrollDownInterval.current) clearInterval(scrollDownInterval.current);
-    };
-
-    // #######################################
+    // ###################################################
     //      INTERACTIVE ITEMS
-    // #######################################
+    // ###################################################
 
     // Update all interactive items
     const updateInteractiveItems = () => {
@@ -70,9 +62,9 @@ export default function Cursor() {
         });
     };
 
-    // #######################################
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
-    // #######################################
+    // ###################################################
 
     // Subscribe and unsubscrive to events
     useEffect(() => {
@@ -81,7 +73,6 @@ export default function Cursor() {
         window.addEventListener("mouseleave", onMouseLeave);
         window.addEventListener("mousedown", onMouseDown);
         window.addEventListener("mouseup", onMouseUp);
-        window.addEventListener("wheel", onWheel);
 
         // Subscribe to update hoverable items
         window.PubSub.sub("updateInteractiveItems", updateInteractiveItems);
@@ -89,50 +80,36 @@ export default function Cursor() {
         // Update cursor interactible elements
         updateInteractiveItems();
 
-        // Show the scroll icon
-        /*
-        scrollDownInterval.current = setInterval(() => {
-            setScrollDown(true);
-            setTimeout(() => setScrollDown(false), 2000);
-        }, 8000);
-        */
-
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseenter", onMouseEnter);
             window.removeEventListener("mouseleave", onMouseLeave);
             window.removeEventListener("mousedown", onMouseDown);
             window.removeEventListener("mouseup", onMouseUp);
-            window.removeEventListener("wheel", onWheel);
 
             // Subscribe to update all interactive items
             window.PubSub.unsub("updateInteractiveItems", updateInteractiveItems);
-
-            // Clear previous timeout
-            if (scrollDownInterval.current) clearTimeout(scrollDownInterval.current);
         };
     }, []);
 
-    // #######################################
+    // ###################################################
     //      RENDER
-    // #######################################
+    // ###################################################
 
     // When on mobile -> Do not use custom mouse
     if (isMobileOnly) return null;
 
     // Add classes to the cursor
     const cursorClasses = classnames("cursor", {
-        clicked: clicked && !play && !scrollDown,
+        clicked: clicked && !play,
         hidden: hidden,
-        hovered: hovered && !play && !scrollDown,
-        iconActive: play || scrollDown,
+        hovered: hovered && !play,
+        iconActive: play,
     });
-
-    const icon = play ? PlayIcon : ScrollDownIcon;
 
     return (
         <div className={cursorClasses} style={{ left: `${position.x}px`, top: `${position.y}px` }}>
-            <SVG className={classnames("icon", { playIcon: play })} src={icon} />
+            <SVG className={classnames("icon", { playIcon: play })} src={PlayIcon} />
         </div>
     );
 }
