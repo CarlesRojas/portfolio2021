@@ -60,7 +60,7 @@ $navbarButtonHeight: 2.8rem;
     border-radius: $radius;
 }
 
-@mixin box-shadow($value) {
+@mixin box-shadow($value...) {
     -webkit-box-shadow: $value;
     -moz-box-shadow: $value;
     -ms-box-shadow: $value;
@@ -303,7 +303,7 @@ body {
     z-index: 9999;
     mix-blend-mode: difference;
     @include border-radius(100%);
-    @include box-shadow(0 0 3px 0px $cursor-color);
+    @include box-shadow(0 0 3px 1px $cursor-color);
     @include transition(
         background-color 0.2s ease-in-out,
         opacity 0.2s ease-in-out,
@@ -600,6 +600,7 @@ body {
         width: 100%;
         top: 0;
         left: 0;
+        pointer-events: none;
 
         .title {
             z-index: 5;

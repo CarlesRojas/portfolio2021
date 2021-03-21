@@ -90,10 +90,12 @@ export default function Cursor() {
         updateInteractiveItems();
 
         // Show the scroll icon
+        /*
         scrollDownInterval.current = setInterval(() => {
             setScrollDown(true);
             setTimeout(() => setScrollDown(false), 2000);
         }, 8000);
+        */
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove);

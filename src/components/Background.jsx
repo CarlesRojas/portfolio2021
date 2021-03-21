@@ -83,28 +83,25 @@ const Background = memo(({ parent }) => {
         if (!alpha || !beta) return;
 
         // New motion
-        var newMotion = {
-            alpha: motion.current.alpha,
-            beta: motion.current.beta,
-        };
+        var newMotion = { alpha: motion.current.alpha, beta: motion.current.beta };
 
         // Update alpha
-        if (Math.abs(alpha) > 20) {
+        if (Math.abs(alpha) > 40) {
             newMotion.alpha =
                 (Math.sign(motion.current.alpha) === Math.sign(alpha) || motion.current.alpha === 0) && Math.abs(motion.current.alpha) > Math.abs(alpha) ? motion.current.alpha : alpha;
         }
 
-        if (Math.abs(beta) > 20) {
+        if (Math.abs(beta) > 40) {
             newMotion.beta = (Math.sign(motion.current.beta) === Math.sign(beta) || motion.current.beta === 0) && Math.abs(motion.current.beta) > Math.abs(beta) ? motion.current.beta : beta;
         }
 
         // Return if none of the rotation has changed
         if (newMotion.alpha === motion.current.alpha && newMotion.beta === motion.current.beta) return;
-        //motion.current = newMotion;
+        motion.current = { alpha: newMotion.alpha, beta: newMotion.beta };
 
         // Normalize tilt [-1, 1]
-        const normX = invlerp(-100, 100, newMotion.alpha) * 2 - 1;
-        const normY = invlerp(-100, 100, newMotion.beta) * 2 - 1;
+        const normX = invlerp(-250, 250, newMotion.alpha) * 2 - 1;
+        const normY = invlerp(-250, 250, newMotion.beta) * 2 - 1;
 
         // Current background position
         const backgroundPos = backgroundPosition.get().replace(" ", "").split("px");
@@ -141,7 +138,7 @@ const Background = memo(({ parent }) => {
         const backgroundPos = backgroundPosition.get().replace(" ", "").split("px");
         const backgroundCoords = { x: parseInt(backgroundPos[0]), y: parseInt(backgroundPos[1]) };
 
-        setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 1000}px ${backgroundCoords.y - normY * 1000}px` });
+        setPosition({ backgroundPosition: `${backgroundCoords.x - normX * 500}px ${backgroundCoords.y - normY * 500}px` });
     };
 
     // #######################################
