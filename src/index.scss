@@ -199,12 +199,63 @@ body {
 
 .app {
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     overflow-y: hidden;
 
-    &.landingDone {
+    &.scrollActive {
         overflow-y: scroll;
+    }
+}
+
+// ###################################################
+//      ORIENTATION NOT SUPPORTED
+// ###################################################
+
+.orientationNotSupported {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .glass {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        max-width: 60%;
+
+        .icon {
+            height: 2rem;
+            max-height: 2rem;
+            min-height: 2rem;
+            width: 2rem;
+            max-width: 2rem;
+            min-width: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            text-transform: uppercase;
+            width: 100%;
+            text-align: center;
+            color: $text-white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            width: 100%;
+            text-align: center;
+            color: $text-white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            opacity: 0.6;
+        }
     }
 }
 

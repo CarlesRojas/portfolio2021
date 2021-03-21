@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useContext, memo } from "react";
+import { isMobileOnly } from "react-device-detect";
 import { useSpring, animated } from "react-spring";
 
 // Contexts
 import { Utils } from "contexts/Utils";
-import { isMobileOnly } from "react-device-detect";
+import { Data } from "contexts/Data";
 
 // Constants
 const GRADIENTS = {
@@ -20,6 +21,8 @@ const OPACITIES = {
 const Background = memo(({ parent }) => {
     // Contexts
     const { invlerp } = useContext(Utils);
+    const { section } = useContext(Data);
+
     // Save parent in a ref
     const parentRef = useRef(parent);
     useEffect(() => {
@@ -29,9 +32,6 @@ const Background = memo(({ parent }) => {
     // ###################################################
     //   BACKGROUND LOGIC
     // ###################################################
-
-    // Current section
-    const section = useRef("web");
 
     // Background position spring
     const [{ backgroundPosition }, setPosition] = useSpring(() => ({
@@ -47,9 +47,9 @@ const Background = memo(({ parent }) => {
 
     // Background opacity spring
     const [opacities, setOpacities] = useSpring(() => ({
-        web: OPACITIES.web,
-        game: 0,
-        design: 0,
+        web: section.current === "web" ? OPACITIES.web : 0,
+        game: section.current === "game" ? OPACITIES.game : 0,
+        design: section.current === "design" ? OPACITIES.design : 0,
     }));
 
     // Set te background gradient by one of its presets
