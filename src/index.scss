@@ -213,20 +213,20 @@ body {
 // ###################################################
 
 .orientationNotSupported {
-    height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
 
     .glass {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 2rem;
         max-width: 60%;
+        padding: 2rem;
 
         .icon {
             height: 2rem;
@@ -239,22 +239,22 @@ body {
         }
 
         .title {
-            text-transform: uppercase;
             width: 100%;
-            text-align: center;
             color: $text-white;
+            margin-bottom: 1rem;
             font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            text-align: center;
+            text-transform: uppercase;
         }
 
         .subtitle {
             width: 100%;
-            text-align: center;
             color: $text-white;
+            opacity: 0.6;
             font-size: 1.2rem;
             font-weight: 700;
-            opacity: 0.6;
+            text-align: center;
         }
     }
 }
@@ -323,11 +323,40 @@ body {
 }
 
 // ###################################################
+//      WEB DEV
+// ###################################################
+
+.webDev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    // background-color: rgba(255, 0, 0, 0.657);
+}
+
+// ###################################################
+//      GAME DEV
+// ###################################################
+
+.gameDev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    // background-color: rgba(255, 0, 0, 0.657);
+}
+
+// ###################################################
 //      PRODUCT DESIGN
 // ###################################################
 
 .productDesign {
-    height: 500%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     // background-color: rgba(255, 0, 0, 0.657);
 }
@@ -428,6 +457,7 @@ body {
     justify-content: center;
     width: calc(100% - 20px);
     top: 10px;
+    z-index: 50;
     margin: 10px;
     margin-top: calc(#{-$navbarHeight} - 10px);
 
@@ -631,10 +661,10 @@ body {
 
 .splashScreen {
     position: sticky;
-
     height: calc(50% - #{$navbarHeight / 2});
     width: 100%;
     top: calc(#{$navbarHeight} - calc(calc(50% - #{$navbarHeight / 2}) - 20px));
+    z-index: 40;
     @include box-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
 
     @media only screen and (max-width: $collapseNavbarWidth) {
@@ -643,6 +673,7 @@ body {
     }
 
     .titleContainer {
+        pointer-events: none;
         position: absolute;
         display: flex;
         align-items: center;
@@ -651,12 +682,11 @@ body {
         width: 100%;
         top: 0;
         left: 0;
-        pointer-events: none;
 
         .title {
-            z-index: 5;
             width: 90%;
             max-width: 700px;
+            z-index: 5;
             margin-bottom: 5%;
         }
     }
@@ -676,6 +706,10 @@ body {
 
     &.black {
         background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 75%);
+    }
+
+    &.blue {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 75%);
     }
 }
 
@@ -733,6 +767,240 @@ body {
 
         @media only screen and (max-width: $collapseNavbarWidth) {
             background-size: 200px 200px;
+        }
+    }
+}
+
+// ###################################################
+//      MOBILE APP
+// ###################################################
+
+.mobileApp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    max-width: 1500px;
+    overflow: visible;
+    margin: 4rem;
+    @include border-radius(50px);
+
+    .splashscreen {
+        height: 25rem;
+        width: calc(100% - 4rem);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin: 2rem;
+        @include border-radius(20px);
+    }
+
+    .mainContainer {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        overflow: visible;
+
+        .infoContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+            padding-right: 1rem;
+
+            .profileContainer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .icon {
+                    height: 8rem;
+                    max-height: 8rem;
+                    min-height: 8rem;
+                    width: 8rem;
+                    max-width: 8rem;
+                    min-width: 8rem;
+                    margin-bottom: rem;
+                    margin-left: 2rem;
+                }
+
+                .titleContainer {
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    align-items: center;
+                    justify-content: center;
+                    padding-left: 1rem;
+
+                    .title {
+                        width: 100%;
+                        color: $text;
+                        margin-bottom: 0.2rem;
+                        font-size: 1.6rem;
+                        font-weight: 800;
+                        text-align: left;
+                    }
+
+                    .subtitle {
+                        width: 100%;
+                        color: $text;
+                        opacity: 0.6;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        text-align: left;
+                    }
+                }
+            }
+
+            .description {
+                width: calc(100% - 2rem);
+                color: $text;
+                margin-left: 2rem;
+                padding-top: 1rem;
+                font-size: 1.1rem;
+                font-weight: 600;
+                text-align: left;
+
+                &.first {
+                    padding-top: 2rem;
+                }
+            }
+
+            .linksContainer {
+                display: flex;
+                align-items: center;
+                width: 100%;
+
+                .link {
+                    transform: scale(1);
+                    height: fit-content;
+                    height: 5rem;
+                    max-height: 5rem;
+                    min-height: 5rem;
+                    width: fit-content;
+                    width: 5rem;
+                    max-width: 5rem;
+                    min-width: 5rem;
+                    cursor: none;
+                    margin: 2rem 0 2rem 2rem;
+                    @include transition(all 0.2s ease-in-out);
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+
+                    .linkIcon {
+                        height: 100%;
+                        width: 100%;
+                        padding: 1rem;
+                    }
+                }
+            }
+        }
+
+        .mediaContainer {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 60%;
+            overflow: visible;
+
+            &.horizontal {
+                flex-direction: column;
+                height: 0;
+                width: 60%;
+                padding-top: 60%;
+                padding-left: 10%;
+
+                .video {
+                    position: absolute;
+                    position: absolute;
+                    height: calc(50% - 4rem);
+                    width: unset;
+                    top: 0;
+                    margin: 0 2rem;
+                    @include border-radius(15px);
+                }
+
+                .screenshotsContainer {
+                    height: calc(50% + 5rem);
+                    width: 100%;
+                    right: unset;
+                    bottom: 0;
+                }
+            }
+
+            .video {
+                width: calc(50% - 4rem);
+                margin: 0 2rem 2rem;
+                @include border-radius(15px);
+                @include box-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+            }
+
+            .screenshotsContainer {
+                pointer-events: none;
+                position: absolute;
+                height: 100%;
+                width: calc(50% + 5rem);
+                right: 0;
+                overflow: visible;
+            }
+        }
+    }
+}
+
+// #######################################
+//      DECK
+// #######################################
+
+.deck {
+    pointer-events: none;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+    box-sizing: border-box;
+
+    .card {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        overflow: visible;
+        will-change: transform;
+
+        .cardContent {
+            pointer-events: all;
+            user-select: none;
+            height: calc(100% - 3rem);
+            z-index: 5;
+            background-color: white;
+            margin-left: 4rem;
+            will-change: transform;
+            @include border-radius(15px);
+            @include box-shadow(0 10px 40px -8px rgba(0, 0, 0, 0.3));
+
+            .horizontal & {
+                height: calc(100% - 8rem);
+                margin-left: unset;
+                margin-top: 4rem;
+            }
+
+            .cardImage {
+                pointer-events: none;
+                height: calc(100% - 2rem);
+                margin: 1rem;
+                @include border-radius(5px);
+            }
         }
     }
 }

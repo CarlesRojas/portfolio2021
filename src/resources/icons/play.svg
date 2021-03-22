@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 317 356"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:35px;}</style></defs><title>Play</title><g id="Layer_2" data-name="Layer 2"><g id="Play"><g id="Play-2" data-name="Play"><polyline class="cls-1" points="17.5 254.5 17.5 17.5 299.5 173.5 17.5 338.5"/></g></g></g></svg>
+<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" class="svg-inline--fa fa-play fa-w-14"
+    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path fill="currentColor"
+        d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+    </path>
+</svg>

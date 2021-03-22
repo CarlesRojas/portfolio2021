@@ -113,7 +113,7 @@ const Background = memo(({ parent }) => {
     // Handle mouse move change
     const onMouseMove = (event) => {
         // Return while not in production
-        if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
+        //if (process.env.REACT_APP_DEBUGG === "true" && process.env.NODE_ENV !== "production") return;
 
         // Return if the parent is not defined
         if (!parentRef.current) return;
