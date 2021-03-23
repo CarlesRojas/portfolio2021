@@ -6,7 +6,9 @@ import SVG from "react-inlinesvg";
 
 // Pages
 import Landing from "pages/Landing";
-import WebDev from "pages/WebDev";
+// import WebDev from "pages/WebDev";
+import GameDev from "pages/GameDev";
+// import ProductDesign from "pages/ProductDesign";
 
 // Components
 import Cursor from "components/Cursor";
@@ -114,7 +116,7 @@ export default function App() {
                     {/* ################################# */}
                     {/*   LANDING PAGE                    */}
                     {/* ################################# */}
-                    <Route path="/" component={WebDev} exact></Route>
+                    <Route path="/" component={GameDev} exact></Route>
                 </Switch>
             </Router>
         </div>

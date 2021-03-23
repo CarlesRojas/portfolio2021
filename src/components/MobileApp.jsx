@@ -5,7 +5,7 @@ import Deck from "./Deck";
 // Constants
 const SMALL_SCREEN_WIDTH = 1100;
 
-export default function MobileApp({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal }) {
+export default function MobileApp({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, color }) {
     // ###################################################
     //   RESIZE LOGIC
     // ###################################################
@@ -56,7 +56,7 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
     var linksDOM = links
         ? links.map(({ url, icon }, i) => {
               return (
-                  <a href={url} target="_blank" className="link glass hoverable" key={i} rel="noopener noreferrer">
+                  <a href={url} target="_blank" className="link glass opaque hoverable" key={i} rel="noopener noreferrer">
                       <img src={icon} alt="" className="linkIcon" />
                   </a>
               );
@@ -96,7 +96,7 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
     // ###################################################
 
     return (
-        <div className="mobileApp glass blue">
+        <div className={`mobileApp glass ${color}`}>
             {imageDOM}
 
             <div className="mainContainer">
