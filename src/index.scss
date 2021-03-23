@@ -787,14 +787,26 @@ body {
     margin: 4rem;
     @include border-radius(50px);
 
+    @media only screen and (max-width: $collapseNavbarWidth) {
+        margin: 2rem;
+        @include border-radius(25px);
+    }
+
     .splashscreen {
-        height: 25rem;
+        height: 100vh;
+        max-height: 25rem;
         width: calc(100% - 4rem);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100%;
         margin: 2rem;
         @include border-radius(20px);
+
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            max-height: 40vh;
+            width: calc(100% - 1rem);
+            margin: 0.5rem;
+        }
     }
 
     .mainContainer {
@@ -806,6 +818,10 @@ body {
         width: 100%;
         overflow: visible;
 
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            flex-direction: column;
+        }
+
         .infoContainer {
             display: flex;
             flex-direction: column;
@@ -814,10 +830,39 @@ body {
             width: 40%;
             padding-right: 1rem;
 
+            &.noVideo {
+                width: 50%;
+
+                &.horizontal {
+                    width: 40%;
+                }
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: 100%;
+                }
+            }
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                width: 100% !important;
+                padding-right: 0;
+
+                &.horizontal {
+                    width: 100% !important;
+                }
+            }
+
+            &.horizontal {
+                width: 50%;
+            }
+
             .profileContainer {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    flex-direction: column;
+                }
 
                 .icon {
                     height: 8rem;
@@ -828,6 +873,10 @@ body {
                     min-width: 8rem;
                     margin-bottom: rem;
                     margin-left: 2rem;
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        margin: 1rem 0 1rem;
+                    }
                 }
 
                 .titleContainer {
@@ -838,6 +887,10 @@ body {
                     justify-content: center;
                     padding-left: 1rem;
 
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        padding: 0 0.5rem;
+                    }
+
                     .title {
                         width: 100%;
                         color: $text;
@@ -845,6 +898,10 @@ body {
                         font-size: 1.6rem;
                         font-weight: 800;
                         text-align: left;
+
+                        @media only screen and (max-width: $collapseNavbarWidth) {
+                            text-align: center;
+                        }
                     }
 
                     .subtitle {
@@ -854,6 +911,10 @@ body {
                         font-size: 1.2rem;
                         font-weight: 600;
                         text-align: left;
+
+                        @media only screen and (max-width: $collapseNavbarWidth) {
+                            text-align: center;
+                        }
                     }
                 }
             }
@@ -867,6 +928,15 @@ body {
                 font-weight: 600;
                 text-align: left;
 
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: 100%;
+                    margin-left: 0;
+                    padding: 1rem 0.5rem 0;
+                    font-size: 1rem;
+                    text-align: center;
+                    display: none;
+                }
+
                 &.first {
                     padding-top: 2rem;
                 }
@@ -876,6 +946,14 @@ body {
                 display: flex;
                 align-items: center;
                 width: 100%;
+                overflow: visible;
+                margin: 1rem 0;
+                padding-left: 1.5rem;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    justify-content: center;
+                    padding-left: 0;
+                }
 
                 .link {
                     transform: scale(1);
@@ -888,8 +966,12 @@ body {
                     max-width: 5rem;
                     min-width: 5rem;
                     cursor: none;
-                    margin: 2rem 0 2rem 2rem;
+                    margin: 1rem 0.5rem 1rem;
                     @include transition(all 0.2s ease-in-out);
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        margin: 1rem 0.5rem 1rem;
+                    }
 
                     &:hover {
                         transform: scale(1.1);
@@ -911,21 +993,55 @@ body {
             width: 60%;
             overflow: visible;
 
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            &.noVideo {
+                width: 50%;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: 100%;
+                }
+            }
+
             &.horizontal {
                 flex-direction: column;
                 height: 0;
-                width: 60%;
+                width: 50%;
                 padding-top: 60%;
-                padding-left: 10%;
+
+                &.noVideo {
+                    height: unset;
+                    width: 60%;
+                    padding-top: unset;
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        width: 100%;
+                    }
+                }
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    height: unset;
+                    width: 100%;
+                    padding-top: unset;
+                }
 
                 .video {
-                    position: absolute;
                     position: absolute;
                     height: calc(50% - 4rem);
                     width: unset;
                     top: 0;
                     margin: 0 2rem;
                     @include border-radius(15px);
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        position: relative;
+                        height: unset;
+                        width: calc(100% - 1rem);
+                        margin: 0 0.5rem 2rem;
+                    }
                 }
 
                 .screenshotsContainer {
@@ -933,6 +1049,24 @@ body {
                     width: 100%;
                     right: unset;
                     bottom: 0;
+
+                    &.noVideo {
+                        position: relative;
+                        width: 100%;
+                        top: 0;
+                        bottom: unset;
+                        height: fit-content;
+
+                        @media only screen and (max-width: $collapseNavbarWidth) {
+                            height: 29vh;
+                            width: 100%;
+                        }
+                    }
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        height: 29vh;
+                        width: 100%;
+                    }
                 }
             }
 
@@ -941,6 +1075,12 @@ body {
                 margin: 0 2rem 2rem;
                 @include border-radius(15px);
                 @include box-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    height: 60vh;
+                    width: unset;
+                    margin: 0 0.5rem 2rem;
+                }
             }
 
             .screenshotsContainer {
@@ -950,6 +1090,18 @@ body {
                 width: calc(50% + 5rem);
                 right: 0;
                 overflow: visible;
+
+                &.noVideo {
+                    position: relative;
+                    height: 60vh;
+                    width: 100%;
+                }
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    position: relative;
+                    height: 60vh;
+                    width: 100%;
+                }
             }
         }
     }
@@ -967,6 +1119,18 @@ body {
     overflow: visible;
     box-sizing: border-box;
 
+    .noVideo & {
+        .horizontal & {
+            height: fit-content;
+        }
+    }
+
+    .horizontal & {
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            height: fit-content;
+        }
+    }
+
     .card {
         position: absolute;
         display: flex;
@@ -978,6 +1142,25 @@ body {
         overflow: visible;
         will-change: transform;
 
+        .noVideo & {
+            .horizontal & {
+                width: 80%;
+                margin-right: 2.5rem;
+                height: fit-content;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: 100%;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .horizontal & {
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                height: fit-content;
+            }
+        }
+
         .cardContent {
             pointer-events: all;
             user-select: none;
@@ -987,12 +1170,31 @@ body {
             margin-left: 4rem;
             will-change: transform;
             @include border-radius(15px);
-            @include box-shadow(0 10px 40px -8px rgba(0, 0, 0, 0.3));
+            @include box-shadow(0 10px 40px -8px rgba(0, 0, 0, 0.4));
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                margin-left: 0;
+            }
+
+            .noVideo & {
+                .horizontal & {
+                    height: fit-content;
+                    margin-left: 0;
+                    margin-top: 0;
+                }
+            }
 
             .horizontal & {
                 height: calc(100% - 8rem);
                 margin-left: unset;
                 margin-top: 4rem;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    position: relative;
+                    height: fit-content;
+                    width: calc(100% - 1rem);
+                    margin-top: unset;
+                }
             }
 
             .cardImage {
@@ -1000,6 +1202,21 @@ body {
                 height: calc(100% - 2rem);
                 margin: 1rem;
                 @include border-radius(5px);
+
+                .noVideo & {
+                    .horizontal & {
+                        height: unset;
+                        width: calc(100% - 2rem);
+                    }
+                }
+
+                .horizontal & {
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        height: unset;
+                        width: calc(100% - 1rem);
+                        margin: 0.5rem;
+                    }
+                }
             }
         }
     }

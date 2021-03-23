@@ -1,14 +1,36 @@
+import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
-import React from "react";
 import Deck from "./Deck";
 
+// Constants
+const SMALL_SCREEN_WIDTH = 1100;
+
 export default function MobileApp({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal }) {
+    // ###################################################
+    //   RESIZE LOGIC
+    // ###################################################
+
+    // Window size
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    // Resize timeout
+    const resizeTimeout = useRef(null);
+
+    // On window resize
+    const onResize = () => {
+        if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+
+        resizeTimeout.current = setTimeout(() => {
+            setWindowWidth(window.innerWidth);
+        }, 500);
+    };
+
     // ###################################################
     //   CREATE ELEMENTS
     // ###################################################
 
     // Image
-    var imageDOM = image ? <div className="splashscreen" style={{ backgroundImage: `url(${image.desktop})` }}></div> : null;
+    var imageDOM = image ? <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }}></div> : null;
 
     // Icon
     var iconDOM = icon ? <img src={icon} alt="" className="icon" /> : null;
@@ -46,10 +68,29 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
 
     // Video
     var videoDOM = video ? <img src={video} alt="" className="video playable" /> : null;
+    var videoExists = video ? true : false;
 
     // Screenshots
     var screenshotsDOM = screenshots ? <Deck images={screenshots}></Deck> : null;
 
+    // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // Subscribe and unsubscrive to events
+    useEffect(() => {
+        window.addEventListener("resize", onResize);
+
+        return () => {
+            // Unsubscribe to events
+            window.removeEventListener("resize", onResize);
+
+            // Clear timeouts
+            if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     // ###################################################
     //   RENDER
     // ###################################################
@@ -59,7 +100,7 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
             {imageDOM}
 
             <div className="mainContainer">
-                <div className="infoContainer">
+                <div className={classNames("infoContainer", { horizontal }, { noVideo: !videoExists })}>
                     <div className="profileContainer">
                         {iconDOM}
 
@@ -77,9 +118,9 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
                     </div>
                 </div>
 
-                <div className={classNames("mediaContainer", { horizontal })}>
+                <div className={classNames("mediaContainer", { horizontal }, { noVideo: !videoExists })}>
                     {videoDOM}
-                    <div className="screenshotsContainer">{screenshotsDOM}</div>
+                    <div className={classNames("screenshotsContainer", { noVideo: !videoExists })}>{screenshotsDOM}</div>
                 </div>
             </div>
         </div>

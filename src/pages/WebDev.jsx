@@ -25,6 +25,20 @@ import TrickShotsScreenshot2 from "resources/projects/TrickShots/screenshot2.png
 import TrickShotsScreenshot3 from "resources/projects/TrickShots/screenshot3.png";
 import TrickShotsScreenshot4 from "resources/projects/TrickShots/screenshot4.png";
 
+// Project: HoloChess
+import HoloChessIcon from "resources/projects/HoloChess/icon.png";
+import HoloChessSplash from "resources/projects/HoloChess/splash.png";
+import HoloChessSplashMobile from "resources/projects/HoloChess/splashMobile.png";
+import HoloChessScreenshot1 from "resources/projects/HoloChess/screenshot1.png";
+import HoloChessScreenshot2 from "resources/projects/HoloChess/screenshot2.png";
+import HoloChessScreenshot3 from "resources/projects/HoloChess/screenshot3.png";
+import HoloChessScreenshot4 from "resources/projects/HoloChess/screenshot4.png";
+import HoloChessScreenshot5 from "resources/projects/HoloChess/screenshot5.png";
+import HoloChessScreenshot6 from "resources/projects/HoloChess/screenshot6.png";
+import HoloChessScreenshot7 from "resources/projects/HoloChess/screenshot7.png";
+import HoloChessScreenshot8 from "resources/projects/HoloChess/screenshot8.png";
+import HoloChessScreenshot9 from "resources/projects/HoloChess/screenshot9.png";
+
 // Components
 import MobileApp from "components/MobileApp";
 
@@ -79,8 +93,34 @@ export default function WebDev() {
                 ]}
                 links={[{ url: "https://www.microsoft.com/en-us/store/p/trickshots/9nkmv03xqcng#", icon: HololensIcon }]}
                 // qr={}
-                video={TrickShotsScreenshot4}
+                // video={}
                 screenshots={[TrickShotsScreenshot4, TrickShotsScreenshot3, TrickShotsScreenshot2, TrickShotsScreenshot1]}
+                horizontal={true}
+            ></MobileApp>
+
+            <MobileApp
+                image={{ desktop: HoloChessSplash, mobile: HoloChessSplashMobile }}
+                icon={HoloChessIcon}
+                title="HoloChess"
+                subtitle="The first holographic chess game ever."
+                description={[
+                    "Play against as AI with three difficulty levels and enjoy the classic game of chess in the augmented world. Choose your favorite style, place the board on your table and enjoy!",
+                    "HoloChess is currently published in the Windows Store and it’s only available via a HoloLens device by Microsoft.",
+                ]}
+                links={[{ url: "https://www.microsoft.com/en-us/store/p/holochess-beta/9nblggh40d7c#", icon: HololensIcon }]}
+                // qr={}
+                // video={}
+                screenshots={[
+                    HoloChessScreenshot9,
+                    HoloChessScreenshot8,
+                    HoloChessScreenshot7,
+                    HoloChessScreenshot6,
+                    HoloChessScreenshot5,
+                    HoloChessScreenshot4,
+                    HoloChessScreenshot3,
+                    HoloChessScreenshot2,
+                    HoloChessScreenshot1,
+                ]}
                 horizontal={true}
             ></MobileApp>
         </div>
