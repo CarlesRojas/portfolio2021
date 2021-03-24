@@ -5,7 +5,6 @@
     "private": true,
     "dependencies": {
         "classnames": "^2.2.6",
-        "geolib": "^3.3.1",
         "gsap": "^3.6.0",
         "node-sass": "^4.14.1",
         "react": "^16.13.1",
@@ -15,8 +14,7 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.3",
         "react-spring": "^9.0.0-rc.3",
-        "react-use-gesture": "^7.0.16",
-        "react-webcam": "^5.2.2"
+        "react-use-gesture": "^7.0.16"
     },
     "scripts": {
         "start": "react-scripts start",
