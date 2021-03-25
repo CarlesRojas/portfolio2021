@@ -51,10 +51,9 @@ import InfinityGalleryScreenshot5 from "resources/projects/InfinityGallery/scree
 
 // Project: Escape
 import EscapeIcon from "resources/projects/Escape/icon.png";
-// import EscapeSplash from "resources/projects/Escape/splash.png"; ROJAS
-// import EscapeSplashMobile from "resources/projects/Escape/splashMobile.png";
-import EscapeSplash from "resources/projects/Escape/screenshot1.jpg";
-import EscapeSplashMobile from "resources/projects/Escape/screenshot3.jpg";
+import EscapeSplash from "resources/projects/Escape/splash.png";
+// import EscapeSplashMobile from "resources/projects/Escape/splashMobile.png"; // ROJAS
+import EscapeSplashMobile from "resources/projects/Escape/splash.png";
 import EscapeScreenshot1 from "resources/projects/Escape/screenshot1.jpg";
 import EscapeScreenshot2 from "resources/projects/Escape/screenshot2.jpg";
 import EscapeScreenshot3 from "resources/projects/Escape/screenshot3.jpg";

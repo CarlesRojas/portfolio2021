@@ -1229,6 +1229,10 @@ body {
                     .horizontal & {
                         height: unset;
                         width: calc(100% - 2rem);
+
+                        @media only screen and (max-width: $collapseNavbarWidth) {
+                            width: calc(100% - 1rem);
+                        }
                     }
                 }
 
