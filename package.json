@@ -19,7 +19,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "publish": "react-scripts build && netlify deploy --dir=build --prod",
+        "dist": "react-scripts build && netlify deploy --dir=build --prod",
         "ngrok": "./ngrok.exe http 3000 --region=eu"
     },
     "eslintConfig": {
