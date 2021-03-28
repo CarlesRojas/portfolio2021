@@ -712,8 +712,42 @@ body {
         background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 75%);
     }
 
+    //  WEB DEV
+    // ###################################################
+
+    &.matchEat {
+        background: radial-gradient(circle, rgba(255, 119, 101d, 0.3) 0%, rgba(255, 119, 101, 0.5) 75%);
+    }
+
+    &.gstocks {
+        background: radial-gradient(circle, rgba(44, 255, 195, 0.3) 0%, rgba(13, 190, 140, 0.5) 75%);
+    }
+
+    &.spot {
+        background: radial-gradient(circle, rgba(52, 194, 63, 0.3) 0%, rgba(52, 194, 63, 0.5) 75%);
+    }
+
+    &.reddon {
+        background: radial-gradient(circle, rgba(255, 106, 46, 0.3) 0%, rgba(255, 106, 46, 0.5) 75%);
+    }
+
+    &.portfolio {
+        background: radial-gradient(circle, rgba(133, 255, 228, 0.3) 0%, rgba(133, 255, 228, 0.5) 75%);
+    }
+
+    //  GAME DEV
+    // ###################################################
+
+    &.neoWar {
+        background: radial-gradient(circle, rgba(237, 97, 255, 0.3) 0%, rgba(255, 90, 178, 0.5) 75%);
+    }
+
     &.cubic {
         background: radial-gradient(circle, rgba(92, 140, 217, 0.3) 0%, rgba(92, 140, 217, 0.5) 75%);
+    }
+
+    &.letsDrive {
+        background: radial-gradient(circle, rgba(255, 223, 155, 0.3) 0%, rgba(255, 161, 38, 0.5) 75%);
     }
 
     &.trickshots {
@@ -725,13 +759,41 @@ body {
     }
 
     &.escape {
-        // background: radial-gradient(circle, rgba(90, 90, 90, 0.3) 0%, rgba(90, 90, 90, 0.5) 75%);
-
-        background: radial-gradient(circle, rgba(255, 158, 158, 0.3) 0%, rgba(255, 158, 158, 0.5) 75%);
+        background: radial-gradient(circle, rgba(49, 49, 49, 0.4) 0%, rgba(51, 51, 51, 0.6) 75%);
     }
 
     &.infinityGallery {
         background: radial-gradient(circle, rgba(184, 184, 184, 0.3) 0%, rgba(184, 184, 184, 0.5) 75%);
+    }
+
+    &.portal {
+        background: radial-gradient(circle, rgba(102, 102, 102, 0.4) 0%, rgba(95, 95, 95, 0.6) 75%);
+    }
+    //  PRODCT DESIGN
+    // ###################################################
+
+    &.smartBike {
+        background: radial-gradient(circle, rgba(184, 184, 184, 0.3) 0%, rgba(184, 184, 184, 0.5) 75%);
+    }
+
+    &.holoLens {
+        background: radial-gradient(circle, rgba(197, 73, 51, 0.3) 0%, rgba(197, 73, 51, 0.5) 75%);
+    }
+
+    &.gwood {
+        background: radial-gradient(circle, rgba(243, 71, 120, 0.3) 0%, rgba(144, 33, 65, 0.5) 75%);
+    }
+
+    &.orbit {
+        background: radial-gradient(circle, rgba(62, 191, 255, 0.3) 0%, rgba(62, 191, 255, 0.5) 75%);
+    }
+
+    &.showBattle {
+        background: radial-gradient(circle, rgba(144, 93, 56, 0.3) 0%, rgba(144, 93, 56, 0.5) 75%);
+    }
+
+    &.smartWatch {
+        background: radial-gradient(circle, rgba(102, 102, 102, 0.4) 0%, rgba(95, 95, 95, 0.6) 75%);
     }
 }
 
@@ -1000,6 +1062,35 @@ body {
                     }
 
                     .linkIcon {
+                        height: 100%;
+                        width: 100%;
+                        padding: 1rem;
+                    }
+                }
+
+                .qr {
+                    transform: scale(1);
+                    height: fit-content;
+                    height: 12rem;
+                    max-height: 12rem;
+                    min-height: 12rem;
+                    width: fit-content;
+                    width: 12rem;
+                    max-width: 12rem;
+                    min-width: 12rem;
+                    cursor: none;
+                    margin: 1rem 0.5rem 1rem;
+                    @include transition(all 0.2s ease-in-out);
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        margin: 1rem 0.5rem 1rem;
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+
+                    .qrIcon {
                         height: 100%;
                         width: 100%;
                         padding: 1rem;

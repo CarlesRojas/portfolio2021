@@ -64,7 +64,11 @@ export default function MobileApp({ image, icon, title, subtitle, description, l
         : null;
 
     // QR
-    var qrDOM = qr ? qr : null;
+    var qrDOM = qr ? (
+        <a href={qr.url} target="_blank" className="qr glass opaque hoverable" rel="noopener noreferrer">
+            <img src={qr.qr} alt="" className="qrIcon" />
+        </a>
+    ) : null;
 
     // Video
     var videoDOM = video ? <img src={video} alt="" className="video playable" /> : null;
