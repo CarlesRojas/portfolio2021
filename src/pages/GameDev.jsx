@@ -9,97 +9,97 @@ import ItchIOIcon from "resources/icons/itchio.svg";
 
 // Project: Cubic3D
 import Cubic3DIcon from "resources/projects/Cubic3D/icon.png";
-import Cubic3DSplash from "resources/projects/Cubic3D/splash.png";
-import Cubic3DSplashMobile from "resources/projects/Cubic3D/splashMobile.png";
-import Cubic3DScreenshot1 from "resources/projects/Cubic3D/screenshot1.png";
-import Cubic3DScreenshot2 from "resources/projects/Cubic3D/screenshot2.png";
-import Cubic3DScreenshot3 from "resources/projects/Cubic3D/screenshot3.png";
-import Cubic3DScreenshot4 from "resources/projects/Cubic3D/screenshot4.png";
-import Cubic3DScreenshot5 from "resources/projects/Cubic3D/screenshot5.png";
-import Cubic3DScreenshot6 from "resources/projects/Cubic3D/screenshot6.png";
+import Cubic3DSplash from "resources/projects/Cubic3D/splash.jpg";
+import Cubic3DSplashMobile from "resources/projects/Cubic3D/splashMobile.jpg";
+import Cubic3DScreenshot1 from "resources/projects/Cubic3D/screenshot1.jpg";
+import Cubic3DScreenshot2 from "resources/projects/Cubic3D/screenshot2.jpg";
+import Cubic3DScreenshot3 from "resources/projects/Cubic3D/screenshot3.jpg";
+import Cubic3DScreenshot4 from "resources/projects/Cubic3D/screenshot4.jpg";
+import Cubic3DScreenshot5 from "resources/projects/Cubic3D/screenshot5.jpg";
+import Cubic3DScreenshot6 from "resources/projects/Cubic3D/screenshot6.jpg";
 import Cubic3DVideo from "resources/projects/Cubic3D/video.mp4";
 
 // Project: Let's Drive
 import LetsDriveIcon from "resources/projects/LetsDrive/icon.png";
-import LetsDriveSplash from "resources/projects/LetsDrive/splash.png";
-import LetsDriveSplashMobile from "resources/projects/LetsDrive/splashMobile.png";
-import LetsDriveScreenshot1 from "resources/projects/LetsDrive/screenshot1.png";
-import LetsDriveScreenshot2 from "resources/projects/LetsDrive/screenshot2.png";
-import LetsDriveScreenshot3 from "resources/projects/LetsDrive/screenshot3.png";
-import LetsDriveScreenshot4 from "resources/projects/LetsDrive/screenshot4.png";
-import LetsDriveScreenshot5 from "resources/projects/LetsDrive/screenshot5.png";
-import LetsDriveScreenshot6 from "resources/projects/LetsDrive/screenshot6.png";
+import LetsDriveSplash from "resources/projects/LetsDrive/splash.jpg";
+import LetsDriveSplashMobile from "resources/projects/LetsDrive/splashMobile.jpg";
+import LetsDriveScreenshot1 from "resources/projects/LetsDrive/screenshot1.jpg";
+import LetsDriveScreenshot2 from "resources/projects/LetsDrive/screenshot2.jpg";
+import LetsDriveScreenshot3 from "resources/projects/LetsDrive/screenshot3.jpg";
+import LetsDriveScreenshot4 from "resources/projects/LetsDrive/screenshot4.jpg";
+import LetsDriveScreenshot5 from "resources/projects/LetsDrive/screenshot5.jpg";
+import LetsDriveScreenshot6 from "resources/projects/LetsDrive/screenshot6.jpg";
 import LetsDriveVideo from "resources/projects/LetsDrive/video.mp4";
 
 // Project: TrickShots
 import TrickShotsIcon from "resources/projects/TrickShots/icon.png";
-import TrickShotsSplash from "resources/projects/TrickShots/splash.png";
-import TrickShotsSplashMobile from "resources/projects/TrickShots/splashMobile.png";
-import TrickShotsScreenshot1 from "resources/projects/TrickShots/screenshot1.png";
-import TrickShotsScreenshot2 from "resources/projects/TrickShots/screenshot2.png";
-import TrickShotsScreenshot3 from "resources/projects/TrickShots/screenshot3.png";
-import TrickShotsScreenshot4 from "resources/projects/TrickShots/screenshot4.png";
+import TrickShotsSplash from "resources/projects/TrickShots/splash.jpg";
+import TrickShotsSplashMobile from "resources/projects/TrickShots/splashMobile.jpg";
+import TrickShotsScreenshot1 from "resources/projects/TrickShots/screenshot1.jpg";
+import TrickShotsScreenshot2 from "resources/projects/TrickShots/screenshot2.jpg";
+import TrickShotsScreenshot3 from "resources/projects/TrickShots/screenshot3.jpg";
+import TrickShotsScreenshot4 from "resources/projects/TrickShots/screenshot4.jpg";
 
 // Project: HoloChess
 import HoloChessIcon from "resources/projects/HoloChess/icon.png";
-import HoloChessSplash from "resources/projects/HoloChess/splash.png";
-import HoloChessSplashMobile from "resources/projects/HoloChess/splashMobile.png";
-import HoloChessScreenshot1 from "resources/projects/HoloChess/screenshot1.png";
-import HoloChessScreenshot2 from "resources/projects/HoloChess/screenshot2.png";
-import HoloChessScreenshot3 from "resources/projects/HoloChess/screenshot3.png";
-import HoloChessScreenshot4 from "resources/projects/HoloChess/screenshot4.png";
-import HoloChessScreenshot5 from "resources/projects/HoloChess/screenshot5.png";
-import HoloChessScreenshot6 from "resources/projects/HoloChess/screenshot6.png";
-import HoloChessScreenshot7 from "resources/projects/HoloChess/screenshot7.png";
-import HoloChessScreenshot8 from "resources/projects/HoloChess/screenshot8.png";
-import HoloChessScreenshot9 from "resources/projects/HoloChess/screenshot9.png";
+import HoloChessSplash from "resources/projects/HoloChess/splash.jpg";
+import HoloChessSplashMobile from "resources/projects/HoloChess/splashMobile.jpg";
+import HoloChessScreenshot1 from "resources/projects/HoloChess/screenshot1.jpg";
+import HoloChessScreenshot2 from "resources/projects/HoloChess/screenshot2.jpg";
+import HoloChessScreenshot3 from "resources/projects/HoloChess/screenshot3.jpg";
+import HoloChessScreenshot4 from "resources/projects/HoloChess/screenshot4.jpg";
+import HoloChessScreenshot5 from "resources/projects/HoloChess/screenshot5.jpg";
+import HoloChessScreenshot6 from "resources/projects/HoloChess/screenshot6.jpg";
+import HoloChessScreenshot7 from "resources/projects/HoloChess/screenshot7.jpg";
+import HoloChessScreenshot8 from "resources/projects/HoloChess/screenshot8.jpg";
+import HoloChessScreenshot9 from "resources/projects/HoloChess/screenshot9.jpg";
 
 // Project: NeoWar
 import NeoWarIcon from "resources/projects/NeoWar/icon.png";
-import NeoWarSplash from "resources/projects/NeoWar/splash.png";
-import NeoWarSplashMobile from "resources/projects/NeoWar/splashMobile.png";
-import NeoWarScreenshot1 from "resources/projects/NeoWar/screenshot1.png";
-import NeoWarScreenshot2 from "resources/projects/NeoWar/screenshot2.png";
-import NeoWarScreenshot3 from "resources/projects/NeoWar/screenshot3.png";
-import NeoWarScreenshot4 from "resources/projects/NeoWar/screenshot4.png";
-import NeoWarScreenshot5 from "resources/projects/NeoWar/screenshot5.png";
-import NeoWarScreenshot6 from "resources/projects/NeoWar/screenshot6.png";
+import NeoWarSplash from "resources/projects/NeoWar/splash.jpg";
+import NeoWarSplashMobile from "resources/projects/NeoWar/splashMobile.jpg";
+import NeoWarScreenshot1 from "resources/projects/NeoWar/screenshot1.jpg";
+import NeoWarScreenshot2 from "resources/projects/NeoWar/screenshot2.jpg";
+import NeoWarScreenshot3 from "resources/projects/NeoWar/screenshot3.jpg";
+import NeoWarScreenshot4 from "resources/projects/NeoWar/screenshot4.jpg";
+import NeoWarScreenshot5 from "resources/projects/NeoWar/screenshot5.jpg";
+import NeoWarScreenshot6 from "resources/projects/NeoWar/screenshot6.jpg";
 import NeoWarVideo from "resources/projects/NeoWar/video.mp4";
 
 // Project: Escape
 import EscapeIcon from "resources/projects/Escape/icon.png";
-import EscapeSplash from "resources/projects/Escape/splash.png";
-import EscapeSplashMobile from "resources/projects/Escape/splashMobile.png";
-import EscapeScreenshot1 from "resources/projects/Escape/screenshot1.png";
-import EscapeScreenshot2 from "resources/projects/Escape/screenshot2.png";
-import EscapeScreenshot3 from "resources/projects/Escape/screenshot3.png";
-import EscapeScreenshot4 from "resources/projects/Escape/screenshot4.png";
-import EscapeScreenshot5 from "resources/projects/Escape/screenshot5.png";
-import EscapeScreenshot6 from "resources/projects/Escape/screenshot6.png";
-import EscapeScreenshot7 from "resources/projects/Escape/screenshot7.png";
+import EscapeSplash from "resources/projects/Escape/splash.jpg";
+import EscapeSplashMobile from "resources/projects/Escape/splashMobile.jpg";
+import EscapeScreenshot1 from "resources/projects/Escape/screenshot1.jpg";
+import EscapeScreenshot2 from "resources/projects/Escape/screenshot2.jpg";
+import EscapeScreenshot3 from "resources/projects/Escape/screenshot3.jpg";
+import EscapeScreenshot4 from "resources/projects/Escape/screenshot4.jpg";
+import EscapeScreenshot5 from "resources/projects/Escape/screenshot5.jpg";
+import EscapeScreenshot6 from "resources/projects/Escape/screenshot6.jpg";
+import EscapeScreenshot7 from "resources/projects/Escape/screenshot7.jpg";
 import EscapeVideo from "resources/projects/Escape/video.mp4";
 
 // Project: InfinityGallery
 import InfinityGalleryIcon from "resources/projects/InfinityGallery/icon.png";
-import InfinityGallerySplash from "resources/projects/InfinityGallery/splash.png";
-import InfinityGallerySplashMobile from "resources/projects/InfinityGallery/splashMobile.png";
-import InfinityGalleryScreenshot1 from "resources/projects/InfinityGallery/screenshot1.png";
-import InfinityGalleryScreenshot2 from "resources/projects/InfinityGallery/screenshot2.png";
-import InfinityGalleryScreenshot3 from "resources/projects/InfinityGallery/screenshot3.png";
-import InfinityGalleryScreenshot4 from "resources/projects/InfinityGallery/screenshot4.png";
-import InfinityGalleryScreenshot5 from "resources/projects/InfinityGallery/screenshot5.png";
-import InfinityGalleryScreenshot6 from "resources/projects/InfinityGallery/screenshot6.png";
-import InfinityGalleryScreenshot7 from "resources/projects/InfinityGallery/screenshot7.png";
-import InfinityGalleryScreenshot8 from "resources/projects/InfinityGallery/screenshot8.png";
+import InfinityGallerySplash from "resources/projects/InfinityGallery/splash.jpg";
+import InfinityGallerySplashMobile from "resources/projects/InfinityGallery/splashMobile.jpg";
+import InfinityGalleryScreenshot1 from "resources/projects/InfinityGallery/screenshot1.jpg";
+import InfinityGalleryScreenshot2 from "resources/projects/InfinityGallery/screenshot2.jpg";
+import InfinityGalleryScreenshot3 from "resources/projects/InfinityGallery/screenshot3.jpg";
+import InfinityGalleryScreenshot4 from "resources/projects/InfinityGallery/screenshot4.jpg";
+import InfinityGalleryScreenshot5 from "resources/projects/InfinityGallery/screenshot5.jpg";
+import InfinityGalleryScreenshot6 from "resources/projects/InfinityGallery/screenshot6.jpg";
+import InfinityGalleryScreenshot7 from "resources/projects/InfinityGallery/screenshot7.jpg";
+import InfinityGalleryScreenshot8 from "resources/projects/InfinityGallery/screenshot8.jpg";
 
 // Project: Portal
 import PortalIcon from "resources/projects/Portal/icon.png";
-import PortalSplash from "resources/projects/Portal/splash.png";
-import PortalSplashMobile from "resources/projects/Portal/splashMobile.png";
-import PortalScreenshot1 from "resources/projects/Portal/screenshot1.png";
-import PortalScreenshot2 from "resources/projects/Portal/screenshot2.png";
-import PortalScreenshot3 from "resources/projects/Portal/screenshot3.png";
-import PortalScreenshot4 from "resources/projects/Portal/screenshot4.png";
+import PortalSplash from "resources/projects/Portal/splash.jpg";
+import PortalSplashMobile from "resources/projects/Portal/splashMobile.jpg";
+import PortalScreenshot1 from "resources/projects/Portal/screenshot1.jpg";
+import PortalScreenshot2 from "resources/projects/Portal/screenshot2.jpg";
+import PortalScreenshot3 from "resources/projects/Portal/screenshot3.jpg";
+import PortalScreenshot4 from "resources/projects/Portal/screenshot4.jpg";
 
 // Components
 import Project from "components/Project";

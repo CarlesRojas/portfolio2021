@@ -4,54 +4,54 @@ import classnames from "classnames";
 
 // Project: MatchEat
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
-import MatchEatSplash from "resources/projects/MatchEat/splash.png";
-import MatchEatSplashMobile from "resources/projects/MatchEat/splashMobile.png";
-import MatchEatScreenshot1 from "resources/projects/MatchEat/screenshot1.png";
-import MatchEatScreenshot2 from "resources/projects/MatchEat/screenshot2.png";
-import MatchEatScreenshot3 from "resources/projects/MatchEat/screenshot3.png";
-import MatchEatScreenshot4 from "resources/projects/MatchEat/screenshot4.png";
-import MatchEatScreenshot5 from "resources/projects/MatchEat/screenshot5.png";
-import MatchEatScreenshot6 from "resources/projects/MatchEat/screenshot6.png";
-import MatchEatScreenshot7 from "resources/projects/MatchEat/screenshot6.png";
+import MatchEatSplash from "resources/projects/MatchEat/splash.jpg";
+import MatchEatSplashMobile from "resources/projects/MatchEat/splashMobile.jpg";
+import MatchEatScreenshot1 from "resources/projects/MatchEat/screenshot1.jpg";
+import MatchEatScreenshot2 from "resources/projects/MatchEat/screenshot2.jpg";
+import MatchEatScreenshot3 from "resources/projects/MatchEat/screenshot3.jpg";
+import MatchEatScreenshot4 from "resources/projects/MatchEat/screenshot4.jpg";
+import MatchEatScreenshot5 from "resources/projects/MatchEat/screenshot5.jpg";
+import MatchEatScreenshot6 from "resources/projects/MatchEat/screenshot6.jpg";
+import MatchEatScreenshot7 from "resources/projects/MatchEat/screenshot6.jpg";
 import MatchEatVideo from "resources/projects/MatchEat/video.mp4";
 import MatchEatQR from "resources/projects/MatchEat/qr.png";
 
 // Project: g-stocks
 import GstocksIcon from "resources/projects/Gstocks/icon.png";
-import GstocksSplash from "resources/projects/Gstocks/splash.png";
-import GstocksSplashMobile from "resources/projects/Gstocks/splashMobile.png";
-import GstocksScreenshot1 from "resources/projects/Gstocks/screenshot1.png";
-import GstocksScreenshot2 from "resources/projects/Gstocks/screenshot2.png";
-import GstocksScreenshot3 from "resources/projects/Gstocks/screenshot3.png";
-import GstocksScreenshot4 from "resources/projects/Gstocks/screenshot4.png";
-import GstocksScreenshot5 from "resources/projects/Gstocks/screenshot5.png";
-import GstocksScreenshot6 from "resources/projects/Gstocks/screenshot6.png";
+import GstocksSplash from "resources/projects/Gstocks/splash.jpg";
+import GstocksSplashMobile from "resources/projects/Gstocks/splashMobile.jpg";
+import GstocksScreenshot1 from "resources/projects/Gstocks/screenshot1.jpg";
+import GstocksScreenshot2 from "resources/projects/Gstocks/screenshot2.jpg";
+import GstocksScreenshot3 from "resources/projects/Gstocks/screenshot3.jpg";
+import GstocksScreenshot4 from "resources/projects/Gstocks/screenshot4.jpg";
+import GstocksScreenshot5 from "resources/projects/Gstocks/screenshot5.jpg";
+import GstocksScreenshot6 from "resources/projects/Gstocks/screenshot6.jpg";
 
 // Project: Spot
 import SpotIcon from "resources/projects/Spot/icon.png";
-import SpotSplash from "resources/projects/Spot/splash.png";
-import SpotSplashMobile from "resources/projects/Spot/splashMobile.png";
-import SpotScreenshot1 from "resources/projects/Spot/screenshot1.png";
-import SpotScreenshot2 from "resources/projects/Spot/screenshot2.png";
-import SpotScreenshot3 from "resources/projects/Spot/screenshot3.png";
-import SpotScreenshot4 from "resources/projects/Spot/screenshot4.png";
-import SpotScreenshot5 from "resources/projects/Spot/screenshot5.png";
-import SpotScreenshot6 from "resources/projects/Spot/screenshot6.png";
+import SpotSplash from "resources/projects/Spot/splash.jpg";
+import SpotSplashMobile from "resources/projects/Spot/splashMobile.jpg";
+import SpotScreenshot1 from "resources/projects/Spot/screenshot1.jpg";
+import SpotScreenshot2 from "resources/projects/Spot/screenshot2.jpg";
+import SpotScreenshot3 from "resources/projects/Spot/screenshot3.jpg";
+import SpotScreenshot4 from "resources/projects/Spot/screenshot4.jpg";
+import SpotScreenshot5 from "resources/projects/Spot/screenshot5.jpg";
+import SpotScreenshot6 from "resources/projects/Spot/screenshot6.jpg";
 import SpotVideo from "resources/projects/Spot/video.mp4";
 
 // Project: Reddon
 import ReddonIcon from "resources/projects/Reddon/icon.png";
-import ReddonSplash from "resources/projects/Reddon/splash.png";
-import ReddonSplashMobile from "resources/projects/Reddon/splashMobile.png";
-import ReddonScreenshot1 from "resources/projects/Reddon/screenshot1.png";
-import ReddonScreenshot2 from "resources/projects/Reddon/screenshot2.png";
-import ReddonScreenshot3 from "resources/projects/Reddon/screenshot3.png";
-import ReddonScreenshot4 from "resources/projects/Reddon/screenshot4.png";
+import ReddonSplash from "resources/projects/Reddon/splash.jpg";
+import ReddonSplashMobile from "resources/projects/Reddon/splashMobile.jpg";
+import ReddonScreenshot1 from "resources/projects/Reddon/screenshot1.jpg";
+import ReddonScreenshot2 from "resources/projects/Reddon/screenshot2.jpg";
+import ReddonScreenshot3 from "resources/projects/Reddon/screenshot3.jpg";
+import ReddonScreenshot4 from "resources/projects/Reddon/screenshot4.jpg";
 
 // Project: Portfolio
 import PortfolioIcon from "resources/projects/Portfolio/icon.png";
-import PortfolioSplash from "resources/projects/Portfolio/splash.png";
-import PortfolioSplashMobile from "resources/projects/Portfolio/splashMobile.png";
+import PortfolioSplash from "resources/projects/Portfolio/splash.jpg";
+import PortfolioSplashMobile from "resources/projects/Portfolio/splashMobile.jpg";
 
 // Components
 import Project from "components/Project";

@@ -4,56 +4,56 @@ import classnames from "classnames";
 
 // Project: SmartBike
 import SmartBikeIcon from "resources/projects/SmartBike/icon.png";
-import SmartBikeSplash from "resources/projects/SmartBike/splash.png";
-import SmartBikeSplashMobile from "resources/projects/SmartBike/splashMobile.png";
-import SmartBikeScreenshot1 from "resources/projects/SmartBike/screenshot1.png";
-import SmartBikeScreenshot2 from "resources/projects/SmartBike/screenshot2.png";
-import SmartBikeScreenshot3 from "resources/projects/SmartBike/screenshot3.png";
-import SmartBikeScreenshot4 from "resources/projects/SmartBike/screenshot4.png";
+import SmartBikeSplash from "resources/projects/SmartBike/splash.jpg";
+import SmartBikeSplashMobile from "resources/projects/SmartBike/splashMobile.jpg";
+import SmartBikeScreenshot1 from "resources/projects/SmartBike/screenshot1.jpg";
+import SmartBikeScreenshot2 from "resources/projects/SmartBike/screenshot2.jpg";
+import SmartBikeScreenshot3 from "resources/projects/SmartBike/screenshot3.jpg";
+import SmartBikeScreenshot4 from "resources/projects/SmartBike/screenshot4.jpg";
 import SmartBikeVideo from "resources/projects/SmartBike/video.mp4";
 
 // Project: HoloLens
 import HoloLensIcon from "resources/projects/HoloLens/icon.png";
-import HoloLensSplash from "resources/projects/HoloLens/splash.png";
-import HoloLensSplashMobile from "resources/projects/HoloLens/splashMobile.png";
-import HoloLensScreenshot1 from "resources/projects/HoloLens/screenshot1.png";
-import HoloLensScreenshot2 from "resources/projects/HoloLens/screenshot2.png";
+import HoloLensSplash from "resources/projects/HoloLens/splash.jpg";
+import HoloLensSplashMobile from "resources/projects/HoloLens/splashMobile.jpg";
+import HoloLensScreenshot1 from "resources/projects/HoloLens/screenshot1.jpg";
+import HoloLensScreenshot2 from "resources/projects/HoloLens/screenshot2.jpg";
 import HoloLensVideo from "resources/projects/HoloLens/video.mp4";
 
 // Project: Gwood
 import GwoodIcon from "resources/projects/Gwood/icon.png";
-import GwoodSplash from "resources/projects/Gwood/splash.png";
-import GwoodSplashMobile from "resources/projects/Gwood/splashMobile.png";
-import GwoodScreenshot1 from "resources/projects/Gwood/screenshot1.png";
-import GwoodScreenshot2 from "resources/projects/Gwood/screenshot2.png";
-import GwoodScreenshot3 from "resources/projects/Gwood/screenshot3.png";
-import GwoodScreenshot4 from "resources/projects/Gwood/screenshot4.png";
+import GwoodSplash from "resources/projects/Gwood/splash.jpg";
+import GwoodSplashMobile from "resources/projects/Gwood/splashMobile.jpg";
+import GwoodScreenshot1 from "resources/projects/Gwood/screenshot1.jpg";
+import GwoodScreenshot2 from "resources/projects/Gwood/screenshot2.jpg";
+import GwoodScreenshot3 from "resources/projects/Gwood/screenshot3.jpg";
+import GwoodScreenshot4 from "resources/projects/Gwood/screenshot4.jpg";
 
 // Project: Orbit
 import OrbitIcon from "resources/projects/Orbit/icon.png";
-import OrbitSplash from "resources/projects/Orbit/splash.png";
-import OrbitSplashMobile from "resources/projects/Orbit/splashMobile.png";
-import OrbitScreenshot1 from "resources/projects/Orbit/screenshot1.png";
-import OrbitScreenshot2 from "resources/projects/Orbit/screenshot2.png";
-import OrbitScreenshot3 from "resources/projects/Orbit/screenshot3.png";
-import OrbitScreenshot4 from "resources/projects/Orbit/screenshot4.png";
-import OrbitScreenshot5 from "resources/projects/Orbit/screenshot5.png";
-import OrbitScreenshot6 from "resources/projects/Orbit/screenshot6.png";
+import OrbitSplash from "resources/projects/Orbit/splash.jpg";
+import OrbitSplashMobile from "resources/projects/Orbit/splashMobile.jpg";
+import OrbitScreenshot1 from "resources/projects/Orbit/screenshot1.jpg";
+import OrbitScreenshot2 from "resources/projects/Orbit/screenshot2.jpg";
+import OrbitScreenshot3 from "resources/projects/Orbit/screenshot3.jpg";
+import OrbitScreenshot4 from "resources/projects/Orbit/screenshot4.jpg";
+import OrbitScreenshot5 from "resources/projects/Orbit/screenshot5.jpg";
+import OrbitScreenshot6 from "resources/projects/Orbit/screenshot6.jpg";
 import OrbitVideo from "resources/projects/Orbit/video.mp4";
 
 // Project: ShowBattle
 import ShowBattleIcon from "resources/projects/ShowBattle/icon.png";
-import ShowBattleSplash from "resources/projects/ShowBattle/splash.png";
-import ShowBattleSplashMobile from "resources/projects/ShowBattle/splashMobile.png";
-import ShowBattleScreenshot1 from "resources/projects/ShowBattle/screenshot1.png";
-import ShowBattleScreenshot2 from "resources/projects/ShowBattle/screenshot2.png";
+import ShowBattleSplash from "resources/projects/ShowBattle/splash.jpg";
+import ShowBattleSplashMobile from "resources/projects/ShowBattle/splashMobile.jpg";
+import ShowBattleScreenshot1 from "resources/projects/ShowBattle/screenshot1.jpg";
+import ShowBattleScreenshot2 from "resources/projects/ShowBattle/screenshot2.jpg";
 
 // Project: SmartWatch
 import SmartWatchIcon from "resources/projects/SmartWatch/icon.png";
-import SmartWatchSplash from "resources/projects/SmartWatch/splash.png";
-import SmartWatchSplashMobile from "resources/projects/SmartWatch/splashMobile.png";
-import SmartWatchScreenshot1 from "resources/projects/SmartWatch/screenshot1.png";
-import SmartWatchScreenshot2 from "resources/projects/SmartWatch/screenshot2.png";
+import SmartWatchSplash from "resources/projects/SmartWatch/splash.jpg";
+import SmartWatchSplashMobile from "resources/projects/SmartWatch/splashMobile.jpg";
+import SmartWatchScreenshot1 from "resources/projects/SmartWatch/screenshot1.jpg";
+import SmartWatchScreenshot2 from "resources/projects/SmartWatch/screenshot2.jpg";
 import SmartWatchVideo from "resources/projects/SmartWatch/video.mp4";
 
 // Components
