@@ -13,8 +13,6 @@ export default function Cursor() {
     const [clicked, setClicked] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [hidden, setHidden] = useState(false);
-    const [play, setPlay] = useState(false);
-    const [pause, setPause] = useState(false);
 
     // ###################################################
     //      ACTIONS
@@ -46,6 +44,18 @@ export default function Cursor() {
     };
 
     // ###################################################
+    //      SHOW ICON
+    // ###################################################
+
+    // State: "play", "play", "none"
+    const [iconState, setIconState] = useState("none");
+
+    // On set cursor icon
+    const onSetCursorIcon = ({ type }) => {
+        setIconState(type);
+    };
+
+    // ###################################################
     //      INTERACTIVE ITEMS
     // ###################################################
 
@@ -55,18 +65,6 @@ export default function Cursor() {
         document.querySelectorAll(".hoverable").forEach((elem) => {
             elem.addEventListener("mouseover", () => setHovered(true));
             elem.addEventListener("mouseout", () => setHovered(false));
-        });
-
-        // When the cursor hovers over certain elems -> Play animation
-        document.querySelectorAll(".playable").forEach((elem) => {
-            elem.addEventListener("mouseover", () => setPlay(true));
-            elem.addEventListener("mouseout", () => setPlay(false));
-        });
-
-        // When the cursor hovers over certain elems -> Pause animation
-        document.querySelectorAll(".pausable").forEach((elem) => {
-            elem.addEventListener("mouseover", () => setPause(true));
-            elem.addEventListener("mouseout", () => setPause(false));
         });
     };
 
@@ -84,6 +82,7 @@ export default function Cursor() {
 
         // Subscribe to update hoverable items
         window.PubSub.sub("updateInteractiveItems", updateInteractiveItems);
+        window.PubSub.sub("setCursorIcon", onSetCursorIcon);
 
         // Update cursor interactible elements
         updateInteractiveItems();
@@ -97,6 +96,7 @@ export default function Cursor() {
 
             // Subscribe to update all interactive items
             window.PubSub.unsub("updateInteractiveItems", updateInteractiveItems);
+            window.PubSub.unsub("setCursorIcon", onSetCursorIcon);
         };
     }, []);
 
@@ -109,17 +109,18 @@ export default function Cursor() {
 
     // Add classes to the cursor
     const cursorClasses = classnames("cursor", {
-        clicked: clicked && !play && !pause,
+        clicked: clicked && iconState === "none",
         hidden: hidden,
-        hovered: hovered && !play && !pause,
-        iconActive: play || pause,
+        hovered: hovered && iconState === "none",
+        iconActive: iconState !== "none",
     });
 
-    const icon = play ? PlayIcon : PauseIcon;
+    // Get the icon
+    const icon = iconState === "none" ? null : iconState === "play" ? PlayIcon : PauseIcon;
 
     return (
         <div className={cursorClasses} style={{ left: `${position.x}px`, top: `${position.y}px` }}>
-            <SVG className={classnames("icon", { playIcon: play }, { pauseIcon: pause })} src={icon} />
+            <SVG className={classnames("icon", { playIcon: iconState === "play" })} src={icon} />
         </div>
     );
 }

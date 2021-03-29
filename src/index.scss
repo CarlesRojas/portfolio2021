@@ -444,10 +444,6 @@ img {
             padding: 2px 0 0 5px;
         }
 
-        &.pauseIcon {
-            padding: 2px 0 0 5px;
-        }
-
         .cls-1 {
             stroke: $cursor-icon-color !important;
         }
@@ -1177,7 +1173,7 @@ img {
                     padding-top: unset;
                 }
 
-                .video {
+                .videoContainer {
                     position: absolute;
                     height: calc(50% - 4rem);
                     width: unset;
@@ -1193,6 +1189,10 @@ img {
                         margin: 0 5.9rem;
                     }
 
+                    &.escape {
+                        height: calc(50% - 5.4rem);
+                    }
+
                     @media only screen and (max-width: $collapseNavbarWidth) {
                         video {
                             width: 100% !important;
@@ -1202,6 +1202,11 @@ img {
                         height: unset;
                         width: calc(100% - 1rem);
                         margin: 0 0.5rem 2rem;
+                    }
+
+                    .video {
+                        width: 100%;
+                        height: 100%;
                     }
                 }
 
@@ -1236,7 +1241,7 @@ img {
                 }
             }
 
-            .video {
+            .videoContainer {
                 display: block;
                 width: calc(50% - 4rem);
                 margin: 0 2rem 2rem;
@@ -1251,6 +1256,11 @@ img {
                     height: 60vh;
                     width: unset;
                     margin: 0 0.5rem 2rem;
+                }
+
+                .video {
+                    width: 100%;
+                    height: 100%;
                 }
             }
 

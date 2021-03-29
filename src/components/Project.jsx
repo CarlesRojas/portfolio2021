@@ -56,10 +56,17 @@ export default function Project({ image, icon, title, subtitle, description, lin
     const [playing, setPlaying] = useState(false);
     const playingRef = useRef(false);
 
+    // React Player Ref
+    const player = useRef(null);
+
     // On video clicked
     const onVideoClicked = () => {
         // Inform that the video started playing
         window.PubSub.emit("onVideoPlay", { id });
+
+        // Change cursor icon
+        if (playingRef.current) window.PubSub.emit("setCursorIcon", { type: "play" });
+        else window.PubSub.emit("setCursorIcon", { type: "pause" });
 
         // Change state
         setPlaying(!playingRef.current);
@@ -75,30 +82,53 @@ export default function Project({ image, icon, title, subtitle, description, lin
         }
     };
 
-    console.log(classNames("video", { playable: !playingRef.current }, { pausable: playingRef.current }, id));
+    // On video ends
+    const onVideoEnds = () => {
+        // Pause video
+        setPlaying(false);
+        playingRef.current = false;
+        window.PubSub.emit("setCursorIcon", { type: "play" });
+
+        // Set to the start again
+        player.current.seekTo(0);
+    };
+
+    // On mouse over video -> Change cursor icon
+    const onMouseOverVideo = () => {
+        if (playingRef.current) window.PubSub.emit("setCursorIcon", { type: "pause" });
+        else window.PubSub.emit("setCursorIcon", { type: "play" });
+    };
+
+    // On mouse exiting the video -> Change cursor icon
+    const onMouseOutVideo = () => {
+        window.PubSub.emit("setCursorIcon", { type: "none" });
+    };
 
     // Video
     var videoDOM = video ? (
-        <ReactPlayer
-            onClick={onVideoClicked}
-            playing={playing}
-            className={classNames("video", { playable: !playing }, { pausable: playing }, id)}
-            url={video}
-            width=""
-            height=""
-            config={{
-                file: {
-                    attributes: {
-                        muted: true,
-                        controls: false,
-                        disablePictureInPicture: true,
-                        controlsList: "nodownload noremoteplayback",
+        <div className={`videoContainer ${id}`} onMouseOver={onMouseOverVideo} onMouseOut={onMouseOutVideo}>
+            <ReactPlayer
+                ref={player}
+                onClick={onVideoClicked}
+                playing={playing}
+                className="video"
+                url={video}
+                width=""
+                height=""
+                onEnded={onVideoEnds}
+                config={{
+                    file: {
+                        attributes: {
+                            muted: true,
+                            controls: false,
+                            disablePictureInPicture: true,
+                            controlsList: "nodownload noremoteplayback",
+                        },
                     },
-                },
-            }}
-        /> /*<img src={video} alt="" className="video playable" />*/
+                }}
+            />
+        </div>
     ) : null;
-
     var videoExists = video ? true : false;
 
     // ###################################################

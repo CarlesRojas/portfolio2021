@@ -33,6 +33,14 @@ export default class EventsPubSub {
         desciption:     Called when the cursor should update the interactive items
         parameters:     {}
     },
+
+    {
+        event:          setCursorIcon
+        description:    Called when the cursor icon should update
+        parameters:     { type }
+        type:           One of the possible icons: "none", "play" or "pause"
+    }
+
     {
         event:          onSectionChange
         desciption:     Called when the section changes
