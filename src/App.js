@@ -51,6 +51,18 @@ export default function App() {
     };
 
     // ###################################################
+    //      SECTION CHANGE
+    // ###################################################
+
+    // App scroll container ref
+    const appRef = useRef(null);
+
+    // On section change -> Scroll to top
+    const onSectionChange = () => {
+        appRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
     // ###################################################
 
@@ -64,6 +76,7 @@ export default function App() {
                 console.log(error);
             }
         };
+
         if (isMobileOnly) {
             lockOrientation();
 
@@ -74,9 +87,13 @@ export default function App() {
             window.addEventListener("orientationchange", onOrientationChange);
         }
 
+        // Subscribe to events
+        window.PubSub.sub("onSectionChange", onSectionChange);
+
         // Unsubscribe from events and stop loop
         return () => {
             window.removeEventListener("orientationchange", onOrientationChange);
+            window.PubSub.unsub("onSectionChange", onSectionChange);
         };
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -103,7 +120,7 @@ export default function App() {
         ) : null;
 
     return (
-        <div className={classnames("app", { scrollActive: landingDone && orientation === "portrait" })}>
+        <div className={classnames("app", { scrollActive: landingDone && orientation === "portrait" })} ref={appRef}>
             {landscapeBlock}
             <Cursor />
             <SplashScreen />
@@ -114,9 +131,19 @@ export default function App() {
             <Router>
                 <Switch>
                     {/* ################################# */}
-                    {/*   LANDING PAGE                    */}
+                    {/*   PRODUCT DESIGN                  */}
                     {/* ################################# */}
-                    <Route path="/" component={ProductDesign} exact></Route>
+                    <Route path="/design" component={ProductDesign} exact></Route>
+
+                    {/* ################################# */}
+                    {/*   GAME DAV                        */}
+                    {/* ################################# */}
+                    <Route path="/game" component={GameDev} exact></Route>
+
+                    {/* ################################# */}
+                    {/*   WEB DEV                         */}
+                    {/* ################################# */}
+                    <Route path="/" component={WebDev}></Route>
                 </Switch>
             </Router>
         </div>

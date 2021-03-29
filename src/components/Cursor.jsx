@@ -5,6 +5,7 @@ import SVG from "react-inlinesvg";
 
 // Icons
 import PlayIcon from "resources/icons/play.svg";
+import PauseIcon from "resources/icons/pause.svg";
 
 export default function Cursor() {
     // Mouse state
@@ -13,6 +14,7 @@ export default function Cursor() {
     const [hovered, setHovered] = useState(false);
     const [hidden, setHidden] = useState(false);
     const [play, setPlay] = useState(false);
+    const [pause, setPause] = useState(false);
 
     // ###################################################
     //      ACTIONS
@@ -60,6 +62,12 @@ export default function Cursor() {
             elem.addEventListener("mouseover", () => setPlay(true));
             elem.addEventListener("mouseout", () => setPlay(false));
         });
+
+        // When the cursor hovers over certain elems -> Pause animation
+        document.querySelectorAll(".pausable").forEach((elem) => {
+            elem.addEventListener("mouseover", () => setPause(true));
+            elem.addEventListener("mouseout", () => setPause(false));
+        });
     };
 
     // ###################################################
@@ -101,15 +109,17 @@ export default function Cursor() {
 
     // Add classes to the cursor
     const cursorClasses = classnames("cursor", {
-        clicked: clicked && !play,
+        clicked: clicked && !play && !pause,
         hidden: hidden,
-        hovered: hovered && !play,
-        iconActive: play,
+        hovered: hovered && !play && !pause,
+        iconActive: play || pause,
     });
+
+    const icon = play ? PlayIcon : PauseIcon;
 
     return (
         <div className={cursorClasses} style={{ left: `${position.x}px`, top: `${position.y}px` }}>
-            <SVG className={classnames("icon", { playIcon: play })} src={PlayIcon} />
+            <SVG className={classnames("icon", { playIcon: play }, { pauseIcon: pause })} src={icon} />
         </div>
     );
 }

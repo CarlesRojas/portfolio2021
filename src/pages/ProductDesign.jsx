@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Redirect } from "react-router-dom";
+import classnames from "classnames";
 
 // Project: SmartBike
 import SmartBikeIcon from "resources/projects/SmartBike/icon.png";
@@ -55,16 +57,72 @@ import SmartWatchScreenshot2 from "resources/projects/SmartWatch/screenshot2.png
 import SmartWatchVideo from "resources/projects/SmartWatch/video.mp4";
 
 // Components
-import MobileApp from "components/MobileApp";
+import Project from "components/Project";
 
 export default function ProductDesign() {
+    // Redirect state
+    const [redirectTo, setRedirectTo] = useState(null);
+
+    // ###################################################
+    //      SECTION CHANGE
+    // ###################################################
+
+    // On section change
+    const onSectionChange = ({ sectionName }) => {
+        // Hide
+        setVisible(false);
+
+        // Change section
+        fadeTimeout.current = setTimeout(() => {
+            setRedirectTo(`/${sectionName}`);
+        }, 400);
+    };
+
+    // Fade in or out timeout
+    const fadeTimeout = useRef(null);
+
+    // Fada state
+    const [visible, setVisible] = useState(false);
+
+    // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // On component mount
+    useEffect(() => {
+        // Subscribe to events
+        window.PubSub.sub("onSectionChange", onSectionChange);
+
+        // Show section
+        fadeTimeout.current = setTimeout(() => {
+            setVisible(true);
+        }, 100);
+
+        // Unsubscribe from events and stop loop
+        return () => {
+            window.PubSub.unsub("onSectionChange", onSectionChange);
+
+            // Clear timeout
+            if (fadeTimeout.current) clearTimeout(fadeTimeout.current);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // ###################################################
+    //   RENDER
+    // ###################################################
+
+    // Redirect to new route
+    if (redirectTo) return <Redirect to={redirectTo} push={true} />;
+
     return (
-        <div className="productDesign">
+        <div className={classnames("productDesign", { visible })}>
             {/* ################################# */}
             {/*   SmartBike                       */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: SmartBikeSplash, mobile: SmartBikeSplashMobile }}
                 icon={SmartBikeIcon}
                 title="SmartBike"
@@ -78,15 +136,15 @@ export default function ProductDesign() {
                 video={SmartBikeVideo}
                 screenshots={[SmartBikeScreenshot4, SmartBikeScreenshot3, SmartBikeScreenshot2, SmartBikeScreenshot1]}
                 horizontal={true}
-                color="smartBike"
+                id="smartBike"
                 process="Smartbike was the final project for the 3D Modeling subject at EINA, University School of Design and Art. It was modeled with SolidWorks and animated using KeyShot. The final images were made using the KeyShot renders and Photoshop."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   HoloLens                        */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: HoloLensSplash, mobile: HoloLensSplashMobile }}
                 icon={HoloLensIcon}
                 title="HoloLens 2"
@@ -100,15 +158,15 @@ export default function ProductDesign() {
                 video={HoloLensVideo}
                 screenshots={[HoloLensScreenshot2, HoloLensScreenshot1]}
                 horizontal={true}
-                color="holoLens"
+                id="holoLens"
                 process="HoloLens is a concept project modeled using SolidWorks and animated with KeyShot. It only represents a proof of concept and helps visualize how holographic computers could integrate with currently existing devices. "
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Gwood                           */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: GwoodSplash, mobile: GwoodSplashMobile }}
                 icon={GwoodIcon}
                 title="Gwood"
@@ -122,15 +180,15 @@ export default function ProductDesign() {
                 // video={}
                 screenshots={[GwoodScreenshot4, GwoodScreenshot3, GwoodScreenshot2, GwoodScreenshot1]}
                 horizontal={true}
-                color="gwood"
+                id="gwood"
                 process="Gwood is a project made by students of EINA, University School of Design and Art for the Hábitat fair in Valencia 2014. Gwood was divided in five groups. The lounge chair was modeled with SolidWorks and made at EINA's workshop."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Orbit                           */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: OrbitSplash, mobile: OrbitSplashMobile }}
                 icon={OrbitIcon}
                 title="Orbit"
@@ -144,15 +202,15 @@ export default function ProductDesign() {
                 video={OrbitVideo}
                 screenshots={[OrbitScreenshot6, OrbitScreenshot5, OrbitScreenshot4, OrbitScreenshot3, OrbitScreenshot2, OrbitScreenshot1]}
                 horizontal={true}
-                color="orbit"
+                id="orbit"
                 process="Orbit was the final career project at EINA, University School of Design and Art. It was modeled using SolidWorks, rendered, and animated with KeyShot and edited with Photoshop. It's a proof of concept for an All-In-One device."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   ShowBattle                      */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: ShowBattleSplash, mobile: ShowBattleSplashMobile }}
                 icon={ShowBattleIcon}
                 title="ShowBattle"
@@ -166,15 +224,15 @@ export default function ProductDesign() {
                 // video={}
                 screenshots={[ShowBattleScreenshot2, ShowBattleScreenshot1]}
                 horizontal={true}
-                color="showBattle"
+                id="showBattle"
                 process="ShowBattle is a personal project that was completely created using Photoshop. Al the images used are property of the original show producers. The cards were printed once for personal use."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   SmartWatch                      */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: SmartWatchSplash, mobile: SmartWatchSplashMobile }}
                 icon={SmartWatchIcon}
                 title="SmartWatch"
@@ -188,9 +246,9 @@ export default function ProductDesign() {
                 video={SmartWatchVideo}
                 screenshots={[SmartWatchScreenshot2, SmartWatchScreenshot1]}
                 horizontal={true}
-                color="smartWatch"
+                id="smartWatch"
                 process="SmartWatch is a project modeled and rendered using SolidWorks for an early project at EINA, University School of Design and Art. The time display method is an original idea animated using Flash Pro."
-            ></MobileApp>
+            ></Project>
         </div>
     );
 }

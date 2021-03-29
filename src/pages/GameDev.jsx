@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Redirect } from "react-router-dom";
+import classnames from "classnames";
 
 // General Icons
 import HololensIcon from "resources/icons/hololens.png";
@@ -100,20 +102,72 @@ import PortalScreenshot3 from "resources/projects/Portal/screenshot3.png";
 import PortalScreenshot4 from "resources/projects/Portal/screenshot4.png";
 
 // Components
-import MobileApp from "components/MobileApp";
+import Project from "components/Project";
 
 export default function GameDev() {
+    // Redirect state
+    const [redirectTo, setRedirectTo] = useState(null);
+
+    // ###################################################
+    //      SECTION CHANGE
+    // ###################################################
+
+    // On section change
+    const onSectionChange = ({ sectionName }) => {
+        // Hide
+        setVisible(false);
+
+        // Change section
+        fadeTimeout.current = setTimeout(() => {
+            setRedirectTo(`/${sectionName}`);
+        }, 400);
+    };
+
+    // Fade in or out timeout
+    const fadeTimeout = useRef(null);
+
+    // Fada state
+    const [visible, setVisible] = useState(false);
+
+    // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // On component mount
+    useEffect(() => {
+        // Subscribe to events
+        window.PubSub.sub("onSectionChange", onSectionChange);
+
+        // Show section
+        fadeTimeout.current = setTimeout(() => {
+            setVisible(true);
+        }, 100);
+
+        // Unsubscribe from events and stop loop
+        return () => {
+            window.PubSub.unsub("onSectionChange", onSectionChange);
+
+            // Clear timeout
+            if (fadeTimeout.current) clearTimeout(fadeTimeout.current);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // ###################################################
     //   RENDER
     // ###################################################
 
+    // Redirect to new route
+    if (redirectTo) return <Redirect to={redirectTo} push={true} />;
+
     return (
-        <div className="gameDev">
+        <div className={classnames("gameDev", { visible })}>
             {/* ################################# */}
             {/*   Cubic 3D                        */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: Cubic3DSplash, mobile: Cubic3DSplashMobile }}
                 icon={Cubic3DIcon}
                 title="Cubic 3D"
@@ -126,15 +180,15 @@ export default function GameDev() {
                 video={Cubic3DVideo}
                 screenshots={[Cubic3DScreenshot6, Cubic3DScreenshot5, Cubic3DScreenshot4, Cubic3DScreenshot3, Cubic3DScreenshot2, Cubic3DScreenshot1]}
                 horizontal={false}
-                color="cubic"
+                id="cubic"
                 process="Cubic 3D is a game made with Unity targeting the mobile devices. The tridimensional tetrominos have been modeled using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Let's Drive                     */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: LetsDriveSplash, mobile: LetsDriveSplashMobile }}
                 icon={LetsDriveIcon}
                 title="Let’s Drive"
@@ -149,15 +203,15 @@ export default function GameDev() {
                 video={LetsDriveVideo}
                 screenshots={[LetsDriveScreenshot6, LetsDriveScreenshot5, LetsDriveScreenshot4, LetsDriveScreenshot3, LetsDriveScreenshot2, LetsDriveScreenshot1]}
                 horizontal={true}
-                color="letsDrive"
+                id="letsDrive"
                 process="Let’s Drive is a game made with Unity targeting the mobile devices. It was made by Alejandra Jiménez & me (Carles Rojas). The game is coded in C# is currently published on the Google Play Store."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   TrickShots                      */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: TrickShotsSplash, mobile: TrickShotsSplashMobile }}
                 icon={TrickShotsIcon}
                 title="TrickShots"
@@ -170,15 +224,15 @@ export default function GameDev() {
                 // video={}
                 screenshots={[TrickShotsScreenshot4, TrickShotsScreenshot3, TrickShotsScreenshot2, TrickShotsScreenshot1]}
                 horizontal={true}
-                color="trickshots"
+                id="trickshots"
                 process="TrickShots is a game made with Unity targeting the HoloLens device by Microsoft. The 3D holograms that can be placed into the world have been modeled using SolidWorks and Maya and textured with Photoshop. The game is coded in C# and build with Visual Studio and is currently published on the Windows Store, available only for the HoloLens device by Microsoft."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   HoloChess                       */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: HoloChessSplash, mobile: HoloChessSplashMobile }}
                 icon={HoloChessIcon}
                 title="HoloChess"
@@ -201,15 +255,15 @@ export default function GameDev() {
                     HoloChessScreenshot1,
                 ]}
                 horizontal={true}
-                color="holochess"
+                id="holochess"
                 process="HoloChess is a game made with Unity targeting the HoloLens device by Microsoft. The distinctively styled chessboards and pieces have been modeled using SolidWorks and Maya and textured with Photoshop. The game is coded in C# and build with Visual Studio and is currently published on the Windows Store, available only for the HoloLens device by Microsoft."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   NeoWar                          */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: NeoWarSplash, mobile: NeoWarSplashMobile }}
                 icon={NeoWarIcon}
                 title="NeoWar"
@@ -222,15 +276,15 @@ export default function GameDev() {
                 video={NeoWarVideo}
                 screenshots={[NeoWarScreenshot6, NeoWarScreenshot5, NeoWarScreenshot4, NeoWarScreenshot3, NeoWarScreenshot2, NeoWarScreenshot1]}
                 horizontal={true}
-                color="neoWar"
+                id="neoWar"
                 process="NeoWar is a game made with Unity targeting Windows devices. It was made by Jaume Ballester, Santi Rubio & me (Carles Rojas). The game is coded in C# and can be played online."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Escape                          */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: EscapeSplash, mobile: EscapeSplashMobile }}
                 icon={EscapeIcon}
                 title="Escape"
@@ -241,15 +295,15 @@ export default function GameDev() {
                 video={EscapeVideo}
                 screenshots={[EscapeScreenshot7, EscapeScreenshot6, EscapeScreenshot5, EscapeScreenshot4, EscapeScreenshot3, EscapeScreenshot2, EscapeScreenshot1]}
                 horizontal={true}
-                color="escape"
+                id="escape"
                 process="Escape is a game made with Unity targeting the mobile devices. All 3D shapes were made using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Infinity Gallery                */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: InfinityGallerySplash, mobile: InfinityGallerySplashMobile }}
                 icon={InfinityGalleryIcon}
                 title="Infinity Gallery"
@@ -275,15 +329,15 @@ export default function GameDev() {
                     InfinityGalleryScreenshot1,
                 ]}
                 horizontal={false}
-                color="infinityGallery"
+                id="infinityGallery"
                 process="Infinity Gallery is an app made with Unity targeting the mobile devices. All images been made using Illustrator and Photoshop, and Wolfram Alpha was used to create the algorithm to encode the images. The app is coded in C# is currently published on Google Play Store."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Portal                          */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: PortalSplash, mobile: PortalSplashMobile }}
                 icon={PortalIcon}
                 title="Portal"
@@ -296,9 +350,9 @@ export default function GameDev() {
                 // video={}
                 screenshots={[PortalScreenshot4, PortalScreenshot3, PortalScreenshot2, PortalScreenshot1]}
                 horizontal={true}
-                color="portal"
+                id="portal"
                 process="Portal is a work in progress game made with Unity targeting Windows devices. The sprites were created using Photoshop and Illustrator. The game is coded in C# and is not yet available."
-            ></MobileApp>
+            ></Project>
         </div>
     );
 }

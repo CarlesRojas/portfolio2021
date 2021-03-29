@@ -35,9 +35,15 @@ export default class EventsPubSub {
     },
     {
         event:          onSectionChange
-        desciption:     Called when the  section changes
+        desciption:     Called when the section changes
         parameters:     { sectionName }
         sectionName:    One of the names of the sections: "web", "game" or "design"
     },
 
+    {
+        event:          onVideoPlay
+        desciption:     Called when a video start playing
+        parameters:     { id }
+        id:             ID of the project where the video is playing
+    },
 */

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Redirect } from "react-router-dom";
+import classnames from "classnames";
 
 // Project: MatchEat
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
@@ -52,20 +54,72 @@ import PortfolioSplash from "resources/projects/Portfolio/splash.png";
 import PortfolioSplashMobile from "resources/projects/Portfolio/splashMobile.png";
 
 // Components
-import MobileApp from "components/MobileApp";
+import Project from "components/Project";
 
 export default function WebDev() {
+    // Redirect state
+    const [redirectTo, setRedirectTo] = useState(null);
+
+    // ###################################################
+    //      SECTION CHANGE
+    // ###################################################
+
+    // On section change
+    const onSectionChange = ({ sectionName }) => {
+        // Hide
+        setVisible(false);
+
+        // Change section
+        fadeTimeout.current = setTimeout(() => {
+            setRedirectTo(`/${sectionName}`);
+        }, 400);
+    };
+
+    // Fade in or out timeout
+    const fadeTimeout = useRef(null);
+
+    // Fada state
+    const [visible, setVisible] = useState(false);
+
+    // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // On component mount
+    useEffect(() => {
+        // Subscribe to events
+        window.PubSub.sub("onSectionChange", onSectionChange);
+
+        // Show section
+        fadeTimeout.current = setTimeout(() => {
+            setVisible(true);
+        }, 100);
+
+        // Unsubscribe from events and stop loop
+        return () => {
+            window.PubSub.unsub("onSectionChange", onSectionChange);
+
+            // Clear timeout
+            if (fadeTimeout.current) clearTimeout(fadeTimeout.current);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // ###################################################
     //   RENDER
     // ###################################################
 
+    // Redirect to new route
+    if (redirectTo) return <Redirect to={redirectTo} push={true} />;
+
     return (
-        <div className="webDev">
+        <div className={classnames("webDev", { visible })}>
             {/* ################################# */}
             {/*   MatchEat                        */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: MatchEatSplash, mobile: MatchEatSplashMobile }}
                 icon={MatchEatIcon}
                 title="MatchEat"
@@ -79,15 +133,15 @@ export default function WebDev() {
                 video={MatchEatVideo}
                 screenshots={[MatchEatScreenshot7, MatchEatScreenshot6, MatchEatScreenshot5, MatchEatScreenshot4, MatchEatScreenshot3, MatchEatScreenshot2, MatchEatScreenshot1]}
                 horizontal={false}
-                color="matchEat"
+                id="matchEat"
                 process="MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   G-Stocks                        */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: GstocksSplash, mobile: GstocksSplashMobile }}
                 icon={GstocksIcon}
                 title="g-stocks"
@@ -100,15 +154,15 @@ export default function WebDev() {
                 // video={}
                 screenshots={[GstocksScreenshot6, GstocksScreenshot5, GstocksScreenshot4, GstocksScreenshot3, GstocksScreenshot2, GstocksScreenshot1]}
                 horizontal={true}
-                color="gstocks"
+                id="gstocks"
                 process="g-stocks is a tool made with JavaScript targeting desktop devices. It is still in development and can’t be accessed yet."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Spot                            */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: SpotSplash, mobile: SpotSplashMobile }}
                 icon={SpotIcon}
                 title="Spot"
@@ -119,15 +173,15 @@ export default function WebDev() {
                 video={SpotVideo}
                 screenshots={[SpotScreenshot6, SpotScreenshot5, SpotScreenshot4, SpotScreenshot3, SpotScreenshot2, SpotScreenshot1]}
                 horizontal={false}
-                color="spot"
+                id="spot"
                 process="Spot is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Reddon                          */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: ReddonSplash, mobile: ReddonSplashMobile }}
                 icon={ReddonIcon}
                 title="Reddon"
@@ -138,15 +192,15 @@ export default function WebDev() {
                 // video={}
                 screenshots={[ReddonScreenshot4, ReddonScreenshot3, ReddonScreenshot2, ReddonScreenshot1]}
                 horizontal={false}
-                color="reddon"
+                id="reddon"
                 process="Reddon is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
-            ></MobileApp>
+            ></Project>
 
             {/* ################################# */}
             {/*   Portfolio                          */}
             {/* ################################# */}
 
-            <MobileApp
+            <Project
                 image={{ desktop: PortfolioSplash, mobile: PortfolioSplashMobile }}
                 icon={PortfolioIcon}
                 title="Potfolio"
@@ -159,9 +213,9 @@ export default function WebDev() {
                 // video={}
                 screenshots={[]}
                 horizontal={true}
-                color="portfolio"
+                id="portfolio"
                 process="This portfolio is a webpage build using ReactJS."
-            ></MobileApp>
+            ></Project>
         </div>
     );
 }

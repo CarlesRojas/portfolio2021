@@ -165,6 +165,11 @@ body {
     @include touch-action(none);
 }
 
+video,
+img {
+    display: block;
+}
+
 #root {
     height: 100%;
     width: 100%;
@@ -332,7 +337,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    // background-color: rgba(255, 0, 0, 0.657);
+    opacity: 0;
+    @include transition(opacity 0.4s ease-in-out);
+
+    &.visible {
+        opacity: 1;
+    }
 }
 
 // ###################################################
@@ -345,7 +355,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    // background-color: rgba(255, 0, 0, 0.657);
+    opacity: 0;
+    @include transition(opacity 0.4s ease-in-out);
+
+    &.visible {
+        opacity: 1;
+    }
 }
 
 // ###################################################
@@ -358,7 +373,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    // background-color: rgba(255, 0, 0, 0.657);
+    opacity: 0;
+    @include transition(opacity 0.4s ease-in-out);
+
+    &.visible {
+        opacity: 1;
+    }
 }
 
 // ################################################################################
@@ -424,12 +444,16 @@ body {
             padding: 2px 0 0 5px;
         }
 
+        &.pauseIcon {
+            padding: 2px 0 0 5px;
+        }
+
         .cls-1 {
             stroke: $cursor-icon-color !important;
         }
     }
 
-    // PLAY || SCROLL DOWN
+    // PLAY || PAUSE ||SCROLL DOWN
     &.iconActive {
         height: 120px;
         width: 120px;
@@ -856,10 +880,10 @@ body {
 }
 
 // ###################################################
-//      MOBILE APP
+//      PROJECT
 // ###################################################
 
-.mobileApp {
+.project {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -899,6 +923,7 @@ body {
         align-items: flex-start;
         justify-content: center;
         height: 100%;
+        min-height: 27rem;
         width: 100%;
         overflow: visible;
 
@@ -959,7 +984,13 @@ body {
                     margin-left: 2rem;
 
                     @media only screen and (max-width: $collapseNavbarWidth) {
-                        margin: 1rem 0 1rem;
+                        height: 5rem;
+                        max-height: 5rem;
+                        min-height: 5rem;
+                        width: 5rem;
+                        max-width: 5rem;
+                        min-width: 5rem;
+                        margin: 1rem 0 0.5rem;
                     }
                 }
 
@@ -984,6 +1015,7 @@ body {
                         text-align: left;
 
                         @media only screen and (max-width: $collapseNavbarWidth) {
+                            font-size: 1.4rem;
                             text-align: center;
                         }
                     }
@@ -998,6 +1030,7 @@ body {
 
                         @media only screen and (max-width: $collapseNavbarWidth) {
                             text-align: center;
+                            font-size: 1rem;
                         }
                     }
                 }
@@ -1041,11 +1074,9 @@ body {
 
                 .link {
                     transform: scale(1);
-                    height: fit-content;
                     height: 5rem;
                     max-height: 5rem;
                     min-height: 5rem;
-                    width: fit-content;
                     width: 5rem;
                     max-width: 5rem;
                     min-width: 5rem;
@@ -1054,6 +1085,12 @@ body {
                     @include transition(all 0.2s ease-in-out);
 
                     @media only screen and (max-width: $collapseNavbarWidth) {
+                        height: 4rem;
+                        max-height: 4rem;
+                        min-height: 4rem;
+                        width: 4rem;
+                        max-width: 4rem;
+                        min-width: 4rem;
                         margin: 1rem 0.5rem 1rem;
                     }
 
@@ -1112,7 +1149,7 @@ body {
             }
 
             &.noVideo {
-                width: 50%;
+                width: 40%;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     width: 100%;
@@ -1122,12 +1159,11 @@ body {
             &.horizontal {
                 flex-direction: column;
                 height: 0;
-                width: 50%;
+                width: 60%;
                 padding-top: 60%;
 
                 &.noVideo {
                     height: unset;
-                    width: 60%;
                     padding-top: unset;
 
                     @media only screen and (max-width: $collapseNavbarWidth) {
@@ -1146,10 +1182,22 @@ body {
                     height: calc(50% - 4rem);
                     width: unset;
                     top: 0;
-                    margin: 0 2rem;
+                    margin: 0 4rem;
                     @include border-radius(15px);
 
+                    &.letsDrive {
+                        margin: 0 1.3rem;
+                    }
+
+                    &.neoWar {
+                        margin: 0 5.9rem;
+                    }
+
                     @media only screen and (max-width: $collapseNavbarWidth) {
+                        video {
+                            width: 100% !important;
+                        }
+
                         position: relative;
                         height: unset;
                         width: calc(100% - 1rem);
@@ -1179,17 +1227,27 @@ body {
                     @media only screen and (max-width: $collapseNavbarWidth) {
                         height: 29vh;
                         width: 100%;
+                        margin: 0 0 1rem;
+
+                        &.letsDrive {
+                            margin: 2rem 0 0;
+                        }
                     }
                 }
             }
 
             .video {
+                display: block;
                 width: calc(50% - 4rem);
                 margin: 0 2rem 2rem;
                 @include border-radius(15px);
                 @include box-shadow(0 0 20px rgba(0, 0, 0, 0.3));
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
+                    video {
+                        width: unset !important;
+                    }
+
                     height: 60vh;
                     width: unset;
                     margin: 0 0.5rem 2rem;
@@ -1315,6 +1373,11 @@ body {
                 height: calc(100% - 2rem);
                 margin: 1rem;
                 @include border-radius(5px);
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    height: calc(100% - 1rem);
+                    margin: 0.5rem;
+                }
 
                 .noVideo & {
                     .horizontal & {

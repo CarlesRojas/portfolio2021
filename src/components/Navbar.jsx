@@ -48,7 +48,7 @@ export default function Navbar() {
         // Change Section
         window.PubSub.emit("onSectionChange", { sectionName: buttonName });
 
-        // Unfocus the elemetn
+        // Unfocus the element
         blurTimeout.current = setTimeout(() => {
             event.target.blur();
             openCloseMenu(false);

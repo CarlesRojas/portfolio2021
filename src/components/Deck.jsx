@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSprings, a, to } from "react-spring";
+import { useSprings, animated, to } from "react-spring";
 import { useGesture } from "react-use-gesture";
 
 // Final resting position of the images
@@ -71,11 +71,11 @@ export default function Deck({ images }) {
     return (
         <div className="deck">
             {springProps.map(({ x, y, rot, scale }, i) => (
-                <a.div className="card" key={i} style={{ x, y }}>
-                    <a.div className="cardContent hoverable" {...gestureBind(i)} style={{ transform: to([rot, scale], transformStyle) }}>
+                <animated.div className="card" key={i} style={{ x, y }}>
+                    <animated.div className="cardContent hoverable" {...gestureBind(i)} style={{ transform: to([rot, scale], transformStyle) }}>
                         <img src={images[i]} alt="" className="cardImage" />
-                    </a.div>
-                </a.div>
+                    </animated.div>
+                </animated.div>
             ))}
         </div>
     );
