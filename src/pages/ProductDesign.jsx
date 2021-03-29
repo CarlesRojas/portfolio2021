@@ -56,9 +56,6 @@ import SmartWatchScreenshot1 from "resources/projects/SmartWatch/screenshot1.jpg
 import SmartWatchScreenshot2 from "resources/projects/SmartWatch/screenshot2.jpg";
 import SmartWatchVideo from "resources/projects/SmartWatch/video.mp4";
 
-// Contexts
-import { Data } from "contexts/Data";
-
 // Components
 import Project from "components/Project";
 
