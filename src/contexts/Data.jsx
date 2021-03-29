@@ -7,8 +7,11 @@ const DataProvider = (props) => {
     // LANDING CHECK
     const [landingDone, setLandingDone] = useState(true); // ROJAS change to false
 
+    // Initial page
+    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
+
     // CURRENT SECTION
-    const section = useRef("web");
+    const section = useRef(initialPage);
 
     return (
         <Data.Provider

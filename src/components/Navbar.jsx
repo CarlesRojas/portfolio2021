@@ -31,8 +31,11 @@ export default function Navbar() {
     //      ACTIONS
     // ###################################################
 
+    // Initial page
+    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
+
     // CUrrently selected button
-    const [selectedButton, setSelectedButton] = useState("web");
+    const [selectedButton, setSelectedButton] = useState(initialPage);
 
     // Blur button timeout
     const blurTimeout = useRef(null);
@@ -42,17 +45,20 @@ export default function Navbar() {
         // Persist the event to get the target later
         event.persist();
 
-        // Select the button
-        setSelectedButton(buttonName);
-
-        // Change Section
-        window.PubSub.emit("onSectionChange", { sectionName: buttonName });
-
         // Unfocus the element
         blurTimeout.current = setTimeout(() => {
             event.target.blur();
             openCloseMenu(false);
         }, 300);
+
+        // Return if it is the same as before
+        if (buttonName === selectedButton) return;
+
+        // Select the button
+        setSelectedButton(buttonName);
+
+        // Change Section
+        window.PubSub.emit("onSectionChange", { sectionName: buttonName });
     };
 
     // On the menu or close button clicked

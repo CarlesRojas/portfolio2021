@@ -18,8 +18,11 @@ export default function SplashScreen() {
     //   TITLE LOGIC
     // ###################################################
 
+    // Initial page
+    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
+
     // Current section
-    const section = useRef("web");
+    const section = useRef(initialPage);
     const newSectionScaleSet = useRef(false);
 
     // When the scale spring ends
@@ -34,9 +37,9 @@ export default function SplashScreen() {
 
     // Titles opacity springs
     const [scales, setScales] = useSpring(() => ({
-        web: 1,
-        game: 0,
-        design: 0,
+        web: section.current === "web" ? 1 : 0,
+        game: section.current === "game" ? 1 : 0,
+        design: section.current === "design" ? 1 : 0,
     }));
 
     // Set te background gradient by one of its presets
