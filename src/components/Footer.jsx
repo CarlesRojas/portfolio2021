@@ -72,9 +72,23 @@ export default function Footer() {
     const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
     const [currSection, setCurrSection] = useState(initialPage);
 
+    // Apps hidden state
+    const [appsHidden, setAppsHidden] = useState(false);
+    const appsHiddenTimeout = useRef(null);
+
     // On section change -> Scroll to top
     const onSectionChange = ({ sectionName }) => {
-        setCurrSection(sectionName);
+        setAppsHidden(true);
+
+        // After hidding the apps change icons
+        appsHiddenTimeout.current = setTimeout(() => {
+            setCurrSection(sectionName);
+
+            // After changing icons, show apps
+            appsHiddenTimeout.current = setTimeout(() => {
+                setAppsHidden(false);
+            }, 100);
+        }, 400);
     };
 
     // ###################################################
@@ -135,16 +149,16 @@ export default function Footer() {
 
     return (
         <div className="footer">
-            <div className="apps">
+            <div className={classnames("apps", "glass", { appsHidden })}>
                 <div className="icons">
                     {iconArray.map((icon, i) => (
                         <img src={icon} alt="" className="icon" key={i} onClick={() => onIconClicked(i)} />
                     ))}
                     <div className="spacing"></div>
                 </div>
-                <div className={classnames("goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
-                    <SVG className="goTop" src={ArrowIcon} />
-                </div>
+            </div>
+            <div className={classnames("goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
+                <SVG className="goTop" src={ArrowIcon} />
             </div>
             <div className="info"></div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isMobileOnly } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 import classnames from "classnames";
 import SVG from "react-inlinesvg";
 
@@ -105,7 +105,7 @@ export default function Cursor() {
     // ###################################################
 
     // When on mobile -> Do not use custom mouse
-    if (isMobileOnly) return null;
+    if (isMobile) return null;
 
     // Add classes to the cursor
     const cursorClasses = classnames("cursor", {
