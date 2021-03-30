@@ -157,7 +157,7 @@ export default function Footer() {
                     <div className="spacing"></div>
                 </div>
             </div>
-            <div className={classnames("goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
+            <div className={classnames("glass", "black", "goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
                 <SVG className="goTop" src={ArrowIcon} />
             </div>
             <div className="info"></div>
