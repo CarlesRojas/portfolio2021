@@ -899,7 +899,7 @@ img {
     @include border-radius(50px);
 
     @media only screen and (max-width: $collapseNavbarWidth) {
-        margin: 2rem;
+        margin: 1rem;
         @include border-radius(25px);
     }
 
@@ -1381,6 +1381,7 @@ img {
         right: 0;
         overflow: visible;
         will-change: transform;
+        touch-action: none;
 
         .noVideo & {
             .horizontal & {
