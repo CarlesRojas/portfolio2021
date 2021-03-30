@@ -1128,11 +1128,9 @@ img {
 
                 .qr {
                     transform: scale(1);
-                    height: fit-content;
                     height: 12rem;
                     max-height: 12rem;
                     min-height: 12rem;
-                    width: fit-content;
                     width: 12rem;
                     max-width: 12rem;
                     min-width: 12rem;
@@ -1170,7 +1168,7 @@ img {
             }
 
             &.noVideo {
-                width: 40%;
+                width: 50%;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     width: 100%;
@@ -1266,7 +1264,10 @@ img {
             }
 
             .videoContainer {
-                display: block;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: calc(50% - 4rem);
                 margin: 0 2rem 2rem;
                 @include border-radius(15px);
@@ -1284,6 +1285,38 @@ img {
                 .video {
                     height: 100%;
                     width: 100%;
+                }
+
+                .videoIconContainer {
+                    pointer-events: none;
+                    position: absolute;
+                    height: 4.5rem;
+                    max-height: 4.5rem;
+                    min-height: 4.5rem;
+                    width: 4.5rem;
+                    max-width: 4.5rem;
+                    min-width: 4.5rem;
+                    background-color: $cursor-active-color;
+                    opacity: 0;
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        opacity: 1;
+
+                        &.playing {
+                            opacity: 0;
+                        }
+                    }
+
+                    @include border-radius(100vw);
+                    @include transition(all 0.4s ease-in-out);
+                    @include box-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+
+                    .videoPlayIcon {
+                        height: 100%;
+                        width: 100%;
+                        padding: 1.5rem;
+                        margin: 2px 0 0 3px;
+                    }
                 }
             }
 

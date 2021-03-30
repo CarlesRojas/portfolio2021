@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import ReactPlayer from "react-player/lazy";
-import classNames from "classnames";
+import classnames from "classnames";
+import SVG from "react-inlinesvg";
 import Deck from "./Deck";
+
+// Icons
+import PlayIcon from "resources/icons/play.svg";
 
 // Contexts
 import { Utils } from "contexts/Utils";
@@ -186,6 +190,9 @@ export default function Project({ image, icon, title, subtitle, description, lin
                     },
                 }}
             />
+            <div className={classnames("videoIconContainer", { playing })}>
+                <SVG className="videoPlayIcon" src={PlayIcon} />
+            </div>
         </div>
     ) : null;
     var videoExists = video ? true : false;
@@ -222,7 +229,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
         descriptionDOM.current = description
             ? description.map((paragraph, i) => {
                   return (
-                      <div className={classNames("description", { first: i === 0 })} key={i} ref={descriptionnRef}>
+                      <div className={classnames("description", { first: i === 0 })} key={i} ref={descriptionnRef}>
                           {paragraph}
                       </div>
                   );
@@ -273,11 +280,11 @@ export default function Project({ image, icon, title, subtitle, description, lin
     // ###################################################
 
     return (
-        <div className={classNames("project", "glass", id, { revealed })}>
+        <div className={classnames("project", "glass", id, { revealed })}>
             {imageDOM.current}
 
             <div className="mainContainer">
-                <div className={classNames("infoContainer", { horizontal }, { noVideo: !videoExists })}>
+                <div className={classnames("infoContainer", { horizontal }, { noVideo: !videoExists })}>
                     <div className="profileContainer">
                         {iconDOM.current}
 
@@ -296,9 +303,9 @@ export default function Project({ image, icon, title, subtitle, description, lin
                     </div>
                 </div>
 
-                <div className={classNames("mediaContainer", { horizontal }, { noVideo: !videoExists })}>
+                <div className={classnames("mediaContainer", { horizontal }, { noVideo: !videoExists })}>
                     {videoDOM}
-                    <div className={classNames("screenshotsContainer", { noVideo: !videoExists }, id)}>{screenshotsElem}</div>
+                    <div className={classnames("screenshotsContainer", { noVideo: !videoExists }, id)}>{screenshotsElem}</div>
                 </div>
             </div>
         </div>
