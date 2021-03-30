@@ -93,7 +93,7 @@ export default function WebDev() {
         // Show section
         fadeTimeout.current = setTimeout(() => {
             setVisible(true);
-        }, 100);
+        }, 400);
 
         // Unsubscribe from events and stop loop
         return () => {
@@ -135,6 +135,7 @@ export default function WebDev() {
                 horizontal={false}
                 id="matchEat"
                 process="MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen."
+                i={0}
             ></Project>
 
             {/* ################################# */}
@@ -156,6 +157,7 @@ export default function WebDev() {
                 horizontal={true}
                 id="gstocks"
                 process="g-stocks is a tool made with JavaScript targeting desktop devices. It is still in development and can’t be accessed yet."
+                i={1}
             ></Project>
 
             {/* ################################# */}
@@ -175,6 +177,7 @@ export default function WebDev() {
                 horizontal={false}
                 id="spot"
                 process="Spot is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
+                i={2}
             ></Project>
 
             {/* ################################# */}
@@ -194,6 +197,7 @@ export default function WebDev() {
                 horizontal={false}
                 id="reddon"
                 process="Reddon is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
+                i={3}
             ></Project>
 
             {/* ################################# */}
@@ -215,6 +219,7 @@ export default function WebDev() {
                 horizontal={true}
                 id="portfolio"
                 process="This portfolio is a webpage build using ReactJS."
+                i={4}
             ></Project>
         </div>
     );

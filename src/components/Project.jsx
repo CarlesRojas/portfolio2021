@@ -5,16 +5,43 @@ import Deck from "./Deck";
 
 // Contexts
 import { Utils } from "contexts/Utils";
+import { Data } from "contexts/Data";
 
 // Constants
 const SMALL_SCREEN_WIDTH = 1100;
 
-export default function Project({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, id }) {
+export default function Project({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, id, i }) {
     // Contexts
     const { useForceUpdate } = useContext(Utils);
+    const { scrollContainer } = useContext(Data);
 
     // Force update
     const forceUpdate = useForceUpdate();
+
+    // ###################################################
+    //   APPEAR ON SCROLL
+    // ###################################################
+
+    // Main image ref
+    const splashScreenRef = useRef(null);
+
+    // State to check if this Project has revealed
+    const [revealed, setRevealed] = useState(i === 0);
+
+    // On window scroll
+    const onScroll = () => {
+        // Return if it has already been revelaed
+        if (revealed) return;
+
+        // Get bounding box of splash image
+        const box = splashScreenRef.current.getBoundingClientRect();
+
+        // Check if it is half in view
+        const halfPoint = box.top + (box.bottom - box.top) / 3;
+
+        // Reveal
+        if (halfPoint < window.innerHeight) setRevealed(true);
+    };
 
     // ###################################################
     //   RESIZE LOGIC
@@ -137,12 +164,18 @@ export default function Project({ image, icon, title, subtitle, description, lin
 
     // Subscribe and unsubscrive to events
     useEffect(() => {
+        // Scroll container ref
+        const scrollContainerRef = scrollContainer.current;
+
         // Subscribe to events
         window.addEventListener("resize", onResize);
+        scrollContainerRef.addEventListener("scroll", onScroll);
         window.PubSub.sub("onVideoPlay", onVideoPlay);
 
         // Image
-        imageDOM.current = image ? <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }}></div> : null;
+        imageDOM.current = image ? (
+            <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }} ref={splashScreenRef}></div>
+        ) : null;
 
         // Icon
         iconDOM.current = icon ? <img src={icon} alt="" className="icon" /> : null;
@@ -190,6 +223,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
         return () => {
             // Unsubscribe to events
             window.removeEventListener("resize", onResize);
+            scrollContainerRef.removeEventListener("scroll", onScroll);
             window.PubSub.unsub("onVideoPlay", onVideoPlay);
 
             // Clear timeouts
@@ -204,7 +238,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
     // ###################################################
 
     return (
-        <div className={`project glass ${id}`}>
+        <div className={classNames("project", "glass", id, { revealed })}>
             {imageDOM.current}
 
             <div className="mainContainer">

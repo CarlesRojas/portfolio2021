@@ -885,15 +885,23 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transform: translateY(50px);
     width: 95%;
     max-width: 1500px;
     overflow: visible;
+    opacity: 0;
     margin: 4rem;
+    @include transition(all 0.5s ease-in-out);
     @include border-radius(50px);
 
     @media only screen and (max-width: $collapseNavbarWidth) {
         margin: 2rem;
         @include border-radius(25px);
+    }
+
+    &.revealed {
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .splashscreen {
@@ -935,24 +943,24 @@ img {
             width: 40%;
             padding-right: 1rem;
 
-            &.noVideo {
-                width: 50%;
-
-                &.horizontal {
-                    width: 40%;
-                }
-
-                @media only screen and (max-width: $collapseNavbarWidth) {
-                    width: 100%;
-                }
-            }
-
             @media only screen and (max-width: $collapseNavbarWidth) {
                 width: 100% !important;
                 padding-right: 0;
 
                 &.horizontal {
                     width: 100% !important;
+                }
+            }
+
+            &.noVideo {
+                width: 50%;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: 100%;
+                }
+
+                &.horizontal {
+                    width: 40%;
                 }
             }
 
@@ -1025,8 +1033,8 @@ img {
                         text-align: left;
 
                         @media only screen and (max-width: $collapseNavbarWidth) {
-                            text-align: center;
                             font-size: 1rem;
+                            text-align: center;
                         }
                     }
                 }
@@ -1042,12 +1050,12 @@ img {
                 text-align: left;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
+                    display: none;
                     width: 100%;
                     margin-left: 0;
                     padding: 1rem 0.5rem 0;
                     font-size: 1rem;
                     text-align: center;
-                    display: none;
                 }
 
                 &.first {
@@ -1158,6 +1166,12 @@ img {
                 width: 60%;
                 padding-top: 60%;
 
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    height: unset;
+                    width: 100%;
+                    padding-top: unset;
+                }
+
                 &.noVideo {
                     height: unset;
                     padding-top: unset;
@@ -1167,12 +1181,6 @@ img {
                     }
                 }
 
-                @media only screen and (max-width: $collapseNavbarWidth) {
-                    height: unset;
-                    width: 100%;
-                    padding-top: unset;
-                }
-
                 .videoContainer {
                     position: absolute;
                     height: calc(50% - 4rem);
@@ -1180,6 +1188,16 @@ img {
                     top: 0;
                     margin: 0 4rem;
                     @include border-radius(15px);
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        position: relative;
+                        height: unset;
+                        width: calc(100% - 1rem);
+                        margin: 0 0.5rem 2rem;
+                        video {
+                            width: 100% !important;
+                        }
+                    }
 
                     &.letsDrive {
                         margin: 0 1.3rem;
@@ -1193,20 +1211,9 @@ img {
                         height: calc(50% - 5.4rem);
                     }
 
-                    @media only screen and (max-width: $collapseNavbarWidth) {
-                        video {
-                            width: 100% !important;
-                        }
-
-                        position: relative;
-                        height: unset;
-                        width: calc(100% - 1rem);
-                        margin: 0 0.5rem 2rem;
-                    }
-
                     .video {
-                        width: 100%;
                         height: 100%;
+                        width: 100%;
                     }
                 }
 
@@ -1216,19 +1223,6 @@ img {
                     right: unset;
                     bottom: 0;
 
-                    &.noVideo {
-                        position: relative;
-                        width: 100%;
-                        top: 0;
-                        bottom: unset;
-                        height: fit-content;
-
-                        @media only screen and (max-width: $collapseNavbarWidth) {
-                            height: 29vh;
-                            width: 100%;
-                        }
-                    }
-
                     @media only screen and (max-width: $collapseNavbarWidth) {
                         height: 29vh;
                         width: 100%;
@@ -1236,6 +1230,19 @@ img {
 
                         &.letsDrive {
                             margin: 2rem 0 0;
+                        }
+                    }
+
+                    &.noVideo {
+                        position: relative;
+                        height: fit-content;
+                        width: 100%;
+                        top: 0;
+                        bottom: unset;
+
+                        @media only screen and (max-width: $collapseNavbarWidth) {
+                            height: 29vh;
+                            width: 100%;
                         }
                     }
                 }
@@ -1249,18 +1256,17 @@ img {
                 @include box-shadow(0 0 20px rgba(0, 0, 0, 0.3));
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
-                    video {
-                        width: unset !important;
-                    }
-
                     height: 60vh;
                     width: unset;
                     margin: 0 0.5rem 2rem;
+                    video {
+                        width: unset !important;
+                    }
                 }
 
                 .video {
-                    width: 100%;
                     height: 100%;
+                    width: 100%;
                 }
             }
 
@@ -1272,13 +1278,13 @@ img {
                 right: 0;
                 overflow: visible;
 
-                &.noVideo {
+                @media only screen and (max-width: $collapseNavbarWidth) {
                     position: relative;
                     height: 60vh;
                     width: 100%;
                 }
 
-                @media only screen and (max-width: $collapseNavbarWidth) {
+                &.noVideo {
                     position: relative;
                     height: 60vh;
                     width: 100%;
@@ -1325,9 +1331,9 @@ img {
 
         .noVideo & {
             .horizontal & {
+                height: fit-content;
                 width: 80%;
                 margin-right: 2.5rem;
-                height: fit-content;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     width: 100%;
@@ -1347,7 +1353,7 @@ img {
             user-select: none;
             height: calc(100% - 3rem);
             z-index: 5;
-            background-color: white;
+            background-color: rgb(236, 236, 236);
             margin-left: 4rem;
             will-change: transform;
             @include border-radius(15px);

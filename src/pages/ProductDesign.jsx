@@ -96,7 +96,7 @@ export default function ProductDesign() {
         // Show section
         fadeTimeout.current = setTimeout(() => {
             setVisible(true);
-        }, 100);
+        }, 400);
 
         // Unsubscribe from events and stop loop
         return () => {
@@ -138,6 +138,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="smartBike"
                 process="Smartbike was the final project for the 3D Modeling subject at EINA, University School of Design and Art. It was modeled with SolidWorks and animated using KeyShot. The final images were made using the KeyShot renders and Photoshop."
+                i={0}
             ></Project>
 
             {/* ################################# */}
@@ -160,6 +161,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="holoLens"
                 process="HoloLens is a concept project modeled using SolidWorks and animated with KeyShot. It only represents a proof of concept and helps visualize how holographic computers could integrate with currently existing devices. "
+                i={1}
             ></Project>
 
             {/* ################################# */}
@@ -182,6 +184,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="gwood"
                 process="Gwood is a project made by students of EINA, University School of Design and Art for the Hábitat fair in Valencia 2014. Gwood was divided in five groups. The lounge chair was modeled with SolidWorks and made at EINA's workshop."
+                i={2}
             ></Project>
 
             {/* ################################# */}
@@ -204,6 +207,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="orbit"
                 process="Orbit was the final career project at EINA, University School of Design and Art. It was modeled using SolidWorks, rendered, and animated with KeyShot and edited with Photoshop. It's a proof of concept for an All-In-One device."
+                i={3}
             ></Project>
 
             {/* ################################# */}
@@ -226,6 +230,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="showBattle"
                 process="ShowBattle is a personal project that was completely created using Photoshop. Al the images used are property of the original show producers. The cards were printed once for personal use."
+                i={4}
             ></Project>
 
             {/* ################################# */}
@@ -248,6 +253,7 @@ export default function ProductDesign() {
                 horizontal={true}
                 id="smartWatch"
                 process="SmartWatch is a project modeled and rendered using SolidWorks for an early project at EINA, University School of Design and Art. The time display method is an original idea animated using Flash Pro."
+                i={5}
             ></Project>
         </div>
     );

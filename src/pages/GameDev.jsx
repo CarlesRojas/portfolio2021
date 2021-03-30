@@ -141,7 +141,7 @@ export default function GameDev() {
         // Show section
         fadeTimeout.current = setTimeout(() => {
             setVisible(true);
-        }, 100);
+        }, 400);
 
         // Unsubscribe from events and stop loop
         return () => {
@@ -182,6 +182,7 @@ export default function GameDev() {
                 horizontal={false}
                 id="cubic"
                 process="Cubic 3D is a game made with Unity targeting the mobile devices. The tridimensional tetrominos have been modeled using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store."
+                i={0}
             ></Project>
 
             {/* ################################# */}
@@ -205,6 +206,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="letsDrive"
                 process="Let’s Drive is a game made with Unity targeting the mobile devices. It was made by Alejandra Jiménez & me (Carles Rojas). The game is coded in C# is currently published on the Google Play Store."
+                i={1}
             ></Project>
 
             {/* ################################# */}
@@ -226,6 +228,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="trickshots"
                 process="TrickShots is a game made with Unity targeting the HoloLens device by Microsoft. The 3D holograms that can be placed into the world have been modeled using SolidWorks and Maya and textured with Photoshop. The game is coded in C# and build with Visual Studio and is currently published on the Windows Store, available only for the HoloLens device by Microsoft."
+                i={2}
             ></Project>
 
             {/* ################################# */}
@@ -257,6 +260,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="holochess"
                 process="HoloChess is a game made with Unity targeting the HoloLens device by Microsoft. The distinctively styled chessboards and pieces have been modeled using SolidWorks and Maya and textured with Photoshop. The game is coded in C# and build with Visual Studio and is currently published on the Windows Store, available only for the HoloLens device by Microsoft."
+                i={3}
             ></Project>
 
             {/* ################################# */}
@@ -278,6 +282,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="neoWar"
                 process="NeoWar is a game made with Unity targeting Windows devices. It was made by Jaume Ballester, Santi Rubio & me (Carles Rojas). The game is coded in C# and can be played online."
+                i={4}
             ></Project>
 
             {/* ################################# */}
@@ -297,6 +302,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="escape"
                 process="Escape is a game made with Unity targeting the mobile devices. All 3D shapes were made using the default shapes available in Unity. The game is coded in C# is currently published on the Google Play Store."
+                i={5}
             ></Project>
 
             {/* ################################# */}
@@ -331,6 +337,7 @@ export default function GameDev() {
                 horizontal={false}
                 id="infinityGallery"
                 process="Infinity Gallery is an app made with Unity targeting the mobile devices. All images been made using Illustrator and Photoshop, and Wolfram Alpha was used to create the algorithm to encode the images. The app is coded in C# is currently published on Google Play Store."
+                i={6}
             ></Project>
 
             {/* ################################# */}
@@ -352,6 +359,7 @@ export default function GameDev() {
                 horizontal={true}
                 id="portal"
                 process="Portal is a work in progress game made with Unity targeting Windows devices. The sprites were created using Photoshop and Illustrator. The game is coded in C# and is not yet available."
+                i={7}
             ></Project>
         </div>
     );

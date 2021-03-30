@@ -24,7 +24,7 @@ import LogoWhite from "resources/logoWhite.svg";
 
 export default function App() {
     // Contexts
-    const { landingDone } = useContext(Data);
+    const { landingDone, scrollContainer } = useContext(Data);
 
     // ###################################################
     //      ORIENTATION LOGIC
@@ -54,12 +54,9 @@ export default function App() {
     //      SECTION CHANGE
     // ###################################################
 
-    // App scroll container ref
-    const appRef = useRef(null);
-
     // On section change -> Scroll to top
     const onSectionChange = () => {
-        appRef.current.scrollTo({ top: 0, behavior: "smooth" });
+        scrollContainer.current.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     // ###################################################
@@ -120,7 +117,7 @@ export default function App() {
         ) : null;
 
     return (
-        <div className={classnames("app", { scrollActive: landingDone && orientation === "portrait" })} ref={appRef}>
+        <div className={classnames("app", { scrollActive: landingDone && orientation === "portrait" })} ref={scrollContainer}>
             {landscapeBlock}
             <Cursor />
             <SplashScreen />

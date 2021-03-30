@@ -7,11 +7,12 @@ const DataProvider = (props) => {
     // LANDING CHECK
     const [landingDone, setLandingDone] = useState(true); // ROJAS change to false
 
-    // Initial page
-    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
-
     // CURRENT SECTION
+    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
     const section = useRef(initialPage);
+
+    // SCROLL CONTAINER
+    const scrollContainer = useRef(null);
 
     return (
         <Data.Provider
@@ -22,6 +23,9 @@ const DataProvider = (props) => {
 
                 // CURRENT SECTION
                 section,
+
+                // SCROLL CONTAINER
+                scrollContainer,
             }}
         >
             {props.children}
