@@ -12,7 +12,7 @@ import { Utils } from "contexts/Utils";
 import { Data } from "contexts/Data";
 
 // Constants
-const SMALL_SCREEN_WIDTH = 1100;
+const COLLAPSE_NAVBAR_WIDTH = 1100;
 
 export default function Project({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, id, process, i }) {
     // Contexts
@@ -117,7 +117,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
 
     // Image
     imageDOM.current = image ? (
-        <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }} ref={splashScreenRef}></div>
+        <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= COLLAPSE_NAVBAR_WIDTH ? image.desktop : image.mobile})` }} ref={splashScreenRef}></div>
     ) : null;
 
     // ###################################################

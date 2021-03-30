@@ -13,6 +13,7 @@ import ProductDesign from "pages/ProductDesign";
 // Components
 import Cursor from "components/Cursor";
 import Navbar from "components/Navbar";
+import Footer from "components/Footer";
 import SplashScreen from "components/SplashScreen";
 import Background from "components/Background";
 
@@ -143,6 +144,8 @@ export default function App() {
                     <Route path="/" component={WebDev}></Route>
                 </Switch>
             </Router>
+
+            <Footer />
         </div>
     );
 }

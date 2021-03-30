@@ -12,7 +12,7 @@ import MatchEatScreenshot3 from "resources/projects/MatchEat/screenshot3.jpg";
 import MatchEatScreenshot4 from "resources/projects/MatchEat/screenshot4.jpg";
 import MatchEatScreenshot5 from "resources/projects/MatchEat/screenshot5.jpg";
 import MatchEatScreenshot6 from "resources/projects/MatchEat/screenshot6.jpg";
-import MatchEatScreenshot7 from "resources/projects/MatchEat/screenshot6.jpg";
+import MatchEatScreenshot7 from "resources/projects/MatchEat/screenshot7.jpg";
 import MatchEatVideo from "resources/projects/MatchEat/video.mp4";
 import MatchEatQR from "resources/projects/MatchEat/qr.png";
 
@@ -207,7 +207,7 @@ export default function WebDev() {
             <Project
                 image={{ desktop: PortfolioSplash, mobile: PortfolioSplashMobile }}
                 icon={PortfolioIcon}
-                title="Potfolio"
+                title="Portfolio"
                 subtitle="A portfolio of all the projects I’ve made (The ones that are worth mentioning 😅)."
                 description={[
                     "I’ve divided the projects in three sections, Web Development, Game Development & Product Design. Each card shows you a brief explanation of each project with some screenshots.",
