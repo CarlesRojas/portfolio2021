@@ -112,6 +112,15 @@ export default function Project({ image, icon, title, subtitle, description, lin
     const screenshotsElem = screenshotsRevealed ? screenshotsDOM.current : null;
 
     // ###################################################
+    //   SPLASH IMAGE
+    // ###################################################
+
+    // Image
+    imageDOM.current = image ? (
+        <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }} ref={splashScreenRef}></div>
+    ) : null;
+
+    // ###################################################
     //   VIDEO
     // ###################################################
 
@@ -210,11 +219,6 @@ export default function Project({ image, icon, title, subtitle, description, lin
         window.addEventListener("resize", onResize);
         scrollContainerRef.addEventListener("scroll", onScroll);
         window.PubSub.sub("onVideoPlay", onVideoPlay);
-
-        // Image
-        imageDOM.current = image ? (
-            <div className="splashscreen" style={{ backgroundImage: `url(${windowWidth >= SMALL_SCREEN_WIDTH ? image.desktop : image.mobile})` }} ref={splashScreenRef}></div>
-        ) : null;
 
         // Icon
         iconDOM.current = icon ? <img src={icon} alt="" className="icon" /> : null;
