@@ -10,38 +10,13 @@ import { Data } from "contexts/Data";
 // Constants
 const SMALL_SCREEN_WIDTH = 1100;
 
-export default function Project({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, id, i }) {
+export default function Project({ image, icon, title, subtitle, description, links, qr, video, screenshots, horizontal, id, process, i }) {
     // Contexts
     const { useForceUpdate } = useContext(Utils);
     const { scrollContainer } = useContext(Data);
 
     // Force update
     const forceUpdate = useForceUpdate();
-
-    // ###################################################
-    //   APPEAR ON SCROLL
-    // ###################################################
-
-    // Main image ref
-    const splashScreenRef = useRef(null);
-
-    // State to check if this Project has revealed
-    const [revealed, setRevealed] = useState(i === 0);
-
-    // On window scroll
-    const onScroll = () => {
-        // Return if it has already been revelaed
-        if (revealed) return;
-
-        // Get bounding box of splash image
-        const box = splashScreenRef.current.getBoundingClientRect();
-
-        // Check if it is half in view
-        const halfPoint = box.top + (box.bottom - box.top) / 3;
-
-        // Reveal
-        if (halfPoint < window.innerHeight) setRevealed(true);
-    };
 
     // ###################################################
     //   RESIZE LOGIC
@@ -71,9 +46,66 @@ export default function Project({ image, icon, title, subtitle, description, lin
     const titleDOM = useRef(null);
     const subtitleDOM = useRef(null);
     const descriptionDOM = useRef(null);
+    const processDOM = useRef(null);
     const linksDOM = useRef(null);
     const qrDOM = useRef(null);
     const screenshotsDOM = useRef(null);
+
+    // ###################################################
+    //   APPEAR ON SCROLL
+    // ###################################################
+
+    // Refs
+    const splashScreenRef = useRef(null);
+    const descriptionnRef = useRef(null);
+
+    // State to check if this Project has revealed
+    const [revealed, setRevealed] = useState(i === 0);
+
+    // Screenshots revealed
+    const [screenshotsRevealed, setScreenshotsRevealed] = useState(i !== 0);
+
+    // Show project when splash is in view
+    const revealProject = () => {
+        // Return if it has already been revelaed
+        if (revealed || !splashScreenRef.current) return;
+
+        // Get bounding box of splash image
+        const box = splashScreenRef.current.getBoundingClientRect();
+
+        // Check if it is half in view
+        const halfPoint = box.top + (box.bottom - box.top) / 3;
+
+        // Reveal
+        if (halfPoint < window.innerHeight) setRevealed(true);
+    };
+
+    // Show screenshots when in view
+    const revealScreenshots = () => {
+        // Return if they have already been revelaed
+        if (screenshotsRevealed || !descriptionnRef.current) return;
+
+        // Get bounding box of description
+        const box = descriptionnRef.current.getBoundingClientRect();
+
+        // Check if it is half in view
+        const halfPoint = box.top + (box.bottom - box.top) / 2;
+
+        // Reveal
+        if (halfPoint < window.innerHeight) setScreenshotsRevealed(true);
+    };
+
+    // On window scroll
+    const onScroll = () => {
+        // Reveal Project
+        revealProject();
+
+        // Reveal Screenshots
+        revealScreenshots();
+    };
+
+    // Show screenshots
+    const screenshotsElem = screenshotsRevealed ? screenshotsDOM.current : null;
 
     // ###################################################
     //   VIDEO
@@ -190,12 +222,15 @@ export default function Project({ image, icon, title, subtitle, description, lin
         descriptionDOM.current = description
             ? description.map((paragraph, i) => {
                   return (
-                      <div className={classNames("description", { first: i === 0 })} key={i}>
+                      <div className={classNames("description", { first: i === 0 })} key={i} ref={descriptionnRef}>
                           {paragraph}
                       </div>
                   );
               })
             : null;
+
+        // PROCESS
+        processDOM.current = process ? <div className="process glass">{process}</div> : null;
 
         // Links
         linksDOM.current = links
@@ -253,6 +288,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
                     </div>
 
                     {descriptionDOM.current}
+                    {processDOM.current}
 
                     <div className="linksContainer">
                         {linksDOM.current}
@@ -262,7 +298,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
 
                 <div className={classNames("mediaContainer", { horizontal }, { noVideo: !videoExists })}>
                     {videoDOM}
-                    <div className={classNames("screenshotsContainer", { noVideo: !videoExists }, id)}>{screenshotsDOM.current}</div>
+                    <div className={classNames("screenshotsContainer", { noVideo: !videoExists }, id)}>{screenshotsElem}</div>
                 </div>
             </div>
         </div>

@@ -885,7 +885,7 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(50px);
+    transform: translateY(100px);
     width: 95%;
     max-width: 1500px;
     overflow: visible;
@@ -1028,7 +1028,7 @@ img {
                         width: 100%;
                         color: $text;
                         opacity: 0.6;
-                        font-size: 1.2rem;
+                        font-size: 1.1rem;
                         font-weight: 600;
                         text-align: left;
 
@@ -1060,6 +1060,23 @@ img {
 
                 &.first {
                     padding-top: 2rem;
+                }
+            }
+
+            .process {
+                margin: 2rem 0 0.5rem 2rem;
+                padding: 1rem;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 0.507);
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    display: none;
+                    width: calc(100% - 2rem);
+                    margin: 2rem 1rem 0.5rem;
+                    padding: 1rem;
+                    font-size: 1rem;
+                    text-align: center;
                 }
             }
 
@@ -1353,7 +1370,7 @@ img {
             user-select: none;
             height: calc(100% - 3rem);
             z-index: 5;
-            background-color: rgb(236, 236, 236);
+            background-color: rgb(255, 255, 255);
             margin-left: 4rem;
             will-change: transform;
             @include border-radius(15px);
