@@ -87,7 +87,7 @@ export default function Footer() {
             // After changing icons, show apps
             appsHiddenTimeout.current = setTimeout(() => {
                 setAppsHidden(false);
-            }, 100);
+            }, 200);
         }, 400);
     };
 
