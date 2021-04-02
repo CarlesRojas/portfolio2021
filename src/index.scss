@@ -440,7 +440,7 @@ img {
         @include transition(transform 0.2s ease-in-out, opacity 0.2s ease-in-out);
         @include transition-delay(0s);
 
-        &.playIcon {
+        &.play {
             padding: 2px 0 0 5px;
         }
 
@@ -461,6 +461,10 @@ img {
             transform: scale(1);
             opacity: 1;
             @include transition-delay(0.2s);
+
+            &.close {
+                transform: scale(1.2);
+            }
         }
     }
 }

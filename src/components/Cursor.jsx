@@ -6,6 +6,7 @@ import SVG from "react-inlinesvg";
 // Icons
 import PlayIcon from "resources/icons/play.svg";
 import PauseIcon from "resources/icons/pause.svg";
+import CloseIcon from "resources/icons/close2.svg";
 
 export default function Cursor() {
     // Mouse state
@@ -47,7 +48,7 @@ export default function Cursor() {
     //      SHOW ICON
     // ###################################################
 
-    // State: "play", "play", "none"
+    // State: "play", "pause", "close", "none"
     const [iconState, setIconState] = useState("none");
 
     // On set cursor icon
@@ -116,11 +117,11 @@ export default function Cursor() {
     });
 
     // Get the icon
-    const icon = iconState === "none" ? null : iconState === "play" ? PlayIcon : PauseIcon;
+    const icon = iconState === "none" ? null : iconState === "play" ? PlayIcon : iconState === "pause" ? PauseIcon : CloseIcon;
 
     return (
         <div className={cursorClasses} style={{ left: `${position.x}px`, top: `${position.y}px` }}>
-            <SVG className={classnames("icon", { playIcon: iconState === "play" })} src={icon} />
+            <SVG className={classnames("icon", iconState)} src={icon} />
         </div>
     );
 }

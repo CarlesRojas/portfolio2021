@@ -51,6 +51,7 @@ export default function About() {
         showRef.current = true;
         setShow(true);
         setSprings({ position: 0, opacity: 1 });
+        window.PubSub.emit("setCursorIcon", { type: "close" });
     };
 
     // On show about
@@ -58,6 +59,7 @@ export default function About() {
         showRef.current = false;
         setShow(false);
         setSprings({ position: -window.innerHeight * 2, opacity: 0 });
+        window.PubSub.emit("setCursorIcon", { type: "none" });
     };
 
     // #################################################
@@ -133,6 +135,20 @@ export default function About() {
     };
 
     // ###################################################
+    //      CURSOR
+    // ###################################################
+
+    // On mouse over about section -> Change cursor icon
+    const onMouseOverAbout = () => {
+        window.PubSub.emit("setCursorIcon", { type: "none" });
+    };
+
+    // On mouse exiting the about section -> Change cursor icon
+    const onMouseOutAbout = () => {
+        window.PubSub.emit("setCursorIcon", { type: "close" });
+    };
+
+    // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
     // ###################################################
 
@@ -161,7 +177,13 @@ export default function About() {
     return (
         <div className="about" {...gestureBind()}>
             <animated.div className={classnames("aboutbackground", "glass", { disabled: !show })} style={{ opacity: springs.opacity }} onClick={hideAbout}></animated.div>
-            <animated.div className="aboutContainer glass" style={{ y: springs.position, opacity: springs.opacity }} ref={containerRef}>
+            <animated.div
+                className="aboutContainer glass"
+                style={{ y: springs.position, opacity: springs.opacity }}
+                ref={containerRef}
+                onMouseOver={onMouseOverAbout}
+                onMouseOut={onMouseOutAbout}
+            >
                 <div className="profile">
                     <img src={ProfilePicture} alt="" className="profilePicture" />
                     <div className="name">Carles Rojas</div>
