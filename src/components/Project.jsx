@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { isMobile, isIOS, isMacOs } from "react-device-detect";
 import ReactPlayer from "react-player/lazy";
 import classnames from "classnames";
 import SVG from "react-inlinesvg";
@@ -177,35 +178,36 @@ export default function Project({ image, icon, title, subtitle, description, lin
     };
 
     // Video
-    var videoDOM = video ? (
-        <div className={`videoContainer ${id}`} onMouseOver={onMouseOverVideo} onMouseOut={onMouseOutVideo}>
-            <ReactPlayer
-                ref={player}
-                onClick={onVideoClicked}
-                playing={playing}
-                className="video"
-                url={video}
-                width=""
-                height=""
-                onEnded={onVideoEnds}
-                config={{
-                    file: {
-                        forceVideo: true,
-                        attributes: {
-                            muted: true,
-                            controls: false,
-                            disablePictureInPicture: true,
-                            controlsList: "nodownload noremoteplayback",
+    var videoDOM =
+        video && !isIOS && !isMacOs && !isMobile ? (
+            <div className={`videoContainer ${id}`} onMouseOver={onMouseOverVideo} onMouseOut={onMouseOutVideo}>
+                <ReactPlayer
+                    ref={player}
+                    onClick={onVideoClicked}
+                    playing={playing}
+                    className="video"
+                    url={video}
+                    width=""
+                    height=""
+                    onEnded={onVideoEnds}
+                    config={{
+                        file: {
+                            forceVideo: true,
+                            attributes: {
+                                muted: true,
+                                controls: false,
+                                disablePictureInPicture: true,
+                                controlsList: "nodownload noremoteplayback",
+                            },
                         },
-                    },
-                }}
-            />
-            <div className={classnames("videoIconContainer", { playing })}>
-                <SVG className="videoPlayIcon" src={PlayIcon} />
+                    }}
+                />
+                <div className={classnames("videoIconContainer", { playing })}>
+                    <SVG className="videoPlayIcon" src={PlayIcon} />
+                </div>
             </div>
-        </div>
-    ) : null;
-    var videoExists = video ? true : false;
+        ) : null;
+    var videoExists = video && !isIOS && !isMacOs && !isMobile ? true : false;
 
     // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
