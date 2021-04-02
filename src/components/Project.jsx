@@ -190,6 +190,7 @@ export default function Project({ image, icon, title, subtitle, description, lin
                 onEnded={onVideoEnds}
                 config={{
                     file: {
+                        forceVideo: true,
                         attributes: {
                             muted: true,
                             controls: false,

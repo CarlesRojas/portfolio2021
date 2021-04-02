@@ -4,6 +4,7 @@ import SVG from "react-inlinesvg";
 
 // Icons
 import ArrowIcon from "resources/icons/arrow.svg";
+import LogoGradientIcon from "resources/logoGradient.svg";
 
 // Web Icons
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
@@ -30,8 +31,12 @@ import OrbitIcon from "resources/projects/Orbit/icon.png";
 import ShowBattleIcon from "resources/projects/ShowBattle/icon.png";
 import SmartWatchIcon from "resources/projects/SmartWatch/icon.png";
 
+// About Icons
+import AboutIcon from "resources/projects/About/icon.png";
+
 // Contexts
 import { Data } from "contexts/Data";
+import { Utils } from "contexts/Utils";
 
 // Constants
 const COLLAPSE_NAVBAR_WIDTH = 1100;
@@ -39,6 +44,7 @@ const COLLAPSE_NAVBAR_WIDTH = 1100;
 export default function Footer() {
     // Contexts
     const { scrollContainer } = useContext(Data);
+    const { copy } = useContext(Utils);
 
     // ###################################################
     //      ICONS
@@ -62,6 +68,25 @@ export default function Footer() {
 
         // Scroll to show the icon
         scrollContainer.current.scrollTo({ top, behavior: "smooth" });
+    };
+
+    // On open about clicked
+    const onOpenAbout = () => {
+        console.log("ABOUT");
+    };
+
+    // Email div
+    const emailCopiedRef = useRef(null);
+
+    // On Email copied
+    const onCopyEmail = () => {
+        // Show the copied message for a second
+        emailCopiedRef.current.classList.remove("fadeOut");
+        void emailCopiedRef.current.offsetWidth;
+        emailCopiedRef.current.classList.add("fadeOut");
+
+        // Copy code to clipboard
+        copy("email");
     };
 
     // ###################################################
@@ -154,13 +179,26 @@ export default function Footer() {
                     {iconArray.map((icon, i) => (
                         <img src={icon} alt="" className="icon" key={i} onClick={() => onIconClicked(i)} />
                     ))}
+                    <div className="separator"></div>
+                    <img src={AboutIcon} alt="" className="icon" onClick={onOpenAbout} />
                     <div className="spacing"></div>
                 </div>
             </div>
             <div className={classnames("glass", "black", "goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
                 <SVG className="goTop" src={ArrowIcon} />
             </div>
-            <div className="info"></div>
+            <div className="info">
+                <div className="nameContainer">
+                    <SVG className={classnames("icon", currSection)} src={LogoGradientIcon} />
+                    <p className="name">Carles Rojas</p>
+                </div>
+                <form autoComplete="off" noValidate spellCheck="false" onClick={onCopyEmail}>
+                    <input id="email" className="email hoverable" type="email" autoComplete="new-password" defaultValue="carlesrojas@outlook.com" />
+                </form>
+                <div className="emailCopy" ref={emailCopiedRef}>
+                    email copied
+                </div>
+            </div>
         </div>
     );
 }

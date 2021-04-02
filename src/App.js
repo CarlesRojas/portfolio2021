@@ -16,6 +16,7 @@ import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import SplashScreen from "components/SplashScreen";
 import Background from "components/Background";
+import About from "components/About";
 
 // Contexts
 import { Data } from "contexts/Data";
@@ -144,6 +145,8 @@ export default function App() {
                     <Route path="/" component={WebDev}></Route>
                 </Switch>
             </Router>
+
+            <About />
 
             <Footer />
         </div>
