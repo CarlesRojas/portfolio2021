@@ -16,7 +16,6 @@ $text-white: rgba(255, 255, 255, 0.9);
 $font-size: 18px;
 $line-height: 22px;
 
-$cursor-color: rgb(255, 255, 255);
 $cursor-active-color: rgb(255, 153, 37);
 $cursor-icon-color: rgb(40, 40, 40);
 
@@ -401,14 +400,16 @@ img {
     height: 34px;
     width: 34px;
     z-index: 9999;
-    mix-blend-mode: difference;
-    @include border-radius(100%);
-    @include box-shadow(0 0 3px 1px $cursor-color);
+    background-color: rgba(255, 255, 255, 0.3);
+    background-position: 50px -150px;
+    border: solid 1px rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    @include box-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+    @include border-radius(100vw);
     @include transition(
         background-color 0.2s ease-in-out,
         opacity 0.2s ease-in-out,
         transform 0.2s ease-in-out,
-        mix-blend-mode 0.2s ease-in-out,
         box-shadow 0.2s ease-in-out,
         width 0.2s ease-in-out,
         height 0.2s ease-in-out
@@ -422,13 +423,13 @@ img {
     // HOVERED
     &.hovered {
         transform: translate(-50%, -50%) scale(1.25);
-        background-color: $cursor-color;
+        background-color: rgba(255, 255, 255, 0.5);
     }
 
     // CLICKED
     &.clicked {
-        transform: translate(-50%, -50%) scale(0.9);
-        background-color: $cursor-color;
+        transform: translate(-50%, -50%) scale(0.85);
+        background-color: rgba(255, 255, 255, 0.8);
     }
 
     // ICON
@@ -443,19 +444,13 @@ img {
         &.play {
             padding: 2px 0 0 5px;
         }
-
-        .cls-1 {
-            stroke: $cursor-icon-color !important;
-        }
     }
 
     // PLAY || PAUSE ||SCROLL DOWN
     &.iconActive {
         height: 120px;
         width: 120px;
-        mix-blend-mode: unset;
-        background-color: $cursor-active-color;
-        @include box-shadow(none);
+        background-color: rgba(255, 255, 255, 0.5);
 
         .icon {
             transform: scale(1);
@@ -501,17 +496,17 @@ img {
         height: $navbarHeight;
         @include transition(transform 0.3s ease-in-out);
 
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            height: $navbarHeight * 0.7;
+            width: 100%;
+        }
+
         &:hover {
             transform: scale(1.05);
 
             @media only screen and (max-width: $collapseNavbarWidth) {
                 transform: scale(1);
             }
-        }
-
-        @media only screen and (max-width: $collapseNavbarWidth) {
-            height: $navbarHeight * 0.7;
-            width: 100%;
         }
 
         .icon {
@@ -863,8 +858,8 @@ img {
         margin-top: 3rem;
 
         @media only screen and (max-width: $collapseNavbarWidth) {
-            margin-top: 0;
             height: 11rem;
+            margin-top: 0;
         }
 
         .nameContainer {
@@ -874,16 +869,16 @@ img {
             height: $navbarHeight;
             @include transition(transform 0.3s ease-in-out);
 
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                height: $navbarHeight * 0.7;
+            }
+
             &:hover {
                 transform: scale(1.05);
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     transform: scale(1);
                 }
-            }
-
-            @media only screen and (max-width: $collapseNavbarWidth) {
-                height: $navbarHeight * 0.7;
             }
 
             .icon {
@@ -955,13 +950,14 @@ img {
         }
 
         form {
-            @include transition(all 0.3s ease-in-out);
             user-select: none;
+            @include transition(all 0.3s ease-in-out);
 
             .email {
-                cursor: none;
                 user-select: none;
                 width: 100%;
+                cursor: none;
+                caret-color: transparent;
                 background: none;
                 color: white;
                 opacity: 0.4;
@@ -971,24 +967,23 @@ img {
                 font-size: 1.1rem;
                 font-weight: 600;
                 text-align: center;
-                caret-color: transparent;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    font-size: 1rem;
+                }
 
                 &::-moz-selection {
                     cursor: none;
-                    color: white;
-                    background: transparent;
                     caret-color: transparent;
+                    background: transparent;
+                    color: white;
                 }
 
                 &::selection {
                     cursor: none;
-                    color: white;
-                    background: transparent;
                     caret-color: transparent;
-                }
-
-                @media only screen and (max-width: $collapseNavbarWidth) {
-                    font-size: 1rem;
+                    background: transparent;
+                    color: white;
                 }
             }
 
@@ -1003,9 +998,9 @@ img {
 
         .emailCopy {
             color: rgba(255, 255, 255, 0.3);
+            opacity: 0;
             font-size: 1rem;
             font-weight: 600;
-            opacity: 0;
 
             @media only screen and (max-width: $collapseNavbarWidth) {
                 font-size: 0.9rem;
@@ -1828,16 +1823,16 @@ img {
 // #######################################
 
 .about {
+    pointer-events: none;
     position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 55;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 55;
     @include border-radius(0);
     @include touch-action(none);
 
@@ -1847,12 +1842,12 @@ img {
     }
 
     .aboutbackground {
+        pointer-events: all;
         position: absolute;
+        height: 100%;
+        width: 100%;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: all;
 
         &.disabled {
             pointer-events: none;
@@ -1860,31 +1855,31 @@ img {
     }
 
     .aboutContainer {
-        max-width: 50%;
+        pointer-events: all;
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 50%;
         padding-bottom: 2em;
-        pointer-events: all;
         @include touch-action(none);
 
         @media only screen and (max-width: $collapseNavbarWidth) {
-            max-width: 95%;
             max-height: 80%;
+            max-width: 95%;
             padding-bottom: 0.5em;
         }
 
         .profile {
             .profilePicture {
+                pointer-events: none;
                 width: calc(100% - 2rem);
                 margin: 1rem;
-                pointer-events: none;
                 @include border-radius(10px);
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
+                    pointer-events: none;
                     width: calc(100% - 1rem);
                     margin: 0.5rem;
-                    pointer-events: none;
                 }
             }
 
@@ -1893,6 +1888,7 @@ img {
                 font-size: 2rem;
                 font-weight: 800;
                 text-align: center;
+                pointer-events: none;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     margin-top: 1rem;
@@ -1901,13 +1897,14 @@ img {
             }
 
             form {
-                @include transition(all 0.3s ease-in-out);
                 user-select: none;
+                @include transition(all 0.3s ease-in-out);
 
                 .email {
-                    cursor: none;
                     user-select: none;
                     width: 100%;
+                    cursor: none;
+                    caret-color: transparent;
                     background: none;
                     color: black;
                     opacity: 0.4;
@@ -1917,25 +1914,25 @@ img {
                     font-size: 1.1rem;
                     font-weight: 600;
                     text-align: center;
-                    caret-color: transparent;
-
-                    &::-moz-selection {
-                        cursor: none;
-                        color: black;
-                        background: transparent;
-                        caret-color: transparent;
-                    }
-
-                    &::selection {
-                        cursor: none;
-                        color: black;
-                        background: transparent;
-                        caret-color: transparent;
-                    }
+                    pointer-events: all;
 
                     @media only screen and (max-width: $collapseNavbarWidth) {
                         margin: 0.2rem 0;
                         font-size: 0.9rem;
+                    }
+
+                    &::-moz-selection {
+                        cursor: none;
+                        caret-color: transparent;
+                        background: transparent;
+                        color: black;
+                    }
+
+                    &::selection {
+                        cursor: none;
+                        caret-color: transparent;
+                        background: transparent;
+                        color: black;
                     }
                 }
 
@@ -1950,20 +1947,22 @@ img {
 
             .emailCopy {
                 color: rgba(0, 0, 0, 0.3);
+                opacity: 0;
+                margin-bottom: 1rem;
                 font-size: 1rem;
                 font-weight: 600;
-                opacity: 0;
                 text-align: center;
-                margin-bottom: 1rem;
+                pointer-events: none;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
-                    font-size: 0.9rem;
                     margin-bottom: 0.5rem;
+                    font-size: 0.9rem;
                 }
             }
         }
 
         .studies {
+            pointer-events: none;
             margin: 1rem;
 
             @media only screen and (max-width: $collapseNavbarWidth) {
@@ -1971,38 +1970,38 @@ img {
             }
 
             .title {
-                text-align: center;
-                font-size: 1.2rem;
                 margin-bottom: 0.5rem;
+                font-size: 1.2rem;
                 font-weight: 700;
+                text-align: center;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
-                    font-size: 0.9rem;
                     margin-bottom: 0.3rem;
+                    font-size: 0.9rem;
                 }
             }
 
             .institution {
-                text-align: center;
-                font-weight: 500;
                 margin-bottom: 0.5rem;
                 font-size: 1rem;
+                font-weight: 500;
+                text-align: center;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
-                    font-size: 0.7rem;
                     margin-bottom: 0.3rem;
+                    font-size: 0.7rem;
                 }
             }
 
             .years {
-                text-align: center;
+                opacity: 0.5;
                 margin-bottom: 0.5rem;
                 font-weight: 600;
-                opacity: 0.5;
+                text-align: center;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
-                    font-size: 0.7rem;
                     margin-bottom: 0.3rem;
+                    font-size: 0.7rem;
                 }
             }
         }

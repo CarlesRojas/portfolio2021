@@ -181,18 +181,18 @@ export default function Footer() {
             <div className={classnames("apps", "glass", { appsHidden })}>
                 <div className="icons">
                     {iconArray.map((icon, i) => (
-                        <img src={icon} alt="" className="icon" key={i} onClick={() => onIconClicked(i)} />
+                        <img src={icon} alt="" className="icon hoverable" key={i} onClick={() => onIconClicked(i)} />
                     ))}
                     <div className="separator"></div>
-                    <img src={AboutIcon} alt="" className="icon" onClick={onOpenAbout} />
+                    <img src={AboutIcon} alt="" className="icon hoverable" onClick={onOpenAbout} />
                     <div className="spacing"></div>
                 </div>
             </div>
-            <div className={classnames("glass", "black", "goTopContainer", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
+            <div className={classnames("glass", "black", "goTopContainer", "hoverable", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
                 <SVG className="goTop" src={ArrowIcon} />
             </div>
             <div className="info">
-                <div className="nameContainer" onClick={onOpenAbout}>
+                <div className="nameContainer hoverable" onClick={onOpenAbout}>
                     <SVG className={classnames("icon", currSection)} src={LogoGradientIcon} />
                     <p className="name">Carles Rojas</p>
                 </div>

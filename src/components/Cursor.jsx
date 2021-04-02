@@ -16,6 +16,19 @@ export default function Cursor() {
     const [hidden, setHidden] = useState(false);
 
     // ###################################################
+    //      SECTION CHANGE
+    // ###################################################
+
+    // Current section
+    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
+    const [currSection, setCurrSection] = useState(initialPage);
+
+    // On section change -> Scroll to top
+    const onSectionChange = ({ sectionName }) => {
+        setCurrSection(sectionName);
+    };
+
+    // ###################################################
     //      ACTIONS
     // ###################################################
 
@@ -84,6 +97,7 @@ export default function Cursor() {
         // Subscribe to update hoverable items
         window.PubSub.sub("updateInteractiveItems", updateInteractiveItems);
         window.PubSub.sub("setCursorIcon", onSetCursorIcon);
+        window.PubSub.sub("onSectionChange", onSectionChange);
 
         // Update cursor interactible elements
         updateInteractiveItems();
@@ -98,6 +112,7 @@ export default function Cursor() {
             // Subscribe to update all interactive items
             window.PubSub.unsub("updateInteractiveItems", updateInteractiveItems);
             window.PubSub.unsub("setCursorIcon", onSetCursorIcon);
+            window.PubSub.unsub("onSectionChange", onSectionChange);
         };
     }, []);
 
@@ -109,7 +124,7 @@ export default function Cursor() {
     if (isMobile) return null;
 
     // Add classes to the cursor
-    const cursorClasses = classnames("cursor", {
+    const cursorClasses = classnames("cursor", currSection, {
         clicked: clicked && iconState === "none",
         hidden: hidden,
         hovered: hovered && iconState === "none",

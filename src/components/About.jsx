@@ -145,7 +145,7 @@ export default function About() {
 
     // On mouse exiting the about section -> Change cursor icon
     const onMouseOutAbout = () => {
-        window.PubSub.emit("setCursorIcon", { type: "close" });
+        if (showRef.current) window.PubSub.emit("setCursorIcon", { type: "close" });
     };
 
     // ###################################################

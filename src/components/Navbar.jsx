@@ -127,7 +127,7 @@ export default function Navbar() {
 
     return (
         <header className="navbar glass black">
-            <div className="nameContainer">
+            <div className="nameContainer hoverable">
                 <SVG className={classnames("icon", selectedButton)} src={LogoGradientIcon} onClick={onOpenAbout} />
                 <p className="name" onClick={onOpenAbout}>
                     Carles Rojas
@@ -136,13 +136,16 @@ export default function Navbar() {
             </div>
 
             <div className={classnames("buttonsContainer", { bigScreen })}>
-                <button className={classnames("pageButton", "web", { selected: selectedButton === "web" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "web")}>
+                <button className={classnames("pageButton", "web", "hoverable", { selected: selectedButton === "web" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "web")}>
                     Web Dev
                 </button>
-                <button className={classnames("pageButton", "game", { selected: selectedButton === "game" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "game")}>
+                <button className={classnames("pageButton", "game", "hoverable", { selected: selectedButton === "game" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "game")}>
                     Game Dev
                 </button>
-                <button className={classnames("pageButton", "design", { selected: selectedButton === "design" }, { bigScreen })} onClick={(event) => onButtonClicked(event, "design")}>
+                <button
+                    className={classnames("pageButton", "design", "hoverable", { selected: selectedButton === "design" }, { bigScreen })}
+                    onClick={(event) => onButtonClicked(event, "design")}
+                >
                     Product Design
                 </button>
             </div>
