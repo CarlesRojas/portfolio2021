@@ -72,7 +72,7 @@ export default function Footer() {
 
     // On open about clicked
     const onOpenAbout = () => {
-        console.log("ABOUT");
+        window.PubSub.emit("onShowAbout");
     };
 
     // ###################################################
@@ -192,7 +192,7 @@ export default function Footer() {
                 <SVG className="goTop" src={ArrowIcon} />
             </div>
             <div className="info">
-                <div className="nameContainer">
+                <div className="nameContainer" onClick={onOpenAbout}>
                     <SVG className={classnames("icon", currSection)} src={LogoGradientIcon} />
                     <p className="name">Carles Rojas</p>
                 </div>

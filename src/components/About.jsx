@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { useSpring, animated } from "react-spring";
+import { useDrag } from "react-use-gesture";
 import classnames from "classnames";
 
 // Image
@@ -8,7 +10,7 @@ import ProfilePicture from "resources/projects/About/profile.jpg";
 import { Utils } from "contexts/Utils";
 
 // Studies
-const studies = [
+const STUDIES = [
     {
         title: "Bachelor’s Degree in informatics Engineering",
         institution: "Facultat d’Informàtica de Barcelona",
@@ -33,6 +35,85 @@ export default function About() {
     // Contexts
     const { copy } = useContext(Utils);
 
+    // #################################################
+    //   ANIMATIONS
+    // #################################################
+
+    // Current page: "welcome" "login" "signup" "loading" "camera"
+    const [show, setShow] = useState(false);
+    const showRef = useRef(false);
+
+    // Page position spring
+    const [springs, setSprings] = useSpring(() => ({ position: -window.innerHeight * 2, opacity: 0 }));
+
+    // On show about
+    const showAbout = () => {
+        showRef.current = true;
+        setShow(true);
+        setSprings({ position: 0, opacity: 1 });
+    };
+
+    // On show about
+    const hideAbout = () => {
+        showRef.current = false;
+        setShow(false);
+        setSprings({ position: -window.innerHeight * 2, opacity: 0 });
+    };
+
+    // #################################################
+    //   RESIZE
+    // #################################################
+
+    // Resize timeout
+    const resizeTimeout = useRef(null);
+
+    // On window resize
+    const onResize = () => {
+        if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+
+        resizeTimeout.current = setTimeout(() => {
+            if (showRef.current) setSprings({ position: 0, opacity: 1 });
+            else setSprings({ position: -window.innerHeight * 2, opacity: 0 });
+        }, 500);
+    };
+
+    // #################################################
+    //   BACK GESTURE
+    // #################################################
+
+    // Container Ref
+    const containerRef = useRef(null);
+
+    // Horizontal gesture
+    const gestureBind = useDrag(
+        ({ event, cancel, canceled, down, vxvy: [, vy], movement: [, my] }) => {
+            // Stop event propagation
+            event.persist();
+            event.stopPropagation();
+
+            // Return if canceled
+            if (canceled) return;
+
+            // Cancel gesture
+            if (!showRef.current) return cancel();
+
+            // Snap to the welcome screen or stay on te current page
+            if (!down) {
+                const containerHeight = containerRef.current.getBoundingClientRect().height;
+
+                if (my < -containerHeight / 4 || vy < -1) hideAbout();
+                else showAbout();
+            }
+
+            // Update the position while the gesture is active
+            else {
+                var displ = Math.min(my, 20);
+                setSprings({ position: displ, opacity: 1 });
+            }
+        },
+        { filterTaps: true, axis: "y" }
+    );
+
     // ###################################################
     //      COPY EMAIL
     // ###################################################
@@ -52,12 +133,35 @@ export default function About() {
     };
 
     // ###################################################
+    //      ON COMPONENT MOUNT & UNMOUNT
+    // ###################################################
+
+    // On component mount
+    useEffect(() => {
+        // Subscribe to events
+        window.PubSub.sub("onShowAbout", showAbout);
+        window.addEventListener("resize", onResize);
+
+        return () => {
+            // Unsubscribe from events and stop loop
+            window.PubSub.unsub("onShowAbout", showAbout);
+            window.removeEventListener("resize", onResize);
+
+            // Clear timeouts
+            if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // ###################################################
     //      RENDER
     // ###################################################
 
     return (
-        <div className="about glass">
-            <div className="aboutContainer glass">
+        <div className="about" {...gestureBind()}>
+            <animated.div className={classnames("aboutbackground", "glass", { disabled: !show })} style={{ opacity: springs.opacity }} onClick={hideAbout}></animated.div>
+            <animated.div className="aboutContainer glass" style={{ y: springs.position, opacity: springs.opacity }} ref={containerRef}>
                 <div className="profile">
                     <img src={ProfilePicture} alt="" className="profilePicture" />
                     <div className="name">Carles Rojas</div>
@@ -71,16 +175,16 @@ export default function About() {
                     </div>
                 </div>
 
-                {studies.map(({ title, institution, initialYear, finalYear }, i) => {
+                {STUDIES.map(({ title, institution, initialYear, finalYear }, i) => {
                     return (
-                        <div className="studies">
+                        <div className="studies" key={i}>
                             <p className="title">{title}</p>
                             <p className="institution">{institution}</p>
                             <p className="years">{`${initialYear} - ${finalYear}`}</p>
                         </div>
                     );
                 })}
-            </div>
+            </animated.div>
         </div>
     );
 }

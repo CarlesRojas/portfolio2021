@@ -54,4 +54,11 @@ export default class EventsPubSub {
         parameters:     { id }
         id:             ID of the project where the video is playing
     },
+
+    {
+        event:          onShowAbout
+        desciption:     Called when the about page should be shown
+        parameters:     {  }
+    },
+
 */

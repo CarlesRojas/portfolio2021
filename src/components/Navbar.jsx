@@ -95,6 +95,11 @@ export default function Navbar() {
         forceUpdate();
     };
 
+    // On open about clicked
+    const onOpenAbout = () => {
+        window.PubSub.emit("onShowAbout");
+    };
+
     // ###################################################
     //      ON COMPONENT MOUNT & UNMOUNT
     // ###################################################
@@ -123,8 +128,10 @@ export default function Navbar() {
     return (
         <header className="navbar glass black">
             <div className="nameContainer">
-                <SVG className={classnames("icon", selectedButton)} src={LogoGradientIcon} />
-                <p className="name">Carles Rojas</p>
+                <SVG className={classnames("icon", selectedButton)} src={LogoGradientIcon} onClick={onOpenAbout} />
+                <p className="name" onClick={onOpenAbout}>
+                    Carles Rojas
+                </p>
                 <SVG className={classnames("menuIcon")} src={menuIcon} onClick={onMenuButtonClick} />
             </div>
 
