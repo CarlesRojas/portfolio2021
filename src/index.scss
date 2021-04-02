@@ -1884,11 +1884,11 @@ img {
             }
 
             .name {
+                pointer-events: none;
                 margin-top: 2rem;
                 font-size: 2rem;
                 font-weight: 800;
                 text-align: center;
-                pointer-events: none;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     margin-top: 1rem;
@@ -1901,6 +1901,7 @@ img {
                 @include transition(all 0.3s ease-in-out);
 
                 .email {
+                    pointer-events: all;
                     user-select: none;
                     width: 100%;
                     cursor: none;
@@ -1914,7 +1915,6 @@ img {
                     font-size: 1.1rem;
                     font-weight: 600;
                     text-align: center;
-                    pointer-events: all;
 
                     @media only screen and (max-width: $collapseNavbarWidth) {
                         margin: 0.2rem 0;
@@ -1946,13 +1946,13 @@ img {
             }
 
             .emailCopy {
+                pointer-events: none;
                 color: rgba(0, 0, 0, 0.3);
                 opacity: 0;
                 margin-bottom: 1rem;
                 font-size: 1rem;
                 font-weight: 600;
                 text-align: center;
-                pointer-events: none;
 
                 @media only screen and (max-width: $collapseNavbarWidth) {
                     margin-bottom: 0.5rem;
