@@ -75,6 +75,10 @@ export default function Footer() {
         console.log("ABOUT");
     };
 
+    // ###################################################
+    //      COPY EMAIL
+    // ###################################################
+
     // Email div
     const emailCopiedRef = useRef(null);
 

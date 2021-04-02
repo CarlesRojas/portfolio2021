@@ -972,6 +972,10 @@ img {
 
             &:hover {
                 transform: scale(1.05);
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    transform: scale(1);
+                }
             }
         }
 
@@ -1049,6 +1053,15 @@ img {
 
     &.apps {
         background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 75%);
+        backdrop-filter: blur(10px);
+    }
+
+    &.about {
+        backdrop-filter: blur(15px);
+    }
+
+    &.aboutContainer {
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.5) 75%);
         backdrop-filter: blur(10px);
     }
 
@@ -1793,6 +1806,166 @@ img {
 // #######################################
 
 .about {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include border-radius(0);
+
+    @media only screen and (max-width: $collapseNavbarWidth) {
+        align-items: unset;
+        padding-top: 2.5vw;
+    }
+
+    .aboutContainer {
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2em;
+
+        @media only screen and (max-width: $collapseNavbarWidth) {
+            max-width: 95%;
+            max-height: 80%;
+            padding-bottom: 0.5em;
+        }
+
+        .profile {
+            .profilePicture {
+                width: calc(100% - 2rem);
+                margin: 1rem;
+                @include border-radius(10px);
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    width: calc(100% - 1rem);
+                    margin: 0.5rem;
+                }
+            }
+
+            .name {
+                margin-top: 2rem;
+                font-size: 2rem;
+                font-weight: 800;
+                text-align: center;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    margin-top: 1rem;
+                    font-size: 1.6rem;
+                }
+            }
+
+            form {
+                @include transition(all 0.3s ease-in-out);
+                user-select: none;
+
+                .email {
+                    cursor: none;
+                    user-select: none;
+                    width: 100%;
+                    background: none;
+                    color: black;
+                    opacity: 0.4;
+                    margin: 0.5rem 0;
+                    border: 0;
+                    outline: none;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    text-align: center;
+                    caret-color: transparent;
+
+                    &::-moz-selection {
+                        cursor: none;
+                        color: black;
+                        background: transparent;
+                        caret-color: transparent;
+                    }
+
+                    &::selection {
+                        cursor: none;
+                        color: black;
+                        background: transparent;
+                        caret-color: transparent;
+                    }
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        margin: 0.2rem 0;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                &:hover {
+                    transform: scale(1.05);
+
+                    @media only screen and (max-width: $collapseNavbarWidth) {
+                        transform: scale(1);
+                    }
+                }
+            }
+
+            .emailCopy {
+                color: rgba(0, 0, 0, 0.3);
+                font-size: 1rem;
+                font-weight: 600;
+                opacity: 0;
+                text-align: center;
+                margin-bottom: 1rem;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+
+        .studies {
+            margin: 1rem;
+
+            @media only screen and (max-width: $collapseNavbarWidth) {
+                margin: 0.5rem;
+            }
+
+            .title {
+                text-align: center;
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    font-size: 0.9rem;
+                    margin-bottom: 0.3rem;
+                }
+            }
+
+            .institution {
+                text-align: center;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    font-size: 0.7rem;
+                    margin-bottom: 0.3rem;
+                }
+            }
+
+            .years {
+                text-align: center;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                opacity: 0.5;
+
+                @media only screen and (max-width: $collapseNavbarWidth) {
+                    font-size: 0.7rem;
+                    margin-bottom: 0.3rem;
+                }
+            }
+        }
+    }
 }
 
 // #######################################
