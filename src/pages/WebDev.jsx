@@ -16,6 +16,24 @@ import MatchEatScreenshot7 from "resources/projects/MatchEat/screenshot7.jpg";
 import MatchEatVideo from "resources/projects/MatchEat/video.mp4";
 import MatchEatQR from "resources/projects/MatchEat/qr.png";
 
+// Project: GodHead
+import GodHeadIcon from "resources/projects/GodHead/icon.png";
+import GodHeadSplash from "resources/projects/GodHead/splash.jpg";
+import GodHeadSplashMobile from "resources/projects/GodHead/splashMobile.jpg";
+import GodHeadScreenshot1 from "resources/projects/GodHead/screenshot1.jpg";
+import GodHeadScreenshot2 from "resources/projects/GodHead/screenshot2.jpg";
+import GodHeadScreenshot3 from "resources/projects/GodHead/screenshot3.jpg";
+import GodHeadScreenshot4 from "resources/projects/GodHead/screenshot4.jpg";
+import GodHeadQR from "resources/projects/GodHead/qr.png";
+
+// Project: CryptoPlace
+import CryptoPlaceIcon from "resources/projects/CryptoPlace/icon.png";
+import CryptoPlaceSplash from "resources/projects/CryptoPlace/splash.jpg";
+import CryptoPlaceSplashMobile from "resources/projects/CryptoPlace/splashMobile.jpg";
+import CryptoPlaceScreenshot1 from "resources/projects/CryptoPlace/screenshot1.jpg";
+import CryptoPlaceScreenshot2 from "resources/projects/CryptoPlace/screenshot2.jpg";
+import CryptoPlaceScreenshot3 from "resources/projects/CryptoPlace/screenshot3.jpg";
+import CryptoPlaceQR from "resources/projects/CryptoPlace/qr.png";
 // Project: g-stocks
 import GstocksIcon from "resources/projects/Gstocks/icon.png";
 import GstocksSplash from "resources/projects/Gstocks/splash.jpg";
@@ -135,6 +153,52 @@ export default function WebDev() {
                 horizontal={false}
                 id="matchEat"
                 process="MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen."
+                i={0}
+            ></Project>
+
+            {/* ################################# */}
+            {/*   GodHead                         */}
+            {/* ################################# */}
+
+            <Project
+                image={{ desktop: GodHeadSplash, mobile: GodHeadSplashMobile }}
+                icon={GodHeadIcon}
+                title="GodHead"
+                subtitle="Find out what each item does in The Binding of Isaac: Repentance."
+                description={[
+                    "Having trouble remembering what one of the more than seven hundred items does in the game? Use this app to quickly find out everything about it.",
+                    "You can search the items by their icon, by their name or subtitle.",
+                ]}
+                // links={[]}
+                qr={{ url: "http://godhead.netlify.app/", qr: GodHeadQR }}
+                // video={GodHeadVideo}
+                screenshots={[GodHeadScreenshot4, GodHeadScreenshot3, GodHeadScreenshot2, GodHeadScreenshot1]}
+                horizontal={true}
+                id="godHead"
+                process="GodHead is a Progressive Web App made with ReactJS targeting mobile & desktop devices. You can add it as an app to your PC, Android, or iPhone by scanning this QR and adding the page to your Home Screen."
+                i={0}
+            ></Project>
+
+            {/* ################################# */}
+            {/*   CryptoPlace                     */}
+            {/* ################################# */}
+
+            <Project
+                image={{ desktop: CryptoPlaceSplash, mobile: CryptoPlaceSplashMobile }}
+                icon={CryptoPlaceIcon}
+                title="CryptoPlace"
+                subtitle="A recreation of the r/place experiment where every pixel is an NFT (Non Fungible Token)."
+                description={[
+                    "Each pixel in the 256x256 canvas is own by someone who can change its color. You can buy a group of them or work together to create pixel art.",
+                    "CryptoPlace is a decentralized app (DApp) that uses Smart Contracts and the ERC721 standard to make sure each pixel is really owned by the person that mints it or buys it.",
+                ]}
+                // links={[]}
+                qr={{ url: "http://cryptoplace.netlify.app/", qr: CryptoPlaceQR }}
+                // video={CryptoPlaceVideo}
+                screenshots={[CryptoPlaceScreenshot3, CryptoPlaceScreenshot2, CryptoPlaceScreenshot1]}
+                horizontal={true}
+                id="cryptoPlace"
+                process="CryptoPlace is a DApp made using ReactJS for the front end and Solidity for the Smart Contracts. It hasn’t yet been deployed to the Ethereum network. Coming soon."
                 i={0}
             ></Project>
 

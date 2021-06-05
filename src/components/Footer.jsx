@@ -8,6 +8,8 @@ import LogoGradientIcon from "resources/logoGradient.svg";
 
 // Web Icons
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
+import GodHeadIcon from "resources/projects/GodHead/icon.png";
+import CryptoPlaceIcon from "resources/projects/CryptoPlace/icon.png";
 import GstocksIcon from "resources/projects/Gstocks/icon.png";
 import SpotIcon from "resources/projects/Spot/icon.png";
 import ReddonIcon from "resources/projects/Reddon/icon.png";
@@ -50,7 +52,7 @@ export default function Footer() {
     //      ICONS
     // ###################################################
 
-    const iconsWeb = useRef([MatchEatIcon, GstocksIcon, SpotIcon, ReddonIcon, PortfolioIcon]);
+    const iconsWeb = useRef([MatchEatIcon, GodHeadIcon, CryptoPlaceIcon, GstocksIcon, SpotIcon, ReddonIcon, PortfolioIcon]);
     const iconsGame = useRef([Cubic3DIcon, LetsDriveIcon, TrickShotsIcon, HoloChessIcon, NeoWarIcon, EscapeIcon, InfinityGalleryIcon, PortalIcon]);
     const iconsDesign = useRef([SmartBikeIcon, HoloLensIcon, GwoodIcon, OrbitIcon, ShowBattleIcon, SmartWatchIcon]);
 
