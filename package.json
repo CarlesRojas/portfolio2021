@@ -4,16 +4,17 @@
     "homepage": ".",
     "private": true,
     "dependencies": {
-        "classnames": "^2.2.6",
+        "classnames": "^2.3.1",
         "gsap": "^3.6.0",
-        "node-sass": "^4.14.1",
-        "react": "^16.13.1",
+        "node-sass": "^6.0.1",
+        "sass-loader": "^11.1.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "react-device-detect": "^1.17.0",
-        "react-dom": "^16.13.1",
         "react-inlinesvg": "^2.2.2",
         "react-player": "^2.9.0",
         "react-router-dom": "^5.2.0",
-        "react-scripts": "3.4.3",
+        "react-scripts": "4.0.3",
         "react-spring": "^9.0.0-rc.3",
         "react-use-gesture": "^9.1.3"
     },
@@ -21,7 +22,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "dist": "react-scripts build && netlify deploy --dir=build --prod",
-        "ngrok": "./ngrok.exe http 3000 --region=eu"
+        "ngrok": "./ngrok.exe http 3000 --region=eu",
+        "use": "CHOKIDAR_USEPOLLING=true react-scripts start"
     },
     "eslintConfig": {
         "extends": [
