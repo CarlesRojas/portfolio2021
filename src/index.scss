@@ -406,7 +406,14 @@ img {
     backdrop-filter: blur(5px);
     @include box-shadow(0 0 10px rgba(0, 0, 0, 0.2));
     @include border-radius(100vw);
-    @include transition(background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out);
+    @include transition(
+        background-color 0.2s ease-in-out,
+        opacity 0.2s ease-in-out,
+        transform 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out,
+        width 0.2s ease-in-out,
+        height 0.2s ease-in-out
+    );
 
     // HIDDEN
     &.hidden {
@@ -1077,6 +1084,10 @@ img {
 
     //  WEB DEV
     // ###################################################
+
+    &.covid19 {
+        background: radial-gradient(circle, rgba(9, 252, 224, 0.349) 0%, rgba(133, 207, 95, 0.2) 75%);
+    }
 
     &.matchEat {
         background: radial-gradient(circle, rgba(255, 119, 101, 0.3) 0%, rgba(255, 119, 101, 0.5) 75%);

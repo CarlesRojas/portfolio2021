@@ -2,6 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import classnames from "classnames";
 
+// Project: Covid-19
+import Covid19Icon from "resources/projects/Covid19/icon.png";
+import Covid19Splash from "resources/projects/Covid19/splash.jpg";
+import Covid19SplashMobile from "resources/projects/Covid19/splashMobile.jpg";
+import Covid19Screenshot1 from "resources/projects/Covid19/screenshot1.jpg";
+import Covid19Screenshot2 from "resources/projects/Covid19/screenshot2.jpg";
+import Covid19Screenshot3 from "resources/projects/Covid19/screenshot3.jpg";
+import Covid19Screenshot4 from "resources/projects/Covid19/screenshot4.jpg";
+import Covid19Screenshot5 from "resources/projects/Covid19/screenshot5.jpg";
+import Covid19Screenshot6 from "resources/projects/Covid19/screenshot6.jpg";
+import Covid19Video from "resources/projects/Covid19/video.mp4";
+import Covid19QR from "resources/projects/Covid19/qr.png";
+
 // Project: MatchEat
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
 import MatchEatSplash from "resources/projects/MatchEat/splash.jpg";
@@ -134,6 +147,37 @@ export default function WebDev() {
     return (
         <div className={classnames("webDev", { visible })}>
             {/* ################################# */}
+            {/*   Covid-19                        */}
+            {/* ################################# */}
+
+            <Project
+                image={{ desktop: Covid19Splash, mobile: Covid19SplashMobile }}
+                icon={Covid19Icon}
+                title="Covid-19"
+                subtitle="Check how the Covid-19 virus is affecting each Province in Spain."
+                description={[
+                    "Get information about how Covid-19 is affecting every Province in Spain in the last 14 days. Get updated numbers every day about the current state of the virus and track its progress.",
+                    "If you have to travel around Spain, check the state of Covid-19 in your destinations, with some guides about what measures you should take once there.",
+                    "If you just caught Covid-19, the app shows you useful information about how to proceed.",
+                ]}
+                // links={[]}
+                qr={{ url: "https://estado-covid.netlify.app/", qr: Covid19QR }}
+                video={Covid19Video}
+                screenshots={[
+                    Covid19Screenshot6,
+                    Covid19Screenshot5,
+                    Covid19Screenshot4,
+                    Covid19Screenshot3,
+                    Covid19Screenshot2,
+                    Covid19Screenshot1,
+                ]}
+                horizontal={false}
+                id="covid19"
+                process="Covid-19 is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen."
+                i={0}
+            ></Project>
+
+            {/* ################################# */}
             {/*   MatchEat                        */}
             {/* ################################# */}
 
@@ -149,11 +193,19 @@ export default function WebDev() {
                 // links={[]}
                 qr={{ url: "http://matcheat.netlify.app/", qr: MatchEatQR }}
                 video={MatchEatVideo}
-                screenshots={[MatchEatScreenshot7, MatchEatScreenshot6, MatchEatScreenshot5, MatchEatScreenshot4, MatchEatScreenshot3, MatchEatScreenshot2, MatchEatScreenshot1]}
+                screenshots={[
+                    MatchEatScreenshot7,
+                    MatchEatScreenshot6,
+                    MatchEatScreenshot5,
+                    MatchEatScreenshot4,
+                    MatchEatScreenshot3,
+                    MatchEatScreenshot2,
+                    MatchEatScreenshot1,
+                ]}
                 horizontal={false}
                 id="matchEat"
                 process="MatchEat is a Progressive Web App made with ReactJS targeting mobile devices. You can add it as an app to your Android or iPhone by scanning this QR and adding the page to your Home Screen."
-                i={0}
+                i={1}
             ></Project>
 
             {/* ################################# */}
@@ -176,7 +228,7 @@ export default function WebDev() {
                 horizontal={true}
                 id="godHead"
                 process="GodHead is a Progressive Web App made with ReactJS targeting mobile & desktop devices. You can add it as an app to your PC, Android, or iPhone by scanning this QR and adding the page to your Home Screen."
-                i={0}
+                i={2}
             ></Project>
 
             {/* ################################# */}
@@ -199,7 +251,7 @@ export default function WebDev() {
                 horizontal={true}
                 id="cryptoPlace"
                 process="CryptoPlace is a DApp made using ReactJS for the front end and Solidity for the Smart Contracts. It hasn’t yet been deployed to the Ethereum network. Coming soon."
-                i={0}
+                i={3}
             ></Project>
 
             {/* ################################# */}
@@ -217,11 +269,18 @@ export default function WebDev() {
                 // links={[]}
                 // qr={}
                 // video={}
-                screenshots={[GstocksScreenshot6, GstocksScreenshot5, GstocksScreenshot4, GstocksScreenshot3, GstocksScreenshot2, GstocksScreenshot1]}
+                screenshots={[
+                    GstocksScreenshot6,
+                    GstocksScreenshot5,
+                    GstocksScreenshot4,
+                    GstocksScreenshot3,
+                    GstocksScreenshot2,
+                    GstocksScreenshot1,
+                ]}
                 horizontal={true}
                 id="gstocks"
                 process="g-stocks is a tool made with JavaScript targeting desktop devices. It is still in development and can’t be accessed yet."
-                i={1}
+                i={4}
             ></Project>
 
             {/* ################################# */}
@@ -233,15 +292,24 @@ export default function WebDev() {
                 icon={SpotIcon}
                 title="Spot"
                 subtitle="A minimal and traditional client for Spotify."
-                description={["Spot is an app that connects to your current Spotify account and lets you explore your music using a traditional library with a minimalistic design."]}
+                description={[
+                    "Spot is an app that connects to your current Spotify account and lets you explore your music using a traditional library with a minimalistic design.",
+                ]}
                 // links={[]}
                 // qr={}
                 video={SpotVideo}
-                screenshots={[SpotScreenshot6, SpotScreenshot5, SpotScreenshot4, SpotScreenshot3, SpotScreenshot2, SpotScreenshot1]}
+                screenshots={[
+                    SpotScreenshot6,
+                    SpotScreenshot5,
+                    SpotScreenshot4,
+                    SpotScreenshot3,
+                    SpotScreenshot2,
+                    SpotScreenshot1,
+                ]}
                 horizontal={false}
                 id="spot"
                 process="Spot is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
-                i={2}
+                i={5}
             ></Project>
 
             {/* ################################# */}
@@ -253,7 +321,9 @@ export default function WebDev() {
                 icon={ReddonIcon}
                 title="Reddon"
                 subtitle="A client for Reddit that navigates posts horizontally."
-                description={["Reddon is an app that connects to your current Reddit account and lets you navigate the most recent posts using horizontal scrolling."]}
+                description={[
+                    "Reddon is an app that connects to your current Reddit account and lets you navigate the most recent posts using horizontal scrolling.",
+                ]}
                 // links={[]}
                 // qr={}
                 // video={}
@@ -261,7 +331,7 @@ export default function WebDev() {
                 horizontal={false}
                 id="reddon"
                 process="Reddon is a Progressive Web App made with ReactJS targeting mobile devices. It is a work in progress that is not yet available for public use."
-                i={3}
+                i={6}
             ></Project>
 
             {/* ################################# */}
@@ -283,7 +353,7 @@ export default function WebDev() {
                 horizontal={true}
                 id="portfolio"
                 process="This portfolio is a webpage build using ReactJS."
-                i={4}
+                i={7}
             ></Project>
         </div>
     );

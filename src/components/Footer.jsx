@@ -7,6 +7,7 @@ import ArrowIcon from "resources/icons/arrow.svg";
 import LogoGradientIcon from "resources/logoGradient.svg";
 
 // Web Icons
+import Covid19Icon from "resources/projects/Covid19/icon.png";
 import MatchEatIcon from "resources/projects/MatchEat/icon.png";
 import GodHeadIcon from "resources/projects/GodHead/icon.png";
 import CryptoPlaceIcon from "resources/projects/CryptoPlace/icon.png";
@@ -52,8 +53,26 @@ export default function Footer() {
     //      ICONS
     // ###################################################
 
-    const iconsWeb = useRef([MatchEatIcon, GodHeadIcon, CryptoPlaceIcon, GstocksIcon, SpotIcon, ReddonIcon, PortfolioIcon]);
-    const iconsGame = useRef([Cubic3DIcon, LetsDriveIcon, TrickShotsIcon, HoloChessIcon, NeoWarIcon, EscapeIcon, InfinityGalleryIcon, PortalIcon]);
+    const iconsWeb = useRef([
+        Covid19Icon,
+        MatchEatIcon,
+        GodHeadIcon,
+        CryptoPlaceIcon,
+        GstocksIcon,
+        SpotIcon,
+        ReddonIcon,
+        PortfolioIcon,
+    ]);
+    const iconsGame = useRef([
+        Cubic3DIcon,
+        LetsDriveIcon,
+        TrickShotsIcon,
+        HoloChessIcon,
+        NeoWarIcon,
+        EscapeIcon,
+        InfinityGalleryIcon,
+        PortalIcon,
+    ]);
     const iconsDesign = useRef([SmartBikeIcon, HoloLensIcon, GwoodIcon, OrbitIcon, ShowBattleIcon, SmartWatchIcon]);
 
     // On icon clicked
@@ -100,7 +119,12 @@ export default function Footer() {
     // ###################################################
 
     // Current section
-    const initialPage = window.location.pathname === "/web" || window.location.pathname === "/" ? "web" : window.location.pathname === "/game" ? "game" : "design";
+    const initialPage =
+        window.location.pathname === "/web" || window.location.pathname === "/"
+            ? "web"
+            : window.location.pathname === "/game"
+            ? "game"
+            : "design";
     const [currSection, setCurrSection] = useState(initialPage);
 
     // Apps hidden state
@@ -176,7 +200,8 @@ export default function Footer() {
     //      RENDER
     // ###################################################
 
-    const iconArray = currSection === "web" ? iconsWeb.current : currSection === "game" ? iconsGame.current : iconsDesign.current;
+    const iconArray =
+        currSection === "web" ? iconsWeb.current : currSection === "game" ? iconsGame.current : iconsDesign.current;
 
     return (
         <div className="footer">
@@ -190,7 +215,10 @@ export default function Footer() {
                     <div className="spacing"></div>
                 </div>
             </div>
-            <div className={classnames("glass", "black", "goTopContainer", "hoverable", { visible: goToTopVisible })} onClick={onGoToTopClicked}>
+            <div
+                className={classnames("glass", "black", "goTopContainer", "hoverable", { visible: goToTopVisible })}
+                onClick={onGoToTopClicked}
+            >
                 <SVG className="goTop" src={ArrowIcon} />
             </div>
             <div className="info">
@@ -199,7 +227,13 @@ export default function Footer() {
                     <p className="name">Carles Rojas</p>
                 </div>
                 <form autoComplete="off" noValidate spellCheck="false" onClick={onCopyEmail}>
-                    <input id="email" className="email hoverable" type="email" autoComplete="new-password" defaultValue="carlesrojas@outlook.com" />
+                    <input
+                        id="email"
+                        className="email hoverable"
+                        type="email"
+                        autoComplete="new-password"
+                        defaultValue="carlesrojas@outlook.com"
+                    />
                 </form>
                 <div className="emailCopy" ref={emailCopiedRef}>
                     email copied
